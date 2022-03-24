@@ -46,6 +46,10 @@
             this.idLabel = new System.Windows.Forms.Label();
             this.loginBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numberLabel = new System.Windows.Forms.Label();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +80,7 @@
             // 
             this.lastNameLabel.AutoSize = true;
             this.lastNameLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lastNameLabel.Location = new System.Drawing.Point(14, 211);
+            this.lastNameLabel.Location = new System.Drawing.Point(9, 179);
             this.lastNameLabel.MinimumSize = new System.Drawing.Size(0, 27);
             this.lastNameLabel.Name = "lastNameLabel";
             this.lastNameLabel.Size = new System.Drawing.Size(105, 27);
@@ -87,7 +91,7 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nameLabel.Location = new System.Drawing.Point(60, 163);
+            this.nameLabel.Location = new System.Drawing.Point(55, 131);
             this.nameLabel.MinimumSize = new System.Drawing.Size(0, 27);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(59, 27);
@@ -111,7 +115,7 @@
             this.lNameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lNameBox.Location = new System.Drawing.Point(125, 208);
+            this.lNameBox.Location = new System.Drawing.Point(120, 176);
             this.lNameBox.MaxLength = 5;
             this.lNameBox.Name = "lNameBox";
             this.lNameBox.Size = new System.Drawing.Size(200, 27);
@@ -123,7 +127,7 @@
             this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameBox.Location = new System.Drawing.Point(125, 160);
+            this.nameBox.Location = new System.Drawing.Point(120, 128);
             this.nameBox.MaxLength = 5;
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(200, 27);
@@ -146,6 +150,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.emailLabel);
+            this.panel1.Controls.Add(this.numberLabel);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.dateBox);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
@@ -173,7 +181,7 @@
             this.dateBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateBox.Location = new System.Drawing.Point(560, 208);
+            this.dateBox.Location = new System.Drawing.Point(555, 176);
             this.dateBox.MaxLength = 8;
             this.dateBox.Name = "dateBox";
             this.dateBox.Size = new System.Drawing.Size(200, 27);
@@ -185,7 +193,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(463, 255);
+            this.label11.Location = new System.Drawing.Point(458, 223);
             this.label11.MinimumSize = new System.Drawing.Size(0, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(91, 27);
@@ -196,7 +204,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(358, 211);
+            this.label10.Location = new System.Drawing.Point(353, 179);
             this.label10.MinimumSize = new System.Drawing.Size(0, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(196, 27);
@@ -208,7 +216,7 @@
             this.passwBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.passwBox.Location = new System.Drawing.Point(560, 252);
+            this.passwBox.Location = new System.Drawing.Point(555, 220);
             this.passwBox.MaxLength = 5;
             this.passwBox.Name = "passwBox";
             this.passwBox.Size = new System.Drawing.Size(200, 27);
@@ -220,7 +228,7 @@
             // 
             this.paspNumberLabel.AutoSize = true;
             this.paspNumberLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.paspNumberLabel.Location = new System.Drawing.Point(393, 163);
+            this.paspNumberLabel.Location = new System.Drawing.Point(388, 131);
             this.paspNumberLabel.MinimumSize = new System.Drawing.Size(0, 27);
             this.paspNumberLabel.Name = "paspNumberLabel";
             this.paspNumberLabel.Size = new System.Drawing.Size(161, 27);
@@ -232,7 +240,7 @@
             this.passpNumbBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.passpNumbBox.Location = new System.Drawing.Point(560, 160);
+            this.passpNumbBox.Location = new System.Drawing.Point(555, 128);
             this.passpNumbBox.MaxLength = 5;
             this.passpNumbBox.Name = "passpNumbBox";
             this.passpNumbBox.Size = new System.Drawing.Size(200, 27);
@@ -243,7 +251,7 @@
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.idLabel.Location = new System.Drawing.Point(39, 255);
+            this.idLabel.Location = new System.Drawing.Point(34, 223);
             this.idLabel.MinimumSize = new System.Drawing.Size(0, 27);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(80, 27);
@@ -255,7 +263,7 @@
             this.loginBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginBox.Location = new System.Drawing.Point(125, 252);
+            this.loginBox.Location = new System.Drawing.Point(120, 220);
             this.loginBox.MaxLength = 5;
             this.loginBox.Name = "loginBox";
             this.loginBox.Size = new System.Drawing.Size(200, 27);
@@ -272,6 +280,53 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "ALREADY HAVE AN ACCOUNT?";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(555, 262);
+            this.textBox1.MaxLength = 5;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(200, 27);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.UseSystemPasswordChar = true;
+            this.textBox1.Click += new System.EventHandler(this.passwBox_Click);
+            // 
+            // numberLabel
+            // 
+            this.numberLabel.AutoSize = true;
+            this.numberLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numberLabel.Location = new System.Drawing.Point(472, 265);
+            this.numberLabel.MinimumSize = new System.Drawing.Size(0, 27);
+            this.numberLabel.Name = "numberLabel";
+            this.numberLabel.Size = new System.Drawing.Size(77, 27);
+            this.numberLabel.TabIndex = 5;
+            this.numberLabel.Text = "Number";
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.emailLabel.Location = new System.Drawing.Point(57, 265);
+            this.emailLabel.MinimumSize = new System.Drawing.Size(0, 27);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(57, 27);
+            this.emailLabel.TabIndex = 5;
+            this.emailLabel.Text = "Email";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(120, 262);
+            this.textBox2.MaxLength = 5;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(200, 27);
+            this.textBox2.TabIndex = 3;
+            this.textBox2.Click += new System.EventHandler(this.loginBox_Click);
             // 
             // RegForm
             // 
@@ -307,5 +362,9 @@
         private System.Windows.Forms.TextBox loginBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox dateBox;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label emailLabel;
+        private System.Windows.Forms.Label numberLabel;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

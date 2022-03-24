@@ -12,6 +12,5 @@ namespace BankSystem.Entities
         public string PassportNumber { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string Password { get; set; }
-
     }
 }

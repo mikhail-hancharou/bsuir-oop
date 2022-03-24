@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using BankSystem.Entities;
+using BankingSystem.Entities;
 
-namespace BankSystem
+namespace BankingSystem
 {
     public class AppContext : DbContext
     {
         public DbSet<User> Users => Set<User>();
-        public DbSet<Bank> Banks => Set<Bank>();
         public AppContext() => Database.EnsureCreated();
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=database.db");
+            //optionsBuilder.UseSqlite("Data Source=DBase.db");
         }
     }
 }
