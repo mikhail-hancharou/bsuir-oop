@@ -37,6 +37,11 @@
             this.nameBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.roleBox = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.numberLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dateBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -46,10 +51,6 @@
             this.idLabel = new System.Windows.Forms.Label();
             this.loginBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numberLabel = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,6 +116,7 @@
             this.lNameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lNameBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.lNameBox.Location = new System.Drawing.Point(120, 176);
             this.lNameBox.MaxLength = 5;
             this.lNameBox.Name = "lNameBox";
@@ -127,6 +129,7 @@
             this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.nameBox.Location = new System.Drawing.Point(120, 128);
             this.nameBox.MaxLength = 5;
             this.nameBox.Name = "nameBox";
@@ -150,6 +153,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.roleBox);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.emailLabel);
             this.panel1.Controls.Add(this.numberLabel);
@@ -176,11 +180,78 @@
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 3;
             // 
+            // roleBox
+            // 
+            this.roleBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.roleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.roleBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.roleBox.Items.AddRange(new object[] {
+            "User",
+            "Operator",
+            "Manager",
+            "Outsider",
+            "Admin"});
+            this.roleBox.Location = new System.Drawing.Point(604, 305);
+            this.roleBox.Name = "roleBox";
+            this.roleBox.Size = new System.Drawing.Size(151, 30);
+            this.roleBox.TabIndex = 7;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox2.Location = new System.Drawing.Point(120, 262);
+            this.textBox2.MaxLength = 5;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(200, 27);
+            this.textBox2.TabIndex = 3;
+            this.textBox2.Click += new System.EventHandler(this.loginBox_Click);
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.emailLabel.Location = new System.Drawing.Point(57, 265);
+            this.emailLabel.MinimumSize = new System.Drawing.Size(0, 27);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(57, 27);
+            this.emailLabel.TabIndex = 5;
+            this.emailLabel.Text = "Email";
+            // 
+            // numberLabel
+            // 
+            this.numberLabel.AutoSize = true;
+            this.numberLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numberLabel.Location = new System.Drawing.Point(472, 265);
+            this.numberLabel.MinimumSize = new System.Drawing.Size(0, 27);
+            this.numberLabel.Name = "numberLabel";
+            this.numberLabel.Size = new System.Drawing.Size(77, 27);
+            this.numberLabel.TabIndex = 5;
+            this.numberLabel.Text = "Number";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox1.Location = new System.Drawing.Point(555, 262);
+            this.textBox1.MaxLength = 5;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(200, 27);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.UseSystemPasswordChar = true;
+            this.textBox1.Click += new System.EventHandler(this.passwBox_Click);
+            // 
             // dateBox
             // 
             this.dateBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dateBox.Location = new System.Drawing.Point(555, 176);
             this.dateBox.MaxLength = 8;
             this.dateBox.Name = "dateBox";
@@ -216,6 +287,7 @@
             this.passwBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.passwBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.passwBox.Location = new System.Drawing.Point(555, 220);
             this.passwBox.MaxLength = 5;
             this.passwBox.Name = "passwBox";
@@ -240,6 +312,7 @@
             this.passpNumbBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.passpNumbBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.passpNumbBox.Location = new System.Drawing.Point(555, 128);
             this.passpNumbBox.MaxLength = 5;
             this.passpNumbBox.Name = "passpNumbBox";
@@ -263,6 +336,7 @@
             this.loginBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.loginBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.loginBox.Location = new System.Drawing.Point(120, 220);
             this.loginBox.MaxLength = 5;
             this.loginBox.Name = "loginBox";
@@ -280,53 +354,6 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "ALREADY HAVE AN ACCOUNT?";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(555, 262);
-            this.textBox1.MaxLength = 5;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 27);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.UseSystemPasswordChar = true;
-            this.textBox1.Click += new System.EventHandler(this.passwBox_Click);
-            // 
-            // numberLabel
-            // 
-            this.numberLabel.AutoSize = true;
-            this.numberLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numberLabel.Location = new System.Drawing.Point(472, 265);
-            this.numberLabel.MinimumSize = new System.Drawing.Size(0, 27);
-            this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(77, 27);
-            this.numberLabel.TabIndex = 5;
-            this.numberLabel.Text = "Number";
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.emailLabel.Location = new System.Drawing.Point(57, 265);
-            this.emailLabel.MinimumSize = new System.Drawing.Size(0, 27);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(57, 27);
-            this.emailLabel.TabIndex = 5;
-            this.emailLabel.Text = "Email";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(120, 262);
-            this.textBox2.MaxLength = 5;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 27);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Click += new System.EventHandler(this.loginBox_Click);
             // 
             // RegForm
             // 
@@ -366,5 +393,6 @@
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label numberLabel;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox roleBox;
     }
 }

@@ -17,6 +17,7 @@ namespace BankSystem
         {
             InitializeComponent();
 
+            roleBox.SelectedIndex = 0;
             dateBox.Text = "dd.mm.yy";
         }
 
@@ -98,8 +99,16 @@ namespace BankSystem
 
             if (!mistake)
             {
-                User newUser = new User { Name = nameBox.Text, LastName = lNameBox.Text, Id = loginBox.Text,
-                    PassportNumber = passpNumbBox.Text, ExpiryDate = date, Password = passwBox.Text };
+                Roles role = (roleBox.SelectedIndex) switch
+                {
+                    0 => Roles.User,
+                    1 => Roles.Operator,
+                    2 => Roles.Manager,
+                    3 => Roles.Outsider,
+                    4 => Roles.Admin,
+                    _ => Roles.User
+                };
+                User newUser = new User(nameBox.Text, lNameBox.Text, loginBox.Text, passpNumbBox.Text, date, passwBox.Text, role);
                 db.Users.Add(newUser);
                 db.SaveChanges();
                 this.Hide();
@@ -108,17 +117,17 @@ namespace BankSystem
 
         private void nameBox_Click(object sender, EventArgs e)
         {
-            nameBox.BackColor = System.Drawing.Color.White;
+            nameBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
 
         private void lNameBox_Click(object sender, EventArgs e)
         {
-            lNameBox.BackColor = System.Drawing.Color.White;
+            lNameBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
 
         private void loginBox_Click(object sender, EventArgs e)
         {
-            loginBox.BackColor = System.Drawing.Color.White;
+            loginBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
             loginBox.ForeColor = System.Drawing.Color.Black;
             if (loginBox.Text == "already registered")
             {
@@ -128,7 +137,7 @@ namespace BankSystem
 
         private void passpNumbBox_Click(object sender, EventArgs e)
         {
-            passpNumbBox.BackColor = System.Drawing.Color.White;
+            passpNumbBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
             passpNumbBox.ForeColor = System.Drawing.Color.Black;
             if (passpNumbBox.Text == "already registered")
             {
@@ -143,12 +152,12 @@ namespace BankSystem
                 dateBox.Text = "";
             }
 
-            dateBox.BackColor = System.Drawing.Color.White;
+            dateBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
 
         private void passwBox_Click(object sender, EventArgs e)
         {
-            passwBox.BackColor = System.Drawing.Color.White;
+            passwBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
 
         private void SignIn_Click(object sender, EventArgs e)

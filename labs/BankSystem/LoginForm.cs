@@ -31,6 +31,9 @@ namespace BankSystem
                 if (db.Users.AsEnumerable().Any(u => u.Id == logBox.Text.Trim() && u.PassportNumber == pasBox.Text.Trim()))
                 {
                     User newUser = db.Users.ToList().Find(u => u.Id == logBox.Text.Trim() && u.PassportNumber == pasBox.Text.Trim());
+                    this.Hide();
+                    MainMenu menu = new MainMenu(newUser);
+                    menu.Show();
                 }
             }
         }
@@ -50,12 +53,12 @@ namespace BankSystem
 
         private void logBox_Click(object sender, EventArgs e)
         {
-            logBox.BackColor = System.Drawing.Color.White;
+            logBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
 
         private void pasBox_Click(object sender, EventArgs e)
         {
-            logBox.BackColor = System.Drawing.Color.White;
+            logBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
     }
 }

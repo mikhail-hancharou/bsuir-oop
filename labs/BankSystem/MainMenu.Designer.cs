@@ -33,8 +33,8 @@
             this.cabinetTab = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.billsLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.namesBox = new System.Windows.Forms.GroupBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
@@ -42,6 +42,8 @@
             this.moneyLabel = new System.Windows.Forms.Label();
             this.clownBox = new System.Windows.Forms.PictureBox();
             this.opportunityTab = new System.Windows.Forms.TabPage();
+            this.requestTab = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelRequest = new System.Windows.Forms.TableLayoutPanel();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -49,12 +51,14 @@
             this.namesBox.SuspendLayout();
             this.allMoneyBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).BeginInit();
+            this.requestTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
             // 
             this.mainTab.Controls.Add(this.cabinetTab);
             this.mainTab.Controls.Add(this.opportunityTab);
+            this.mainTab.Controls.Add(this.requestTab);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Location = new System.Drawing.Point(0, 0);
             this.mainTab.Name = "mainTab";
@@ -93,6 +97,16 @@
             this.panel2.Size = new System.Drawing.Size(475, 614);
             this.panel2.TabIndex = 5;
             // 
+            // billsLabel
+            // 
+            this.billsLabel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.billsLabel.Location = new System.Drawing.Point(52, 11);
+            this.billsLabel.Name = "billsLabel";
+            this.billsLabel.Size = new System.Drawing.Size(375, 33);
+            this.billsLabel.TabIndex = 0;
+            this.billsLabel.Text = "Bills";
+            this.billsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -104,16 +118,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 614);
             this.panel1.TabIndex = 4;
-            // 
-            // billsLabel
-            // 
-            this.billsLabel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.billsLabel.Location = new System.Drawing.Point(52, 11);
-            this.billsLabel.Name = "billsLabel";
-            this.billsLabel.Size = new System.Drawing.Size(375, 33);
-            this.billsLabel.TabIndex = 0;
-            this.billsLabel.Text = "Bills";
-            this.billsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // namesBox
             // 
@@ -186,6 +190,33 @@
             this.opportunityTab.Text = "Opportunity";
             this.opportunityTab.UseVisualStyleBackColor = true;
             // 
+            // requestTab
+            // 
+            this.requestTab.Controls.Add(this.tableLayoutPanelRequest);
+            this.requestTab.Location = new System.Drawing.Point(4, 29);
+            this.requestTab.Name = "requestTab";
+            this.requestTab.Size = new System.Drawing.Size(1274, 620);
+            this.requestTab.TabIndex = 2;
+            this.requestTab.Text = "Requests";
+            // 
+            // tableLayoutPanelRequest
+            // 
+            this.tableLayoutPanelRequest.AutoScroll = true;
+            this.tableLayoutPanelRequest.AutoSize = true;
+            this.tableLayoutPanelRequest.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanelRequest.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanelRequest.ColumnCount = 3;
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.76958F));
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.23042F));
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1052F));
+            this.tableLayoutPanelRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRequest.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelRequest.Name = "tableLayoutPanelRequest";
+            this.tableLayoutPanelRequest.RowCount = 1;
+            this.tableLayoutPanelRequest.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelRequest.Size = new System.Drawing.Size(1274, 620);
+            this.tableLayoutPanelRequest.TabIndex = 0;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -195,6 +226,7 @@
             this.Controls.Add(this.mainTab);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.mainTab.ResumeLayout(false);
             this.cabinetTab.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -202,6 +234,8 @@
             this.namesBox.ResumeLayout(false);
             this.allMoneyBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).EndInit();
+            this.requestTab.ResumeLayout(false);
+            this.requestTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -221,5 +255,8 @@
         private System.Windows.Forms.Label billsLabel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabPage requestTab;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest;
     }
 }
