@@ -37,11 +37,12 @@
             this.nameBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.roleBankBox = new System.Windows.Forms.ComboBox();
             this.roleBox = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.numberLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numberBox = new System.Windows.Forms.TextBox();
             this.dateBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -153,11 +154,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.roleBankBox);
             this.panel1.Controls.Add(this.roleBox);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.emailLabel);
             this.panel1.Controls.Add(this.numberLabel);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.numberBox);
             this.panel1.Controls.Add(this.dateBox);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
@@ -180,6 +182,24 @@
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 3;
             // 
+            // roleBankBox
+            // 
+            this.roleBankBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.roleBankBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roleBankBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.roleBankBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.roleBankBox.Items.AddRange(new object[] {
+            "User",
+            "Operator",
+            "Manager",
+            "Outsider",
+            "Admin"});
+            this.roleBankBox.Location = new System.Drawing.Point(604, 341);
+            this.roleBankBox.Name = "roleBankBox";
+            this.roleBankBox.Size = new System.Drawing.Size(151, 30);
+            this.roleBankBox.TabIndex = 7;
+            this.roleBankBox.Visible = false;
+            // 
             // roleBox
             // 
             this.roleBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -188,14 +208,15 @@
             this.roleBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.roleBox.Items.AddRange(new object[] {
             "User",
+            "Outsider",
             "Operator",
             "Manager",
-            "Outsider",
             "Admin"});
             this.roleBox.Location = new System.Drawing.Point(604, 305);
             this.roleBox.Name = "roleBox";
             this.roleBox.Size = new System.Drawing.Size(151, 30);
             this.roleBox.TabIndex = 7;
+            this.roleBox.SelectedIndexChanged += new System.EventHandler(this.roleBox_SelectedIndexChanged);
             // 
             // textBox2
             // 
@@ -232,19 +253,19 @@
             this.numberLabel.TabIndex = 5;
             this.numberLabel.Text = "Number";
             // 
-            // textBox1
+            // numberBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.numberBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox1.Location = new System.Drawing.Point(555, 262);
-            this.textBox1.MaxLength = 5;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 27);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.UseSystemPasswordChar = true;
-            this.textBox1.Click += new System.EventHandler(this.passwBox_Click);
+            this.numberBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numberBox.Location = new System.Drawing.Point(555, 262);
+            this.numberBox.MaxLength = 5;
+            this.numberBox.Name = "numberBox";
+            this.numberBox.Size = new System.Drawing.Size(200, 27);
+            this.numberBox.TabIndex = 3;
+            this.numberBox.UseSystemPasswordChar = true;
+            this.numberBox.Click += new System.EventHandler(this.numberBox_Click);
             // 
             // dateBox
             // 
@@ -392,7 +413,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label numberLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox numberBox;
         private System.Windows.Forms.ComboBox roleBox;
+        private System.Windows.Forms.ComboBox roleBankBox;
     }
 }

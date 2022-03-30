@@ -205,10 +205,10 @@
             this.tableLayoutPanelRequest.AutoSize = true;
             this.tableLayoutPanelRequest.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tableLayoutPanelRequest.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanelRequest.ColumnCount = 3;
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.76958F));
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.23042F));
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1052F));
+            this.tableLayoutPanelRequest.ColumnCount = 1;
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
             this.tableLayoutPanelRequest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelRequest.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelRequest.Name = "tableLayoutPanelRequest";

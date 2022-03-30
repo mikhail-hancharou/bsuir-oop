@@ -1,4 +1,5 @@
 ﻿using BankSystem.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,14 @@ namespace BankSystem
 {
     public class Bill
     {
+        public int Id { get; set; }
         public double Money { get; set; }
         public string BillNumber { get; set; }
+        public bool Blocked { get; set; }
+        public bool Freezed { get; set; }
         public List<Transaction> Transactions { get; set;}
+
+        public Bill() { }//
 
         public Bill(Bank bank)
         {
@@ -28,7 +34,7 @@ namespace BankSystem
 
             while (true)
             {
-                foreach (User u in bank.Users)
+                foreach (Client u in bank.Clients)
                 {
                     if (u.Bills.Contains(this))
                     {

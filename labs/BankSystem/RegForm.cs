@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using BankSystem.Comparer;
 using BankSystem.Entities;
 
 namespace BankSystem
@@ -42,18 +43,11 @@ namespace BankSystem
                 loginBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
-            else if (db.Users.AsEnumerable().Any(u => u.Id == loginBox.Text.Trim()))
+            else if (db.Users.AsEnumerable().Any(u => u.Login == loginBox.Text.Trim()))
             {
                 loginBox.ForeColor = System.Drawing.Color.Red;
                 loginBox.Text = "already registered";
                 mistake = true;
-            }
-            else
-            {
-                foreach (User u in db.Users.ToList())
-                {
-                    Console.WriteLine(u.Name);
-                }
             }
 
             if (passpNumbBox.Text.Trim() == string.Empty)
@@ -61,10 +55,16 @@ namespace BankSystem
                 passpNumbBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
-            else if (db.Users.AsEnumerable().Any(u => u.Id == passpNumbBox.Text.Trim()))
+            else if (db.Users.AsEnumerable().Any(u => u.PassportNumber == passpNumbBox.Text.Trim()))
             {
                 passpNumbBox.ForeColor = System.Drawing.Color.Red;
                 passpNumbBox.Text = "already registered";
+                mistake = true;
+            }
+
+            if (numberBox.Text.Trim() == string.Empty)
+            {
+                nameBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
 
@@ -99,17 +99,46 @@ namespace BankSystem
 
             if (!mistake)
             {
-                Roles role = (roleBox.SelectedIndex) switch
+                User User = new User
                 {
-                    0 => Roles.User,
-                    1 => Roles.Operator,
-                    2 => Roles.Manager,
-                    3 => Roles.Outsider,
-                    4 => Roles.Admin,
-                    _ => Roles.User
+                    Login = loginBox.Text,
+                    PassportNumber = passpNumbBox.Text,
+                    Name = nameBox.Text,
+                    LastName = loginBox.Text,
+                    Password = passwBox.Text,
+                    TNumber = numberBox.Text,
+                    Confirmed = false,
                 };
-                User newUser = new User(nameBox.Text, lNameBox.Text, loginBox.Text, passpNumbBox.Text, date, passwBox.Text, role);
-                db.Users.Add(newUser);
+
+                db.Users.Add(User);
+
+                switch (roleBox.SelectedIndex)
+                {
+                    case 0:
+                        db.Clients.Add(new Client
+                        {
+                            User = User,
+                            PassportNumber = passpNumbBox.Text,
+                            ExpiryDate = date,
+                            Bills = new HashSet<Bill>(new BillComparer()),
+                        });
+                        break;
+                    case 1:
+                        db.Outsiders.Add(new Outsider { User = User });                     
+                        break;
+                    case 2:
+                        db.Managers.Add(new Manager { User = User });
+                        break;
+                    case 3:
+                        db.Operators.Add(new Operator { User = User });
+                        break;
+                    case 4:
+                        db.Admins.Add(new Admin { User = User });
+                        break;
+                    default:
+                        break;
+                }
+
                 db.SaveChanges();
                 this.Hide();
             }
@@ -175,6 +204,25 @@ namespace BankSystem
                 dateBox.Text = "dd.mm.yy";
             }
             dateBox.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void numberBox_Click(object sender, EventArgs e)
+        {
+            numberBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
+        }
+
+        private void roleBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (roleBox.SelectedIndex > 1)
+            {
+                using AppContext db = new AppContext();
+                roleBankBox.Visible = true;
+                roleBankBox.Items.AddRange(db.Banks.ToArray());
+            }
+            else
+            {
+                roleBankBox.Visible = false;
+            }
         }
     }
 }

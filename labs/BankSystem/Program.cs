@@ -18,7 +18,7 @@ namespace BankSystem
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu(new User("1", "1", "1", "1", new DateTime(), "1", Roles.User)));//new MainMenu(new User())
+            Application.Run(new RegForm()); //MainMenu(new Client("1", "1", "1", "1", new DateTime(), "1", Role.Manager))
         }
     }
 }

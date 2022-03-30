@@ -6,19 +6,23 @@ namespace BankSystem.Entities
 {
     public class Bank
     {
+        public int Id { get; set; }
         public string BID { get; set; }
-        public List<User> Users { get; set; }
-        double TotalMoney { get; set; }
-        protected Bank(string BID, List<User> users = null, double totalMoney = 0)
+        public List<Client> Clients { get; set; }
+        public double TotalMoney { get; set; }
+
+        public Bank() { }
+
+        public Bank(string BID, List<Client> clients = null, double totalMoney = 0)
         {
             this.BID = BID;
-            this.Users = users;
+            this.Clients = clients;
             this.TotalMoney = totalMoney;
         }
 
-        protected void AddUser(User user)
+        protected void AddUser(Client user)
         {
-            Users.Add(user);
+            Clients.Add(user);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace BankSystem
 {
     public class Transaction
     {
+        public int Id { get; set; }
         public string InBill { get; set; }
         public double Amount { get; set; }
 
