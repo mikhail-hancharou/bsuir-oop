@@ -15,7 +15,7 @@ namespace BankSystem
         public DbSet<Outsider> Outsiders => Set<Outsider>();
         public DbSet<Admin> Admins => Set<Admin>();
         public DbSet<Bank> Banks => Set<Bank>();
-       // public DbSet<Bill> Bills => Set<Bill>();
+        public DbSet<Bill> Bills => Set<Bill>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +24,50 @@ namespace BankSystem
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bank>().HasData(new Bank { Id = 1, BID = "11111", TotalMoney = 0});
+            modelBuilder.Entity<Bank>().HasData(
+                new Bank[]
+                {
+                    new Bank { Id = 1, BID = "11111", Name = "Bebra Bank", TotalMoney = 0 },
+                    new Bank { Id = 2, BID = "22222", Name = "Amogus Bank", TotalMoney = 0 }
+                });
+
+            //User us1 = new User
+            //{
+            //    Id = 1,
+            //    Name = "aaa",
+            //    LastName = "bbb",
+            //    Login = "login",
+            //    PassportNumber = "numer"
+            //};
+            //User us2 = new User
+            //{
+            //    Id = 2,
+            //    Name = "AAA",
+            //    LastName = "BBB",
+            //    Login = "LOGIN",
+            //    PassportNumber = "NUMER"
+            //};
+            //
+            //modelBuilder.Entity<User>().HasData(
+            //   new User[]
+            //   {
+            //        us1,
+            //        us2
+            //   });
+            //
+            //modelBuilder.Entity<Client>().HasData(
+            //    new Client[]
+            //    {
+            //        new Client {
+            //            Id = 1,
+            //            User = us1
+            //        },
+            //
+            //        new Client {
+            //            Id = 2,
+            //            User = us2
+            //        }
+            //    });
         }
     }
 }

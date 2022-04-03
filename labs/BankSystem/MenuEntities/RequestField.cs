@@ -11,10 +11,11 @@ namespace BankSystem.MenuEntities
         public Button AproveButton { get; set; }
         public Button DeniedButton { get; set; }
         public Label UserInfo { get; set; }
-        public Client User { get; set; }
+        public Client Client { get; set; }
 
-        public RequestField(Manager client) //TODO temp //Client client
+        public RequestField(Client client) //TODO temp //Client client
         {
+            Client = client;
             FieldPanel = new Panel();
             FieldPanel.Size = new Size(1000, 60);
             FieldPanel.Dock = DockStyle.Top;
@@ -35,7 +36,7 @@ namespace BankSystem.MenuEntities
             UserInfo.ForeColor = Color.Black;
             UserInfo.Dock = DockStyle.Fill;
             UserInfo.TextAlign = ContentAlignment.MiddleCenter;
-            UserInfo.Text = $"Name: {client.User.Name} Last Name: {client.User.LastName} | Passport number: {client.User.PassportNumber} ID: {client.User.Login}";// | Role: {client.Role}
+            UserInfo.Text = $"Name: {Client.User.Name} Last Name: {Client.User.LastName} | Passport number: {Client.User.PassportNumber} | ID: {Client.User.Login}";// | Role: {client.Role}
 
             FieldPanel.Controls.Add(AproveButton);
             FieldPanel.Controls.Add(DeniedButton);

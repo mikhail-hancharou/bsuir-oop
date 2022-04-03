@@ -188,15 +188,9 @@
             this.roleBankBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roleBankBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.roleBankBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.roleBankBox.Items.AddRange(new object[] {
-            "User",
-            "Operator",
-            "Manager",
-            "Outsider",
-            "Admin"});
-            this.roleBankBox.Location = new System.Drawing.Point(604, 341);
+            this.roleBankBox.Location = new System.Drawing.Point(555, 341);
             this.roleBankBox.Name = "roleBankBox";
-            this.roleBankBox.Size = new System.Drawing.Size(151, 30);
+            this.roleBankBox.Size = new System.Drawing.Size(200, 30);
             this.roleBankBox.TabIndex = 7;
             this.roleBankBox.Visible = false;
             // 
@@ -212,9 +206,9 @@
             "Operator",
             "Manager",
             "Admin"});
-            this.roleBox.Location = new System.Drawing.Point(604, 305);
+            this.roleBox.Location = new System.Drawing.Point(555, 305);
             this.roleBox.Name = "roleBox";
-            this.roleBox.Size = new System.Drawing.Size(151, 30);
+            this.roleBox.Size = new System.Drawing.Size(200, 30);
             this.roleBox.TabIndex = 7;
             this.roleBox.SelectedIndexChanged += new System.EventHandler(this.roleBox_SelectedIndexChanged);
             // 

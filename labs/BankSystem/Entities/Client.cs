@@ -10,7 +10,6 @@ namespace BankSystem.Entities
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public string PassportNumber { get; set; }
         public DateTime ExpiryDate { get; set; }
         public HashSet<Bill> Bills { get; set; }
 

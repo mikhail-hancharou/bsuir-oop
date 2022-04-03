@@ -97,6 +97,13 @@ namespace BankSystem
                 mistake = true;
             }
 
+            Bank bank = new Bank();
+            if (roleBox.SelectedIndex > 1)
+            {
+                string[] BankAndBID = Regex.Split(roleBankBox.Text.Trim(), "//");
+                bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+            }
+
             if (!mistake)
             {
                 User User = new User
@@ -118,7 +125,6 @@ namespace BankSystem
                         db.Clients.Add(new Client
                         {
                             User = User,
-                            PassportNumber = passpNumbBox.Text,
                             ExpiryDate = date,
                             Bills = new HashSet<Bill>(new BillComparer()),
                         });
@@ -127,13 +133,13 @@ namespace BankSystem
                         db.Outsiders.Add(new Outsider { User = User });                     
                         break;
                     case 2:
-                        db.Managers.Add(new Manager { User = User });
+                        db.Managers.Add(new Manager { User = User, myWork = bank });
                         break;
                     case 3:
-                        db.Operators.Add(new Operator { User = User });
+                        db.Operators.Add(new Operator { User = User, myWork = bank });
                         break;
                     case 4:
-                        db.Admins.Add(new Admin { User = User });
+                        db.Admins.Add(new Admin { User = User, myWork = bank });
                         break;
                     default:
                         break;
@@ -217,7 +223,14 @@ namespace BankSystem
             {
                 using AppContext db = new AppContext();
                 roleBankBox.Visible = true;
-                roleBankBox.Items.AddRange(db.Banks.ToArray());
+                List<string> Banks = new List<string>();
+                foreach (Bank b in db.Banks.ToList())
+                {
+                    Banks.Add(b.Name + "//" + b.BID);
+                }
+                
+                roleBankBox.Items.AddRange(Banks.ToArray()); //db.Banks.ToArray().ToString()
+                roleBankBox.SelectedIndex = 0;
             }
             else
             {

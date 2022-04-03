@@ -1,10 +1,12 @@
 ﻿using BankSystem.Entities;
 using BankSystem.MenuEntities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -42,25 +44,18 @@ namespace BankSystem
             {
                 //TODO
             }
-
-            //switch (mainUser.GetType())
-            //{
-            //    case typeof(Manager):
-            //        Aprovement();
-            //        break;
-            //    default:
-            //        break;        
-            //}
         }
 
         private void Aprovement()
         {
-            ApplicationContext db = new ApplicationContext();
-            for (int i = 0; i < 20; i++)
+            using AppContext db = new AppContext();
+            foreach (Client client in db.Clients
+                .Include(c => c.User)
+                .Where(c => !c.User.Confirmed))
             {
-                RequestField requestField = new RequestField(mainUser as Manager);
-                this.tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel, 0, i);
-                this.tableLayoutPanelRequest.RowCount += 1;
+                RequestField requestField = new RequestField(client);
+                tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel, 0, tableLayoutPanelRequest.RowCount - 1);
+                tableLayoutPanelRequest.RowCount += 1;
                 requestField.AproveButton.Click += AproveButton_Click;
                 requestField.DeniedButton.Click += DeniedButton_Click;
             }
