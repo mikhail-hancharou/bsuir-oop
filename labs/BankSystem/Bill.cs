@@ -15,8 +15,6 @@ namespace BankSystem
         public bool Freezed { get; set; }
         public List<Transaction> Transactions { get; set;}
 
-        public Bill() { }//
-
         public Bill(Bank bank)
         {
             this.Money = 0;
@@ -29,7 +27,7 @@ namespace BankSystem
             StringBuilder number = new StringBuilder(10);
             number.Append(bank.BID);
             number.Append(RandomNumber());
-            this.BillNumber = number.ToString();
+            BillNumber = number.ToString();
             bool flag = false;
 
             while (true)
@@ -48,7 +46,7 @@ namespace BankSystem
                     flag = false;
                     number.Append(bank.BID);
                     number.Append(RandomNumber());
-                    this.BillNumber = number.ToString();
+                    BillNumber = number.ToString();
                 }
                 else
                 {

@@ -30,7 +30,7 @@ namespace BankSystem
                         Login = "login",
                         PassportNumber = "numer"
                     }
-                }));    //new RegForm()
+                }));// new RegForm());
         }
         /* new MainMenu(
                 new Manager

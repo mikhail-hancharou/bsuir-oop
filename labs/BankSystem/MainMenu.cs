@@ -14,33 +14,35 @@ namespace BankSystem
 {
     public partial class MainMenu : Form
     {
-        public Object mainUser { get; set; } //Client mainUser { get; set; }
-        public MainMenu(Object mainUser)
+        public object MainUser { get; set; } //Client mainUser { get; set; }
+        public List<RequestField> ListRequestField { get; set; }
+        public MainMenu(object mainUser)
         {
-            this.mainUser = mainUser;
+            this.MainUser = mainUser;
+            this.ListRequestField = new List<RequestField>();
             InitializeComponent();
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            if (mainUser is User)
+            if (MainUser is User)
             {
                 //TODO
             }
-            else if (mainUser is Outsider)
+            else if (MainUser is Outsider)
             {
                 //TODO
             }
-            else if (mainUser is Operator)
+            else if (MainUser is Operator)
             {
                 //TODO
             }
-            else if (mainUser is Manager)
+            else if (MainUser is Manager)
             {
-                mainUser = mainUser as Manager;
+                MainUser = MainUser as Manager;
                 Aprovement();
             }
-            else if (mainUser is Admin)
+            else if (MainUser is Admin)
             {
                 //TODO
             }
@@ -53,22 +55,24 @@ namespace BankSystem
                 .Include(c => c.User)
                 .Where(c => !c.User.Confirmed))
             {
-                RequestField requestField = new RequestField(client);
-                tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel, 0, tableLayoutPanelRequest.RowCount - 1);
-                tableLayoutPanelRequest.RowCount += 1;
-                requestField.AproveButton.Click += AproveButton_Click;
-                requestField.DeniedButton.Click += DeniedButton_Click;
+                RequestField requestField = new RequestField(client, tableLayoutPanelRequest);
+                tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel);
+                //tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel, 0, tableLayoutPanelRequest.RowCount - 1);
+                //tableLayoutPanelRequest.RowCount += 1;
+                //requestField.AproveButton.Click += AproveButton_Click;
+                //requestField.DeniedButton.Click += DeniedButton_Click;
+                ListRequestField.Add(requestField);
             }
         }
 
-        private void DeniedButton_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void DeniedButton_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        private void AproveButton_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void AproveButton_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -31,14 +31,7 @@ namespace BankSystem
                     new Bank { Id = 2, BID = "22222", Name = "Amogus Bank", TotalMoney = 0 }
                 });
 
-            //User us1 = new User
-            //{
-            //    Id = 1,
-            //    Name = "aaa",
-            //    LastName = "bbb",
-            //    Login = "login",
-            //    PassportNumber = "numer"
-            //};
+            
             //User us2 = new User
             //{
             //    Id = 2,
@@ -55,14 +48,7 @@ namespace BankSystem
             //        us2
             //   });
             //
-            //modelBuilder.Entity<Client>().HasData(
-            //    new Client[]
-            //    {
-            //        new Client {
-            //            Id = 1,
-            //            User = us1
-            //        },
-            //
+
             //        new Client {
             //            Id = 2,
             //            User = us2

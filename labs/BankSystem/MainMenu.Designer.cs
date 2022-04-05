@@ -42,8 +42,14 @@
             this.moneyLabel = new System.Windows.Forms.Label();
             this.clownBox = new System.Windows.Forms.PictureBox();
             this.opportunityTab = new System.Windows.Forms.TabPage();
+            this.BillButton = new System.Windows.Forms.Button();
+            this.BankComboBox = new System.Windows.Forms.ComboBox();
+            this.BillPanel = new System.Windows.Forms.Panel();
+            this.BillLabel = new System.Windows.Forms.Label();
             this.requestTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelRequest = new System.Windows.Forms.TableLayoutPanel();
+            this.BillcomboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -51,6 +57,7 @@
             this.namesBox.SuspendLayout();
             this.allMoneyBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).BeginInit();
+            this.opportunityTab.SuspendLayout();
             this.requestTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +67,8 @@
             this.mainTab.Controls.Add(this.opportunityTab);
             this.mainTab.Controls.Add(this.requestTab);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTab.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.mainTab.ItemSize = new System.Drawing.Size(65, 25);
             this.mainTab.Location = new System.Drawing.Point(0, 0);
             this.mainTab.Name = "mainTab";
             this.mainTab.SelectedIndex = 2;
@@ -181,6 +190,13 @@
             // 
             // opportunityTab
             // 
+            this.opportunityTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.opportunityTab.Controls.Add(this.label1);
+            this.opportunityTab.Controls.Add(this.BillcomboBox);
+            this.opportunityTab.Controls.Add(this.BillButton);
+            this.opportunityTab.Controls.Add(this.BankComboBox);
+            this.opportunityTab.Controls.Add(this.BillPanel);
+            this.opportunityTab.Controls.Add(this.BillLabel);
             this.opportunityTab.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.opportunityTab.Location = new System.Drawing.Point(4, 29);
             this.opportunityTab.Name = "opportunityTab";
@@ -188,7 +204,46 @@
             this.opportunityTab.Size = new System.Drawing.Size(1274, 620);
             this.opportunityTab.TabIndex = 1;
             this.opportunityTab.Text = "Opportunity";
-            this.opportunityTab.UseVisualStyleBackColor = true;
+            // 
+            // BillButton
+            // 
+            this.BillButton.Location = new System.Drawing.Point(74, 373);
+            this.BillButton.Name = "BillButton";
+            this.BillButton.Size = new System.Drawing.Size(232, 29);
+            this.BillButton.TabIndex = 10;
+            this.BillButton.Text = "button1";
+            this.BillButton.UseVisualStyleBackColor = true;
+            // 
+            // BankComboBox
+            // 
+            this.BankComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BankComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BankComboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BankComboBox.Location = new System.Drawing.Point(8, 76);
+            this.BankComboBox.Name = "BankComboBox";
+            this.BankComboBox.Size = new System.Drawing.Size(365, 30);
+            this.BankComboBox.TabIndex = 7;
+            this.BankComboBox.Visible = false;
+            // 
+            // BillPanel
+            // 
+            this.BillPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BillPanel.Location = new System.Drawing.Point(10, 140);
+            this.BillPanel.Name = "BillPanel";
+            this.BillPanel.Size = new System.Drawing.Size(363, 190);
+            this.BillPanel.TabIndex = 9;
+            // 
+            // BillLabel
+            // 
+            this.BillLabel.AutoSize = true;
+            this.BillLabel.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BillLabel.Location = new System.Drawing.Point(8, 13);
+            this.BillLabel.Name = "BillLabel";
+            this.BillLabel.Size = new System.Drawing.Size(365, 60);
+            this.BillLabel.TabIndex = 8;
+            this.BillLabel.Text = "Choose bank where you want\r\nto create your bill";
+            this.BillLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // requestTab
             // 
@@ -217,6 +272,29 @@
             this.tableLayoutPanelRequest.Size = new System.Drawing.Size(1274, 620);
             this.tableLayoutPanelRequest.TabIndex = 0;
             // 
+            // BillcomboBox
+            // 
+            this.BillcomboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BillcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BillcomboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BillcomboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BillcomboBox.Location = new System.Drawing.Point(614, 76);
+            this.BillcomboBox.Name = "BillcomboBox";
+            this.BillcomboBox.Size = new System.Drawing.Size(365, 30);
+            this.BillcomboBox.TabIndex = 7;
+            this.BillcomboBox.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(614, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(404, 60);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Choose your bill where you want\r\nto get credit or installment\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -234,6 +312,8 @@
             this.namesBox.ResumeLayout(false);
             this.allMoneyBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).EndInit();
+            this.opportunityTab.ResumeLayout(false);
+            this.opportunityTab.PerformLayout();
             this.requestTab.ResumeLayout(false);
             this.requestTab.PerformLayout();
             this.ResumeLayout(false);
@@ -257,5 +337,11 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage requestTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest;
+        private System.Windows.Forms.Button BillButton;
+        private System.Windows.Forms.ComboBox BankComboBox;
+        private System.Windows.Forms.Panel BillPanel;
+        private System.Windows.Forms.Label BillLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox BillcomboBox;
     }
 }

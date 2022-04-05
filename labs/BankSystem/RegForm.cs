@@ -145,6 +145,8 @@ namespace BankSystem
                         break;
                 }
 
+                //db.Users.Add(User);//
+
                 db.SaveChanges();
                 this.Hide();
             }
