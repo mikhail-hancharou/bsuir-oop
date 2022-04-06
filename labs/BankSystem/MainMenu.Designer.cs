@@ -45,18 +45,21 @@
             this.moneyLabel = new System.Windows.Forms.Label();
             this.clownBox = new System.Windows.Forms.PictureBox();
             this.opportunityTab = new System.Windows.Forms.TabPage();
+            this.numericUpDownMoney = new System.Windows.Forms.NumericUpDown();
             this.PeriodComboBox = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.CreditButton = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.CreditBillLabel = new System.Windows.Forms.Label();
+            this.OverPaymentLabel = new System.Windows.Forms.Label();
             this.CreditPercentLabel = new System.Windows.Forms.Label();
             this.BankNameLabel1 = new System.Windows.Forms.Label();
             this.PeriodLabel = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.ClientNameLabel1 = new System.Windows.Forms.Label();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.OperationLabel = new System.Windows.Forms.Label();
             this.CredtLabel = new System.Windows.Forms.Label();
@@ -87,7 +90,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDownMoney = new System.Windows.Forms.NumericUpDown();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,8 +99,10 @@
             this.allMoneyBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).BeginInit();
             this.opportunityTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.BillPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -106,7 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTab
@@ -304,6 +307,35 @@
             this.opportunityTab.TabIndex = 1;
             this.opportunityTab.Text = "Opportunity";
             // 
+            // numericUpDownMoney
+            // 
+            this.numericUpDownMoney.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numericUpDownMoney.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Location = new System.Drawing.Point(983, 179);
+            this.numericUpDownMoney.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Name = "numericUpDownMoney";
+            this.numericUpDownMoney.Size = new System.Drawing.Size(156, 29);
+            this.numericUpDownMoney.TabIndex = 15;
+            this.numericUpDownMoney.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.ValueChanged += new System.EventHandler(this.numericUpDownMoney_ValueChanged);
+            // 
             // PeriodComboBox
             // 
             this.PeriodComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -322,6 +354,7 @@
             this.PeriodComboBox.Size = new System.Drawing.Size(156, 30);
             this.PeriodComboBox.TabIndex = 7;
             this.PeriodComboBox.Visible = false;
+            this.PeriodComboBox.SelectedIndexChanged += new System.EventHandler(this.PeriodComboBox_SelectedIndexChanged);
             // 
             // panel6
             // 
@@ -343,6 +376,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Credit";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -353,6 +387,7 @@
             this.radioButton2.TabIndex = 13;
             this.radioButton2.Text = "Installement";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // CreditButton
             // 
@@ -368,12 +403,14 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.pictureBox6);
+            this.panel5.Controls.Add(this.CreditBillLabel);
+            this.panel5.Controls.Add(this.OverPaymentLabel);
             this.panel5.Controls.Add(this.CreditPercentLabel);
             this.panel5.Controls.Add(this.BankNameLabel1);
             this.panel5.Controls.Add(this.PeriodLabel);
             this.panel5.Controls.Add(this.pictureBox5);
-            this.panel5.Controls.Add(this.label9);
+            this.panel5.Controls.Add(this.ClientNameLabel1);
             this.panel5.Controls.Add(this.AmountLabel);
             this.panel5.Controls.Add(this.OperationLabel);
             this.panel5.Location = new System.Drawing.Point(614, 140);
@@ -381,19 +418,39 @@
             this.panel5.Size = new System.Drawing.Size(363, 190);
             this.panel5.TabIndex = 9;
             // 
-            // label10
+            // pictureBox6
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 107);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 22);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Overpayment";
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(90, 67);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 16;
+            this.pictureBox6.TabStop = false;
+            // 
+            // CreditBillLabel
+            // 
+            this.CreditBillLabel.Location = new System.Drawing.Point(18, 40);
+            this.CreditBillLabel.Name = "CreditBillLabel";
+            this.CreditBillLabel.Size = new System.Drawing.Size(180, 22);
+            this.CreditBillLabel.TabIndex = 1;
+            this.CreditBillLabel.Text = "billNumber";
+            this.CreditBillLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // OverPaymentLabel
+            // 
+            this.OverPaymentLabel.AutoSize = true;
+            this.OverPaymentLabel.Location = new System.Drawing.Point(18, 100);
+            this.OverPaymentLabel.Name = "OverPaymentLabel";
+            this.OverPaymentLabel.Size = new System.Drawing.Size(122, 22);
+            this.OverPaymentLabel.TabIndex = 7;
+            this.OverPaymentLabel.Text = "Overpayment";
+            this.OverPaymentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CreditPercentLabel
             // 
             this.CreditPercentLabel.AutoSize = true;
-            this.CreditPercentLabel.Location = new System.Drawing.Point(204, 39);
+            this.CreditPercentLabel.Location = new System.Drawing.Point(224, 40);
             this.CreditPercentLabel.Name = "CreditPercentLabel";
             this.CreditPercentLabel.Size = new System.Drawing.Size(75, 22);
             this.CreditPercentLabel.TabIndex = 6;
@@ -407,10 +464,11 @@
             this.BankNameLabel1.Size = new System.Drawing.Size(102, 22);
             this.BankNameLabel1.TabIndex = 5;
             this.BankNameLabel1.Text = "BankName";
+            this.BankNameLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PeriodLabel
             // 
-            this.PeriodLabel.Location = new System.Drawing.Point(204, 66);
+            this.PeriodLabel.Location = new System.Drawing.Point(224, 70);
             this.PeriodLabel.Name = "PeriodLabel";
             this.PeriodLabel.Size = new System.Drawing.Size(125, 22);
             this.PeriodLabel.TabIndex = 4;
@@ -426,17 +484,18 @@
             this.pictureBox5.TabIndex = 3;
             this.pictureBox5.TabStop = false;
             // 
-            // label9
+            // ClientNameLabel1
             // 
-            this.label9.Location = new System.Drawing.Point(18, 149);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(180, 29);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "ClientName";
+            this.ClientNameLabel1.Location = new System.Drawing.Point(18, 150);
+            this.ClientNameLabel1.Name = "ClientNameLabel1";
+            this.ClientNameLabel1.Size = new System.Drawing.Size(180, 29);
+            this.ClientNameLabel1.TabIndex = 2;
+            this.ClientNameLabel1.Text = "ClientName";
+            this.ClientNameLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AmountLabel
             // 
-            this.AmountLabel.Location = new System.Drawing.Point(18, 66);
+            this.AmountLabel.Location = new System.Drawing.Point(18, 70);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(150, 22);
             this.AmountLabel.TabIndex = 1;
@@ -445,9 +504,9 @@
             // 
             // OperationLabel
             // 
-            this.OperationLabel.Location = new System.Drawing.Point(204, 10);
+            this.OperationLabel.Location = new System.Drawing.Point(224, 10);
             this.OperationLabel.Name = "OperationLabel";
-            this.OperationLabel.Size = new System.Drawing.Size(140, 29);
+            this.OperationLabel.Size = new System.Drawing.Size(125, 29);
             this.OperationLabel.TabIndex = 0;
             this.OperationLabel.Text = "Operation";
             // 
@@ -521,7 +580,7 @@
             // 
             // ClientNameLabel
             // 
-            this.ClientNameLabel.Location = new System.Drawing.Point(18, 149);
+            this.ClientNameLabel.Location = new System.Drawing.Point(18, 150);
             this.ClientNameLabel.Name = "ClientNameLabel";
             this.ClientNameLabel.Size = new System.Drawing.Size(180, 29);
             this.ClientNameLabel.TabIndex = 2;
@@ -735,34 +794,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "BankName";
             // 
-            // numericUpDownMoney
-            // 
-            this.numericUpDownMoney.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numericUpDownMoney.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numericUpDownMoney.Location = new System.Drawing.Point(983, 179);
-            this.numericUpDownMoney.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDownMoney.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownMoney.Name = "numericUpDownMoney";
-            this.numericUpDownMoney.Size = new System.Drawing.Size(156, 29);
-            this.numericUpDownMoney.TabIndex = 15;
-            this.numericUpDownMoney.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -783,10 +814,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.clownBox)).EndInit();
             this.opportunityTab.ResumeLayout(false);
             this.opportunityTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.BillPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -794,7 +827,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -827,7 +859,7 @@
         private System.Windows.Forms.Label BankNameLabel1;
         private System.Windows.Forms.Label PeriodLabel;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label ClientNameLabel1;
         private System.Windows.Forms.Label AmountLabel;
         private System.Windows.Forms.Label OperationLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -858,7 +890,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBill;
         private System.Windows.Forms.Label CreditLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCredit;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label OverPaymentLabel;
         private System.Windows.Forms.NumericUpDown numericUpDownMoney;
+        private System.Windows.Forms.Label CreditBillLabel;
+        private System.Windows.Forms.PictureBox pictureBox6;
     }
 }

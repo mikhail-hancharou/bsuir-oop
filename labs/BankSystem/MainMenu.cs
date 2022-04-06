@@ -63,9 +63,29 @@ namespace BankSystem
 
         private void Opportunity()
         {
-            using AppContext db = new AppContext();
             Client client = MainUser as Client;
+            ClientNameLabel.Text = client.User.Name + " " + client.User.LastName;
+            ClientNameLabel1.Text = client.User.Name + " " + client.User.LastName;
+            BankInit();
+            BillInit(client);
+        }
 
+        private void BankInit()
+        {
+            using AppContext db = new AppContext();
+            List<string> Banks = new List<string>();
+            foreach (Bank b in db.Banks.ToList())
+            {
+                Banks.Add(b.Name + "//" + b.BID);
+            }
+
+            BankComboBox.Controls.Clear();
+            BankComboBox.Items.AddRange(Banks.ToArray());
+            BankComboBox.SelectedIndex = 0;
+        }
+
+        private void BillInit(Client client)
+        {
             List<string> Bills = new List<string>();
             foreach (Bill bill in client.Bills)
             {
@@ -74,6 +94,8 @@ namespace BankSystem
 
             if (Bills.Count != 0)
             {
+                BillcomboBox.Controls.Clear();
+                BillcomboBox.Enabled = true;
                 BillcomboBox.Items.AddRange(Bills.ToArray());
                 BillcomboBox.SelectedIndex = 0;
             }
@@ -82,14 +104,7 @@ namespace BankSystem
                 BillcomboBox.Enabled = false;
             }
 
-            List<string> Banks = new List<string>();
-            foreach (Bank b in db.Banks.ToList())
-            {
-                Banks.Add(b.Name + "//" + b.BID);
-            }
-
-            BankComboBox.Items.AddRange(Banks.ToArray()); //db.Banks.ToArray().ToString()
-            BankComboBox.SelectedIndex = 0;
+            PeriodComboBox.SelectedIndex = 0;
         }
 
         private void InizializeMenu()
@@ -117,8 +132,8 @@ namespace BankSystem
 
         private void CreditButton_Click(object sender, EventArgs e)
         {
-            Client client = MainUser as Client;
             //using AppContext db = new AppContext();
+            Client client = MainUser as Client;
             Bill bill;
             string BillNumber = BillcomboBox.Text;
 
@@ -137,12 +152,10 @@ namespace BankSystem
         {
             using AppContext db = new AppContext();
             Client client = MainUser as Client;
-            Bank bank;
             string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
-            bank = db.Banks
+            Bank bank = db.Banks
                 .Include(b => b.Clients)
-                .ToList()
-                .Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+                .FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
 
             if (!bank.Clients.Any(c => c.Id == client.Id))
             {
@@ -164,6 +177,7 @@ namespace BankSystem
 
             BankComboBox_SelectedIndexChanged(sender, e);
             InizializeMenu();
+            BillInit(client);
         }
 
         private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -172,7 +186,7 @@ namespace BankSystem
             Client client = MainUser as Client;
             Bank bank;
             string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
-            bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+            bank = db.Banks.FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
 
             Bill bill = new Bill() { 
                 BID = BankAndBID[1],
@@ -183,7 +197,6 @@ namespace BankSystem
             bill.BillInizializer(bank);
 
             BankNameLabel.Text = BankAndBID[0];
-            ClientNameLabel.Text = client.User.Name + " " + client.User.LastName;
             BillNumberLabel.Text = bill.BillNumber;
         }
 
@@ -194,16 +207,33 @@ namespace BankSystem
             Bill bill;
             string BillNumber = BillcomboBox.Text;
 
-            foreach(Bill b in client.Bills)
-            {
-                if (b.BillNumber == BillNumber)
-                {
-                    bill = b;
-                    break;
-                }
-            }
+            bill =  client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+            BankNameLabel.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).Name;
 
-            BankNameLabel
+            CreditPercentLabel.Text = (db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100).ToString();
+            OverPaymentLabel.Text = ((uint)((double)db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100) * numericUpDownMoney.Value).ToString();
+            OperationLabel.Text = "Credit";
+        }
+
+        private void PeriodComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PeriodLabel.Text = PeriodComboBox.Text;
+        }
+
+        private void numericUpDownMoney_ValueChanged(object sender, EventArgs e)
+        {
+            AmountLabel.Text = numericUpDownMoney.Value.ToString() + "R";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            CreditPercentLabel.Text = "";
+            OperationLabel.Text = "Installement";
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            BillcomboBox_SelectedIndexChanged(sender, e);
         }
     }
 }

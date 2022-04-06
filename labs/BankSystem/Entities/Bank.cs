@@ -9,6 +9,7 @@ namespace BankSystem.Entities
         public int Id { get; set; }
         public string BID { get; set; }
         public string Name { get; set; }
+        public int OverPaymentPercent { get; set; }
         public List<Client> Clients { get; set; }
         public double TotalMoney { get; set; }
 
