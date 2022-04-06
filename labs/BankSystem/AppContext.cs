@@ -30,8 +30,8 @@ namespace BankSystem
             modelBuilder.Entity<Bank>().HasData(
                 new Bank[]
                 {
-                    new Bank { Id = 1, BID = "11111", Name = "Bebra Bank", TotalMoney = 0 },
-                    new Bank { Id = 2, BID = "22222", Name = "Amogus Bank", TotalMoney = 0 }
+                    new Bank { Id = 1, BID = "11111", Name = "Bebra Bank", TotalMoney = 0, Clients = new List<Client>() },
+                    new Bank { Id = 2, BID = "22222", Name = "Amogus Bank", TotalMoney = 0, Clients = new List<Client>() }
                 });
 
             

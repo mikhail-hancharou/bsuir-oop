@@ -28,38 +28,65 @@ namespace BankSystem
             }
             else
             {
-                if (db.Clients.AsEnumerable().Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
+                if (db.Clients
+                    .Include(c => c.User)
+                    .AsEnumerable()
+                    .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
-                    Client newUser = db.Clients.ToList().Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    this.Hide();
+                    Client newUser = db.Clients
+                        .Include(c => c.Bills)
+                        //.ThenInclude(b => b.Bank)
+                        .ToList()
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
+                    Hide();
                     MainMenu menu = new MainMenu(newUser);
                     menu.Show();
                 }
-                else if (db.Outsiders.AsEnumerable().Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
+                else if (db.Outsiders
+                    .Include(c => c.User)
+                    .AsEnumerable()
+                    .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
-                    Outsider newUser = db.Outsiders.ToList().Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    this.Hide();
+                    Outsider newUser = db.Outsiders
+                        .ToList()
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
+                    Hide();
                     MainMenu menu = new MainMenu(newUser);
                     menu.Show();
                 }
-                else if (db.Operators.AsEnumerable().Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
+                else if (db.Operators
+                    .Include(c => c.User)
+                    .AsEnumerable()
+                    .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
-                    Operator newUser = db.Operators.ToList().Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    this.Hide();
+                    Operator newUser = db.Operators
+                        .ToList()
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
+                    Hide();
                     MainMenu menu = new MainMenu(newUser);
                     menu.Show();
                 }
-                else if (db.Managers.AsEnumerable().Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
+                else if (db.Managers
+                    .Include(c => c.User)
+                    .AsEnumerable()
+                    .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
-                    Manager newUser = db.Managers.ToList().Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    this.Hide();
+                    Manager newUser = db.Managers
+                        .ToList()
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
+                    Hide();
                     MainMenu menu = new MainMenu(newUser);
                     menu.Show();
                 }
-                else if (db.Admins.AsEnumerable().Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
+                else if (db.Admins
+                    .Include(c => c.User)
+                    .AsEnumerable()
+                    .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
-                    Admin newUser = db.Admins.ToList().Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    this.Hide();
+                    Admin newUser = db.Admins
+                        .ToList()
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
+                    Hide();
                     MainMenu menu = new MainMenu(newUser);
                     menu.Show();
                 }
@@ -99,7 +126,7 @@ namespace BankSystem
 
         private void pasBox_Click(object sender, EventArgs e)
         {
-            logBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
+            pasBox.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
         }
     }
 }

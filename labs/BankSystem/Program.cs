@@ -18,10 +18,12 @@ namespace BankSystem
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu(
+            Application.Run(new LoginForm());
+            /*new MainMenu(
                 new Client
                 {
                     Id = 1,
+                    Bills = new HashSet<Bill>(),
                     User = new User
                     {
                         Name = "aaa",
@@ -29,7 +31,8 @@ namespace BankSystem
                         Login = "login",
                         PassportNumber = "numer"
                     }
-                })); 
+                })); */
+
             /*new MainMenu(
                 new Manager
                 {
@@ -42,7 +45,7 @@ namespace BankSystem
                         Login = "login",
                         PassportNumber = "numer"
                     }
-                }));*/// new RegForm());
+                }));*/ // new RegForm());
         }
         /* new MainMenu(
                 new Manager

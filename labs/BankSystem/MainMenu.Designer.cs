@@ -32,7 +32,10 @@
             this.mainTab = new System.Windows.Forms.TabControl();
             this.cabinetTab = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelCredit = new System.Windows.Forms.TableLayoutPanel();
+            this.CreditLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelBill = new System.Windows.Forms.TableLayoutPanel();
             this.billsLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.namesBox = new System.Windows.Forms.GroupBox();
@@ -42,12 +45,13 @@
             this.moneyLabel = new System.Windows.Forms.Label();
             this.clownBox = new System.Windows.Forms.PictureBox();
             this.opportunityTab = new System.Windows.Forms.TabPage();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.PeriodComboBox = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.CreditButton = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.CreditPercentLabel = new System.Windows.Forms.Label();
             this.BankNameLabel1 = new System.Windows.Forms.Label();
             this.PeriodLabel = new System.Windows.Forms.Label();
@@ -83,8 +87,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownMoney = new System.Windows.Forms.NumericUpDown();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.namesBox.SuspendLayout();
@@ -100,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTab
@@ -133,19 +140,64 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Location = new System.Drawing.Point(790, 3);
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.tableLayoutPanelCredit);
+            this.panel3.Controls.Add(this.CreditLabel);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(786, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(481, 614);
+            this.panel3.Size = new System.Drawing.Size(493, 614);
             this.panel3.TabIndex = 5;
+            // 
+            // tableLayoutPanelCredit
+            // 
+            this.tableLayoutPanelCredit.AutoScroll = true;
+            this.tableLayoutPanelCredit.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanelCredit.ColumnCount = 1;
+            this.tableLayoutPanelCredit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelCredit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanelCredit.Location = new System.Drawing.Point(0, 55);
+            this.tableLayoutPanelCredit.Name = "tableLayoutPanelCredit";
+            this.tableLayoutPanelCredit.RowCount = 1;
+            this.tableLayoutPanelCredit.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelCredit.Size = new System.Drawing.Size(491, 557);
+            this.tableLayoutPanelCredit.TabIndex = 1;
+            // 
+            // CreditLabel
+            // 
+            this.CreditLabel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.CreditLabel.Location = new System.Drawing.Point(58, 11);
+            this.CreditLabel.Name = "CreditLabel";
+            this.CreditLabel.Size = new System.Drawing.Size(375, 33);
+            this.CreditLabel.TabIndex = 0;
+            this.CreditLabel.Text = "Credits and Installements";
+            this.CreditLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.tableLayoutPanelBill);
             this.panel2.Controls.Add(this.billsLabel);
-            this.panel2.Location = new System.Drawing.Point(309, 3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(303, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(475, 614);
+            this.panel2.Size = new System.Drawing.Size(483, 614);
             this.panel2.TabIndex = 5;
+            // 
+            // tableLayoutPanelBill
+            // 
+            this.tableLayoutPanelBill.AutoScroll = true;
+            this.tableLayoutPanelBill.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanelBill.ColumnCount = 1;
+            this.tableLayoutPanelBill.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBill.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanelBill.Location = new System.Drawing.Point(0, 55);
+            this.tableLayoutPanelBill.Name = "tableLayoutPanelBill";
+            this.tableLayoutPanelBill.RowCount = 1;
+            this.tableLayoutPanelBill.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelBill.Size = new System.Drawing.Size(481, 557);
+            this.tableLayoutPanelBill.TabIndex = 1;
             // 
             // billsLabel
             // 
@@ -160,6 +212,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.namesBox);
             this.panel1.Controls.Add(this.allMoneyBox);
             this.panel1.Controls.Add(this.clownBox);
@@ -232,7 +285,8 @@
             // opportunityTab
             // 
             this.opportunityTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.opportunityTab.Controls.Add(this.comboBox4);
+            this.opportunityTab.Controls.Add(this.numericUpDownMoney);
+            this.opportunityTab.Controls.Add(this.PeriodComboBox);
             this.opportunityTab.Controls.Add(this.panel6);
             this.opportunityTab.Controls.Add(this.CreditButton);
             this.opportunityTab.Controls.Add(this.panel5);
@@ -250,24 +304,24 @@
             this.opportunityTab.TabIndex = 1;
             this.opportunityTab.Text = "Opportunity";
             // 
-            // comboBox4
+            // PeriodComboBox
             // 
-            this.comboBox4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.comboBox4.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox4.Items.AddRange(new object[] {
+            this.PeriodComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.PeriodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PeriodComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PeriodComboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PeriodComboBox.Items.AddRange(new object[] {
             "3 month",
             "6 month",
             "12 month",
             "24 month",
             "36 month",
             "48 month"});
-            this.comboBox4.Location = new System.Drawing.Point(983, 140);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(156, 30);
-            this.comboBox4.TabIndex = 7;
-            this.comboBox4.Visible = false;
+            this.PeriodComboBox.Location = new System.Drawing.Point(983, 140);
+            this.PeriodComboBox.Name = "PeriodComboBox";
+            this.PeriodComboBox.Size = new System.Drawing.Size(156, 30);
+            this.PeriodComboBox.TabIndex = 7;
+            this.PeriodComboBox.Visible = false;
             // 
             // panel6
             // 
@@ -314,6 +368,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.CreditPercentLabel);
             this.panel5.Controls.Add(this.BankNameLabel1);
             this.panel5.Controls.Add(this.PeriodLabel);
@@ -325,6 +380,15 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(363, 190);
             this.panel5.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 107);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 22);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Overpayment";
             // 
             // CreditPercentLabel
             // 
@@ -408,6 +472,7 @@
             this.BillcomboBox.Name = "BillcomboBox";
             this.BillcomboBox.Size = new System.Drawing.Size(365, 30);
             this.BillcomboBox.TabIndex = 7;
+            this.BillcomboBox.SelectedIndexChanged += new System.EventHandler(this.BillcomboBox_SelectedIndexChanged);
             // 
             // BillButton
             // 
@@ -670,6 +735,34 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "BankName";
             // 
+            // numericUpDownMoney
+            // 
+            this.numericUpDownMoney.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numericUpDownMoney.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Location = new System.Drawing.Point(983, 179);
+            this.numericUpDownMoney.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownMoney.Name = "numericUpDownMoney";
+            this.numericUpDownMoney.Size = new System.Drawing.Size(156, 29);
+            this.numericUpDownMoney.TabIndex = 15;
+            this.numericUpDownMoney.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -682,6 +775,7 @@
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.mainTab.ResumeLayout(false);
             this.cabinetTab.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.namesBox.ResumeLayout(false);
@@ -700,6 +794,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMoney)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -759,6 +854,11 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label CreditPercentLabel;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox PeriodComboBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBill;
+        private System.Windows.Forms.Label CreditLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCredit;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numericUpDownMoney;
     }
 }

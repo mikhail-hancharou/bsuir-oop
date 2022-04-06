@@ -16,14 +16,13 @@ namespace BankSystem.Entities
         public DateTime ExpiryDate { get; set; }
         public HashSet<Bill> Bills { get; set; }// = new HashSet<Bill>();
 
-        public void OpenBill()
+        public void OpenBill(Bill bill)
         {
             //TODO
             AppContext db = new AppContext();
-            Bank bank;//= new Bank();
-            //string[] BankAndBID = Regex.Split(roleBankBox.Text.Trim(), "//");
-            //bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
-            //Bills.Add(new Bill(bank));
+            Bills.Add(bill);
+            db.Clients.Update(this);
+            db.SaveChanges();
         }
 
         public void CloseBill()

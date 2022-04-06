@@ -9,7 +9,7 @@ namespace BankSystem
     public class Bill
     {
         public int Id { get; set; }
-        public Bank Bank { get; set; }
+        public string BID { get; set; }
         public double Money { get; set; }
         public string BillNumber { get; set; }
         public bool Blocked { get; set; }
@@ -23,7 +23,7 @@ namespace BankSystem
         public Bill(Bank bank)
         {
             this.Money = 0;
-            this.Bank = bank;
+            //this.Bank = bank;
             BillInizializer(bank);
         }
 

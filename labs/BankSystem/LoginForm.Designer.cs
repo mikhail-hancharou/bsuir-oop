@@ -149,6 +149,7 @@
             this.pasBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pasBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.pasBox.Location = new System.Drawing.Point(300, 273);
             this.pasBox.MaxLength = 5;
             this.pasBox.Name = "pasBox";
@@ -162,6 +163,7 @@
             this.logBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.logBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.logBox.Location = new System.Drawing.Point(300, 225);
             this.logBox.MaxLength = 5;
             this.logBox.Name = "logBox";

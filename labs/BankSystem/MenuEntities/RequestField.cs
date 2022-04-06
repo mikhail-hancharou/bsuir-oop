@@ -15,7 +15,7 @@ namespace BankSystem.MenuEntities
         public Client Client { get; set; }
         public TableLayoutPanel TablePanel {get; set;}
 
-        public RequestField(Client client, TableLayoutPanel tablePanel) //TODO temp //Client client
+        public RequestField(Client client, TableLayoutPanel tablePanel)
         {
             TablePanel = tablePanel;
             Client = client;
