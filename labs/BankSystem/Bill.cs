@@ -9,26 +9,36 @@ namespace BankSystem
     public class Bill
     {
         public int Id { get; set; }
+        public Bank Bank { get; set; }
         public double Money { get; set; }
         public string BillNumber { get; set; }
         public bool Blocked { get; set; }
         public bool Freezed { get; set; }
-        public List<Transaction> Transactions { get; set;}
+        public List<Transaction> Transactions { get; set; }
+        public List<Credit> Credits { get; set; }
+        public List<Installement> Installements { get; set; }
+
+        public Bill() { }
 
         public Bill(Bank bank)
         {
             this.Money = 0;
+            this.Bank = bank;
             BillInizializer(bank);
-
         }
 
-        private void BillInizializer(Bank bank)
+        public void BillInizializer(Bank bank)
         {
             StringBuilder number = new StringBuilder(10);
             number.Append(bank.BID);
             number.Append(RandomNumber());
             BillNumber = number.ToString();
             bool flag = false;
+
+            if (bank.Clients == null)
+            {
+                return;
+            }
 
             while (true)
             {

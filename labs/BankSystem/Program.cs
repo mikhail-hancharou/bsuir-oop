@@ -19,6 +19,18 @@ namespace BankSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainMenu(
+                new Client
+                {
+                    Id = 1,
+                    User = new User
+                    {
+                        Name = "aaa",
+                        LastName = "bbb",
+                        Login = "login",
+                        PassportNumber = "numer"
+                    }
+                })); 
+            /*new MainMenu(
                 new Manager
                 {
                     Id = 1,
@@ -30,7 +42,7 @@ namespace BankSystem
                         Login = "login",
                         PassportNumber = "numer"
                     }
-                }));// new RegForm());
+                }));*/// new RegForm());
         }
         /* new MainMenu(
                 new Manager

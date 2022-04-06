@@ -14,7 +14,7 @@ namespace BankSystem.Entities
         public int Id { get; set; }
         public User User { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public HashSet<Bill> Bills { get; set; }
+        public HashSet<Bill> Bills { get; set; }// = new HashSet<Bill>();
 
         public void OpenBill()
         {

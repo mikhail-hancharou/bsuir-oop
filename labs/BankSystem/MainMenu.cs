@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace BankSystem
@@ -25,9 +26,10 @@ namespace BankSystem
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            if (MainUser is User)
+            if (MainUser is Client)
             {
-                //TODO
+                MainUser = MainUser as Client;
+                Opportunity();
             }
             else if (MainUser is Outsider)
             {
@@ -57,22 +59,85 @@ namespace BankSystem
             {
                 RequestField requestField = new RequestField(client, tableLayoutPanelRequest);
                 tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel);
-                //tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel, 0, tableLayoutPanelRequest.RowCount - 1);
-                //tableLayoutPanelRequest.RowCount += 1;
-                //requestField.AproveButton.Click += AproveButton_Click;
-                //requestField.DeniedButton.Click += DeniedButton_Click;
                 ListRequestField.Add(requestField);
             }
         }
 
-        //private void DeniedButton_Click(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private void Opportunity()
+        {
+            using AppContext db = new AppContext();
+            Client client = MainUser as Client;
+            if (client.Bills != null)
+            {
+                List<string> Bills = new List<string>();
+                foreach (Bill bill in client.Bills)
+                {
+                    Bills.Add(bill.BillNumber + "//" + bill.Bank.Name);
+                }
+                BillcomboBox.Items.AddRange(Bills.ToArray());
+                BillcomboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                BillcomboBox.Text = "No Bills";
+                BillcomboBox.Enabled = false;
+            }
 
-        //private void AproveButton_Click(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            List<string> Banks = new List<string>();
+            foreach (Bank b in db.Banks.ToList())
+            {
+                Banks.Add(b.Name + "//" + b.BID);
+            }
+
+            BankComboBox.Items.AddRange(Banks.ToArray()); //db.Banks.ToArray().ToString()
+            BankComboBox.SelectedIndex = 0;
+        }
+
+        private void CreditButton_Click(object sender, EventArgs e)
+        {
+            Client client = MainUser as Client;
+            //using AppContext db = new AppContext();
+            Bill bill;
+            string[] BillNumber = Regex.Split(BillcomboBox.Text.Trim(), "//");
+
+            foreach (Bill b in client.Bills)
+            {
+                if (b.BillNumber == BillNumber[0])
+                {
+                    bill = b;
+                    break;
+                }
+            }
+
+        }
+
+        private void BillButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Bank bank;
+            string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
+            bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+        }
+
+        private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Client client = MainUser as Client;
+            Bank bank;
+            string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
+            bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+
+            Bill bill = new Bill() { 
+                Bank = bank,
+                Money = 0,
+                Blocked = false, 
+                Freezed = false,
+            };
+            bill.BillInizializer(bank);
+
+            BankNameLabel.Text = BankAndBID[0];
+            ClientNameLabel.Text = client.User.Name + " " + client.User.LastName;
+            BillNumberLabel.Text = bill.BillNumber;
+        }
     }
 }

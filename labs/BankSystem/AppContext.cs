@@ -16,6 +16,9 @@ namespace BankSystem
         public DbSet<Admin> Admins => Set<Admin>();
         public DbSet<Bank> Banks => Set<Bank>();
         public DbSet<Bill> Bills => Set<Bill>();
+        public DbSet<Transaction> Transactions => Set<Transaction>();
+        public DbSet<Credit> Credits => Set<Credit>();
+        public DbSet<Installement> Installements => Set<Installement>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

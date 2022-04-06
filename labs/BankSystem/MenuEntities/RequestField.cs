@@ -20,26 +20,30 @@ namespace BankSystem.MenuEntities
             TablePanel = tablePanel;
             Client = client;
             FieldPanel = new Panel();
-            FieldPanel.Size = new Size(1000, 60);
+            FieldPanel.Size = new Size(600, 50);
             FieldPanel.Dock = DockStyle.Top;
 
             AproveButton = new Button();
             AproveButton.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
-            AproveButton.Size = new Size(80, 60);
+            AproveButton.Size = new Size(80, 50);
+            AproveButton.TextAlign = ContentAlignment.MiddleCenter;
             AproveButton.Dock = DockStyle.Left;
             AproveButton.Text = "Aprove";
 
             DeniedButton = new Button();
             DeniedButton.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
-            DeniedButton.Size = new Size(80, 60);
+            DeniedButton.Size = new Size(80, 50);
+            DeniedButton.TextAlign = ContentAlignment.MiddleCenter;
             DeniedButton.Dock = DockStyle.Left;
             DeniedButton.Text = "Denied";
 
             UserInfo = new Label();
             UserInfo.ForeColor = Color.Black;
             UserInfo.Dock = DockStyle.Fill;
-            UserInfo.TextAlign = ContentAlignment.MiddleCenter;
-            UserInfo.Text = $"Name: {Client.User.Name} Last Name: {Client.User.LastName} | Passport number: {Client.User.PassportNumber} | ID: {Client.User.Login}";// | Role: {client.Role}
+            UserInfo.TextAlign = ContentAlignment.MiddleRight;
+            //UserInfo.Text = $"Name: {Client.User.Name} L.Name: {Client.User.LastName} | Passp.numb.: {Client.User.PassportNumber} | ID: {Client.User.Login}";
+            UserInfo.Text = $"Name | L.Name | Passp.numb. | ID      \n" +
+                $"{Client.User.Name} | {Client.User.LastName} | {Client.User.PassportNumber} | {Client.User.Login}      ";
 
             FieldPanel.Controls.Add(AproveButton);
             FieldPanel.Controls.Add(DeniedButton);
