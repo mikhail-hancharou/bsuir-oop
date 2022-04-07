@@ -22,9 +22,25 @@ namespace BankSystem
 
         public Bill(Bank bank)
         {
-            this.Money = 0;
+            //this.Money = 0;
             //this.Bank = bank;
-            BillInizializer(bank);
+            //BillInizializer(bank);
+        }
+
+        public void CreditRequest(Credit credit)
+        {
+            AppContext db = new AppContext();
+            Credits.Add(credit);
+            db.Bills.Update(this);
+            db.SaveChanges();
+        }
+
+        public void InstallmentRequest(Installement installement)
+        {
+            AppContext db = new AppContext();
+            Installements.Add(installement);
+            db.Bills.Update(this);
+            db.SaveChanges();
         }
 
         public void BillInizializer(Bank bank)

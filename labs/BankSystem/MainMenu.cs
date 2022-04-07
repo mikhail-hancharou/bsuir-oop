@@ -56,8 +56,84 @@ namespace BankSystem
                 .Include(c => c.User)
                 .Where(c => !c.User.Confirmed))
             {
-                RequestField requestField = new RequestField(client, tableLayoutPanelRequest);
-                tableLayoutPanelRequest.Controls.Add(requestField.FieldPanel);
+                RequestField requestField = new RequestField(client, tableLayoutPanelRequest1);
+                tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
+            }
+
+            //foreach (Client client in db.Clients
+            //    .Include(c => c.Bills)
+            //    .ThenInclude(b => b.Credits)
+            //    .SelectMany(c => c.Bills)
+            //    .Where(c => c.Credits.Count != 0))
+            //{
+
+            //}
+
+            InitializeCreditRequest();
+            InitializeInstallementRequest();
+            //foreach (Client client in db.Clients
+            //    .Include(c => c.Bills)
+            //    .ThenInclude(b => b.Credits)
+            //    .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0)) //.User.Confirmed))
+            //{
+            //    var credits = client.Bills
+            //    .SelectMany(c => c.Credits)
+            //    .Where(c => !c.Confirmed);
+            //
+            //    foreach (Credit credit in credits)
+            //    {
+            //        CreditRequest creditRequest = new CreditRequest(client, credit, tableLayoutPanelRequest2);
+            //        tableLayoutPanelRequest2.Controls.Add(creditRequest.FieldPanel);
+            //    }
+            //}
+            //
+            //foreach (Credit credit in db.Credits
+            //    .Where(c => !c.Confirmed))
+            //{
+            //    RequestField requestField = new RequestField(credit, tableLayoutPanelRequest1);
+            //    tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
+            //}
+        }
+
+        private void InitializeCreditRequest()
+        {
+            using AppContext db = new AppContext();
+            foreach (Client client in db.Clients
+                .Include(c => c.User)
+                .Include(c => c.Bills)
+                .ThenInclude(b => b.Credits)
+                .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0)) //.User.Confirmed))
+            {
+                var credits = client.Bills
+                .SelectMany(c => c.Credits)
+                .Where(c => !c.Confirmed);
+
+                foreach (Credit credit in credits)
+                {
+                    CreditRequest creditRequest = new CreditRequest(client, credit, tableLayoutPanelRequest2);
+                    tableLayoutPanelRequest2.Controls.Add(creditRequest.FieldPanel);
+                }
+            }
+        }
+
+        private void InitializeInstallementRequest()
+        {
+            using AppContext db = new AppContext();
+            foreach (Client client in db.Clients
+                .Include(c => c.User)
+                .Include(c => c.Bills)
+                .ThenInclude(b => b.Installements)
+                .Where(c => c.Bills.Sum(b => b.Installements.Count) != 0))
+            {
+                var installements = client.Bills
+                .SelectMany(c => c.Installements)
+                .Where(c => !c.Confirmed);
+
+                foreach (Installement installement in installements)
+                {
+                    CreditRequest installementRequest = new CreditRequest(client, installement, tableLayoutPanelRequest3);
+                    tableLayoutPanelRequest3.Controls.Add(installementRequest.FieldPanel);
+                }
             }
         }
 
@@ -66,6 +142,7 @@ namespace BankSystem
             Client client = MainUser as Client;
             ClientNameLabel.Text = client.User.Name + " " + client.User.LastName;
             ClientNameLabel1.Text = client.User.Name + " " + client.User.LastName;
+            PeriodComboBox.SelectedIndex = 0;
             BankInit();
             BillInit(client);
         }
@@ -79,7 +156,7 @@ namespace BankSystem
                 Banks.Add(b.Name + "//" + b.BID);
             }
 
-            BankComboBox.Controls.Clear();
+            BankComboBox.Items.Clear();
             BankComboBox.Items.AddRange(Banks.ToArray());
             BankComboBox.SelectedIndex = 0;
         }
@@ -94,17 +171,21 @@ namespace BankSystem
 
             if (Bills.Count != 0)
             {
-                BillcomboBox.Controls.Clear();
+                BillcomboBox.Items.Clear();
                 BillcomboBox.Enabled = true;
+                CreditButton.Enabled = true;
+                PeriodComboBox.Enabled = true;
+                numericUpDownMoney.Enabled = true;
                 BillcomboBox.Items.AddRange(Bills.ToArray());
                 BillcomboBox.SelectedIndex = 0;
             }
             else
             {
                 BillcomboBox.Enabled = false;
+                CreditButton.Enabled = false;
+                PeriodComboBox.Enabled = false;
+                numericUpDownMoney.Enabled = false;
             }
-
-            PeriodComboBox.SelectedIndex = 0;
         }
 
         private void InizializeMenu()
@@ -130,25 +211,7 @@ namespace BankSystem
             }
         }
 
-        private void CreditButton_Click(object sender, EventArgs e)
-        {
-            //using AppContext db = new AppContext();
-            Client client = MainUser as Client;
-            Bill bill;
-            string BillNumber = BillcomboBox.Text;
-
-            foreach (Bill b in client.Bills)
-            {
-                if (b.BillNumber == BillNumber)
-                {
-                    bill = b;
-                    break;
-                }
-            }
-
-        }
-
-        private void BillButton_Click(object sender, EventArgs e)
+        private void CreateBillButton_Click(object sender, EventArgs e)
         {
             using AppContext db = new AppContext();
             Client client = MainUser as Client;
@@ -180,10 +243,43 @@ namespace BankSystem
             BillInit(client);
         }
 
+        private void CreditButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            string BillNumber = BillcomboBox.Text;
+            Bill bill = db.Bills
+                .Include(b => b.Installements)
+                .Include(b => b.Credits)
+                .FirstOrDefault(b => b.BillNumber == BillNumber);
+
+            if (radioButton1.Checked)
+            {         
+                Credit credit = new Credit
+                {
+                    Confirmed = false,
+                    Months = Convert.ToInt32(PeriodComboBox.Text),
+                    Money = (double)numericUpDownMoney.Value,
+                    Percent = db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent,
+                };
+
+                bill.CreditRequest(credit);
+            }
+            else
+            {
+                Installement installement = new Installement
+                {
+                    Confirmed = false,
+                    Months = Convert.ToInt32(PeriodComboBox.Text),
+                    Money = (double)numericUpDownMoney.Value,
+                };
+
+                bill.InstallmentRequest(installement);
+            }
+        }
+
         private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             using AppContext db = new AppContext();
-            Client client = MainUser as Client;
             Bank bank;
             string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
             bank = db.Banks.FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
@@ -208,32 +304,47 @@ namespace BankSystem
             string BillNumber = BillcomboBox.Text;
 
             bill =  client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
-            BankNameLabel.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).Name;
+            BankNameLabel1.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).Name;
+            CreditBillLabel.Text = BillNumber;
+            MoneyNPaymentUpdate(bill);
+        }
 
-            CreditPercentLabel.Text = (db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100).ToString();
-            OverPaymentLabel.Text = ((uint)((double)db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100) * numericUpDownMoney.Value).ToString();
-            OperationLabel.Text = "Credit";
+        private void MoneyNPaymentUpdate(Bill bill)
+        {
+            using AppContext db = new AppContext();
+            AmountLabel.Text = numericUpDownMoney.Value.ToString() + "R";
+            
+            if (radioButton1.Checked)
+            {
+                OperationLabel.Text = "Credit";
+                CreditPercentLabel.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent.ToString() + "%";
+                OverPaymentLabel.Text = ((uint)(db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100 * (double)numericUpDownMoney.Value)).ToString();
+            }
         }
 
         private void PeriodComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PeriodLabel.Text = PeriodComboBox.Text;
+            PeriodLabel.Text = PeriodComboBox.Text + " month";
         }
 
         private void numericUpDownMoney_ValueChanged(object sender, EventArgs e)
         {
-            AmountLabel.Text = numericUpDownMoney.Value.ToString() + "R";
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            CreditPercentLabel.Text = "";
-            OperationLabel.Text = "Installement";
+            Bill bill;
+            Client client = MainUser as Client;
+            string BillNumber = BillcomboBox.Text;
+            bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+            MoneyNPaymentUpdate(bill);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             BillcomboBox_SelectedIndexChanged(sender, e);
+        }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            CreditPercentLabel.Text = "";
+            OverPaymentLabel.Text = "";
+            OperationLabel.Text = "Installement";
         }
     }
 }

@@ -22,6 +22,8 @@ namespace BankSystem.MenuEntities
             FieldPanel = new Panel();
             FieldPanel.Size = new Size(600, 50);
             FieldPanel.Dock = DockStyle.Top;
+            FieldPanel.BorderStyle = BorderStyle.Fixed3D;
+            FieldPanel.Margin = new Padding(3, 3, 3, 0);
 
             AproveButton = new Button();
             AproveButton.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
@@ -40,10 +42,10 @@ namespace BankSystem.MenuEntities
             UserInfo = new Label();
             UserInfo.ForeColor = Color.Black;
             UserInfo.Dock = DockStyle.Fill;
-            UserInfo.TextAlign = ContentAlignment.MiddleRight;
-            //UserInfo.Text = $"Name: {Client.User.Name} L.Name: {Client.User.LastName} | Passp.numb.: {Client.User.PassportNumber} | ID: {Client.User.Login}";
-            UserInfo.Text = $"Name | L.Name | Passp.numb. | ID      \n" +
-                $"{Client.User.Name} | {Client.User.LastName} | {Client.User.PassportNumber} | {Client.User.Login}      ";
+            UserInfo.TextAlign = ContentAlignment.MiddleCenter;
+            UserInfo.Text = $"Name: {Client.User.Name} | L.Name: {Client.User.LastName} | Passp.numb.: {Client.User.PassportNumber} | ID: {Client.User.Login}";
+            //UserInfo.Text = $"Name | L.Name | Passp.numb. | ID\n" +
+            //    $"{Client.User.Name} | {Client.User.LastName} | {Client.User.PassportNumber} | {Client.User.Login}";
 
             FieldPanel.Controls.Add(AproveButton);
             FieldPanel.Controls.Add(DeniedButton);

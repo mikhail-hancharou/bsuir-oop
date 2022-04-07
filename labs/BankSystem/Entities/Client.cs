@@ -29,15 +29,5 @@ namespace BankSystem.Entities
         {
             //TODO
         }
-
-        public void CreditRequest()
-        {
-            //TODO
-        }
-
-        public void InstallmentRequest()
-        {
-            //TODO
-        }
     }
 }

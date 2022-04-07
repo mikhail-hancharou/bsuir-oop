@@ -64,7 +64,7 @@
             this.OperationLabel = new System.Windows.Forms.Label();
             this.CredtLabel = new System.Windows.Forms.Label();
             this.BillcomboBox = new System.Windows.Forms.ComboBox();
-            this.BillButton = new System.Windows.Forms.Button();
+            this.CreateBillButton = new System.Windows.Forms.Button();
             this.BankComboBox = new System.Windows.Forms.ComboBox();
             this.BillPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -73,8 +73,13 @@
             this.BankNameLabel = new System.Windows.Forms.Label();
             this.BillLabel = new System.Windows.Forms.Label();
             this.requestTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanelRequest = new System.Windows.Forms.TableLayoutPanel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.RequestTabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelRequest1 = new System.Windows.Forms.TableLayoutPanel();
+            this.RequestTabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelRequest2 = new System.Windows.Forms.TableLayoutPanel();
+            this.RequestTabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelRequest3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -107,6 +112,10 @@
             this.BillPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.requestTab.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.RequestTabPage1.SuspendLayout();
+            this.RequestTabPage2.SuspendLayout();
+            this.RequestTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -191,7 +200,6 @@
             // tableLayoutPanelBill
             // 
             this.tableLayoutPanelBill.AutoScroll = true;
-            this.tableLayoutPanelBill.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanelBill.ColumnCount = 1;
             this.tableLayoutPanelBill.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelBill.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -295,14 +303,13 @@
             this.opportunityTab.Controls.Add(this.panel5);
             this.opportunityTab.Controls.Add(this.CredtLabel);
             this.opportunityTab.Controls.Add(this.BillcomboBox);
-            this.opportunityTab.Controls.Add(this.BillButton);
+            this.opportunityTab.Controls.Add(this.CreateBillButton);
             this.opportunityTab.Controls.Add(this.BankComboBox);
             this.opportunityTab.Controls.Add(this.BillPanel);
             this.opportunityTab.Controls.Add(this.BillLabel);
             this.opportunityTab.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.opportunityTab.Location = new System.Drawing.Point(4, 29);
             this.opportunityTab.Name = "opportunityTab";
-            this.opportunityTab.Padding = new System.Windows.Forms.Padding(3);
             this.opportunityTab.Size = new System.Drawing.Size(1274, 620);
             this.opportunityTab.TabIndex = 1;
             this.opportunityTab.Text = "Opportunity";
@@ -343,17 +350,16 @@
             this.PeriodComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PeriodComboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PeriodComboBox.Items.AddRange(new object[] {
-            "3 month",
-            "6 month",
-            "12 month",
-            "24 month",
-            "36 month",
-            "48 month"});
+            "3",
+            "6",
+            "12",
+            "24",
+            "36",
+            "48"});
             this.PeriodComboBox.Location = new System.Drawing.Point(983, 140);
             this.PeriodComboBox.Name = "PeriodComboBox";
             this.PeriodComboBox.Size = new System.Drawing.Size(156, 30);
             this.PeriodComboBox.TabIndex = 7;
-            this.PeriodComboBox.Visible = false;
             this.PeriodComboBox.SelectedIndexChanged += new System.EventHandler(this.PeriodComboBox_SelectedIndexChanged);
             // 
             // panel6
@@ -514,7 +520,7 @@
             // 
             this.CredtLabel.AutoSize = true;
             this.CredtLabel.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CredtLabel.Location = new System.Drawing.Point(614, 13);
+            this.CredtLabel.Location = new System.Drawing.Point(611, 10);
             this.CredtLabel.Name = "CredtLabel";
             this.CredtLabel.Size = new System.Drawing.Size(404, 60);
             this.CredtLabel.TabIndex = 8;
@@ -533,16 +539,16 @@
             this.BillcomboBox.TabIndex = 7;
             this.BillcomboBox.SelectedIndexChanged += new System.EventHandler(this.BillcomboBox_SelectedIndexChanged);
             // 
-            // BillButton
+            // CreateBillButton
             // 
-            this.BillButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.BillButton.Location = new System.Drawing.Point(70, 353);
-            this.BillButton.Name = "BillButton";
-            this.BillButton.Size = new System.Drawing.Size(232, 29);
-            this.BillButton.TabIndex = 10;
-            this.BillButton.Text = "Create Bill";
-            this.BillButton.UseVisualStyleBackColor = false;
-            this.BillButton.Click += new System.EventHandler(this.BillButton_Click);
+            this.CreateBillButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CreateBillButton.Location = new System.Drawing.Point(70, 353);
+            this.CreateBillButton.Name = "CreateBillButton";
+            this.CreateBillButton.Size = new System.Drawing.Size(232, 29);
+            this.CreateBillButton.TabIndex = 10;
+            this.CreateBillButton.Text = "Create Bill";
+            this.CreateBillButton.UseVisualStyleBackColor = false;
+            this.CreateBillButton.Click += new System.EventHandler(this.CreateBillButton_Click);
             // 
             // BankComboBox
             // 
@@ -607,7 +613,7 @@
             // 
             this.BillLabel.AutoSize = true;
             this.BillLabel.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BillLabel.Location = new System.Drawing.Point(8, 13);
+            this.BillLabel.Location = new System.Drawing.Point(5, 10);
             this.BillLabel.Name = "BillLabel";
             this.BillLabel.Size = new System.Drawing.Size(365, 60);
             this.BillLabel.TabIndex = 8;
@@ -616,47 +622,102 @@
             // 
             // requestTab
             // 
-            this.requestTab.Controls.Add(this.tableLayoutPanel1);
-            this.requestTab.Controls.Add(this.tableLayoutPanelRequest);
+            this.requestTab.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.requestTab.Controls.Add(this.tabControl1);
             this.requestTab.Location = new System.Drawing.Point(4, 29);
             this.requestTab.Name = "requestTab";
             this.requestTab.Size = new System.Drawing.Size(1274, 620);
             this.requestTab.TabIndex = 2;
             this.requestTab.Text = "Requests";
             // 
-            // tableLayoutPanel1
+            // tabControl1
             // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(630, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(644, 620);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tabControl1.Controls.Add(this.RequestTabPage1);
+            this.tabControl1.Controls.Add(this.RequestTabPage2);
+            this.tabControl1.Controls.Add(this.RequestTabPage3);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1274, 620);
+            this.tabControl1.TabIndex = 1;
             // 
-            // tableLayoutPanelRequest
+            // RequestTabPage1
             // 
-            this.tableLayoutPanelRequest.AutoScroll = true;
-            this.tableLayoutPanelRequest.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tableLayoutPanelRequest.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanelRequest.ColumnCount = 1;
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
-            this.tableLayoutPanelRequest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
-            this.tableLayoutPanelRequest.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanelRequest.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelRequest.Name = "tableLayoutPanelRequest";
-            this.tableLayoutPanelRequest.RowCount = 1;
-            this.tableLayoutPanelRequest.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelRequest.Size = new System.Drawing.Size(630, 620);
-            this.tableLayoutPanelRequest.TabIndex = 0;
+            this.RequestTabPage1.Controls.Add(this.tableLayoutPanelRequest1);
+            this.RequestTabPage1.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage1.Name = "RequestTabPage1";
+            this.RequestTabPage1.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage1.TabIndex = 0;
+            this.RequestTabPage1.Text = "Acounts";
+            this.RequestTabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanelRequest1
+            // 
+            this.tableLayoutPanelRequest1.AutoScroll = true;
+            this.tableLayoutPanelRequest1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanelRequest1.ColumnCount = 1;
+            this.tableLayoutPanelRequest1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanelRequest1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanelRequest1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanelRequest1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRequest1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelRequest1.Name = "tableLayoutPanelRequest1";
+            this.tableLayoutPanelRequest1.RowCount = 1;
+            this.tableLayoutPanelRequest1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelRequest1.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanelRequest1.TabIndex = 0;
+            // 
+            // RequestTabPage2
+            // 
+            this.RequestTabPage2.Controls.Add(this.tableLayoutPanelRequest2);
+            this.RequestTabPage2.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage2.Name = "RequestTabPage2";
+            this.RequestTabPage2.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage2.TabIndex = 1;
+            this.RequestTabPage2.Text = "Credits";
+            this.RequestTabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanelRequest2
+            // 
+            this.tableLayoutPanelRequest2.AutoScroll = true;
+            this.tableLayoutPanelRequest2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanelRequest2.ColumnCount = 1;
+            this.tableLayoutPanelRequest2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanelRequest2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanelRequest2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanelRequest2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRequest2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelRequest2.Name = "tableLayoutPanelRequest2";
+            this.tableLayoutPanelRequest2.RowCount = 1;
+            this.tableLayoutPanelRequest2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelRequest2.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanelRequest2.TabIndex = 0;
+            // 
+            // RequestTabPage3
+            // 
+            this.RequestTabPage3.Controls.Add(this.tableLayoutPanelRequest3);
+            this.RequestTabPage3.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage3.Name = "RequestTabPage3";
+            this.RequestTabPage3.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage3.TabIndex = 2;
+            this.RequestTabPage3.Text = "Installements";
+            // 
+            // tableLayoutPanelRequest3
+            // 
+            this.tableLayoutPanelRequest3.AutoScroll = true;
+            this.tableLayoutPanelRequest3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanelRequest3.ColumnCount = 1;
+            this.tableLayoutPanelRequest3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanelRequest3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanelRequest3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanelRequest3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRequest3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelRequest3.Name = "tableLayoutPanelRequest3";
+            this.tableLayoutPanelRequest3.RowCount = 1;
+            this.tableLayoutPanelRequest3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelRequest3.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanelRequest3.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -824,6 +885,10 @@
             this.BillPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.requestTab.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.RequestTabPage1.ResumeLayout(false);
+            this.RequestTabPage2.ResumeLayout(false);
+            this.RequestTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -847,8 +912,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage requestTab;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest;
-        private System.Windows.Forms.Button BillButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest1;
+        private System.Windows.Forms.Button CreateBillButton;
         private System.Windows.Forms.ComboBox BankComboBox;
         private System.Windows.Forms.Panel BillPanel;
         private System.Windows.Forms.Label BillLabel;
@@ -881,7 +946,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
@@ -894,5 +958,11 @@
         private System.Windows.Forms.NumericUpDown numericUpDownMoney;
         private System.Windows.Forms.Label CreditBillLabel;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage RequestTabPage1;
+        private System.Windows.Forms.TabPage RequestTabPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest2;
+        private System.Windows.Forms.TabPage RequestTabPage3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest3;
     }
 }

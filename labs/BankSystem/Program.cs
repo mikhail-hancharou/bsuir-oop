@@ -18,7 +18,19 @@ namespace BankSystem
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new MainMenu(
+                new Manager
+                {
+                    Id = 1,
+                    myWork = new Bank(),
+                    User = new User
+                    {
+                        Name = "aaa",
+                        LastName = "bbb",
+                        Login = "login",
+                        PassportNumber = "numer"
+                    }
+                })); //new LoginForm());
             /*new MainMenu(
                 new Client
                 {
