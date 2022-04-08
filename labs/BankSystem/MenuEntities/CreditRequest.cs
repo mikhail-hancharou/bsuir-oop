@@ -70,39 +70,6 @@ namespace BankSystem.MenuEntities
                 $"Amount: {installement.Money} | Period: {installement.Months} months | Alr. have: {client.Bills.Sum(b => b.Installements.Count(c => c.Confirmed))} inst.";
             DeniedButton.Click += DeniedInstButton_Click;
             AproveButton.Click += AproveInstButton_Click;
-            //FieldPanel = new Panel();
-            //FieldPanel.Size = new Size(600, 50);
-            //FieldPanel.Dock = DockStyle.Top;
-            //FieldPanel.BorderStyle = BorderStyle.Fixed3D;
-            //FieldPanel.Margin = new Padding(3, 3, 3, 0);
-            //
-            //AproveButton = new Button();
-            //AproveButton.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
-            //AproveButton.Size = new Size(80, 50);
-            //AproveButton.TextAlign = ContentAlignment.MiddleCenter;
-            //AproveButton.Dock = DockStyle.Left;
-            //AproveButton.Text = "Aprove";
-            //
-            //DeniedButton = new Button();
-            //DeniedButton.BackColor = System.Drawing.Color.FromArgb(185, 209, 234);
-            //DeniedButton.Size = new Size(80, 50);
-            //DeniedButton.TextAlign = ContentAlignment.MiddleCenter;
-            //DeniedButton.Dock = DockStyle.Left;
-            //DeniedButton.Text = "Denied";
-            //
-            //CreditRequestInfo = new Label();
-            //CreditRequestInfo.ForeColor = Color.Black;
-            //CreditRequestInfo.Dock = DockStyle.Fill;
-            //CreditRequestInfo.TextAlign = ContentAlignment.MiddleCenter;
-            //CreditRequestInfo.Text = $"Name: {Client.User.Name} | L.Name: {Client.User.LastName} | Passp.numb.: {Client.User.PassportNumber} | ID: {Client.User.Login}\n" +
-            //    $"Amount: {installement.Money} | Period: {installement.Months} months | Alr. have: {client.Bills.Sum(b => b.Credits.Count(c => c.Confirmed))} inst.";/* & {client.Bills.Sum(b => b.Installements.Count(c => c.Confirmed))} Inst."*/
-            //
-            //FieldPanel.Controls.Add(AproveButton);
-            //FieldPanel.Controls.Add(DeniedButton);
-            //FieldPanel.Controls.Add(CreditRequestInfo);
-            //
-            //DeniedButton.Click += DeniedButton_Click;
-            //AproveButton.Click += AproveButton_Click;
         }
 
         private Panel CreatePanel()
@@ -144,6 +111,7 @@ namespace BankSystem.MenuEntities
             TablePanel.Controls.Remove(FieldPanel);
             AppContext db = new AppContext();
             Credit.Confirmed = true;
+            Credit.ConfirmedTime = DateTime.UtcNow;
             db.Credits.Update(Credit);
             db.SaveChanges();
         }
@@ -163,6 +131,7 @@ namespace BankSystem.MenuEntities
             TablePanel.Controls.Remove(FieldPanel);
             AppContext db = new AppContext();
             Installement.Confirmed = true;
+            Installement.ConfirmedTime = DateTime.UtcNow;
             db.Installements.Update(Installement);
             db.SaveChanges();
         }

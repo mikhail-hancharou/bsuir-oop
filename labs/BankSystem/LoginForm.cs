@@ -35,6 +35,9 @@ namespace BankSystem
                 {
                     Client newUser = db.Clients
                         .Include(c => c.Bills)
+                        .ThenInclude(b => b.Credits)
+                        .Include(c => c.Bills)
+                        .ThenInclude(b => b.Installements)
                         .ToList()
                         .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
                     Hide();

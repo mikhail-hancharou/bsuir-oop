@@ -27,6 +27,7 @@ namespace BankSystem
             if (MainUser is Client)
             {
                 MainUser = MainUser as Client;
+                mainTab.Controls.Remove(requestTab); //TODO: move
                 InizializeMenu();
                 Opportunity();
             }
@@ -60,39 +61,8 @@ namespace BankSystem
                 tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
             }
 
-            //foreach (Client client in db.Clients
-            //    .Include(c => c.Bills)
-            //    .ThenInclude(b => b.Credits)
-            //    .SelectMany(c => c.Bills)
-            //    .Where(c => c.Credits.Count != 0))
-            //{
-
-            //}
-
             InitializeCreditRequest();
             InitializeInstallementRequest();
-            //foreach (Client client in db.Clients
-            //    .Include(c => c.Bills)
-            //    .ThenInclude(b => b.Credits)
-            //    .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0)) //.User.Confirmed))
-            //{
-            //    var credits = client.Bills
-            //    .SelectMany(c => c.Credits)
-            //    .Where(c => !c.Confirmed);
-            //
-            //    foreach (Credit credit in credits)
-            //    {
-            //        CreditRequest creditRequest = new CreditRequest(client, credit, tableLayoutPanelRequest2);
-            //        tableLayoutPanelRequest2.Controls.Add(creditRequest.FieldPanel);
-            //    }
-            //}
-            //
-            //foreach (Credit credit in db.Credits
-            //    .Where(c => !c.Confirmed))
-            //{
-            //    RequestField requestField = new RequestField(credit, tableLayoutPanelRequest1);
-            //    tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
-            //}
         }
 
         private void InitializeCreditRequest()
@@ -171,13 +141,20 @@ namespace BankSystem
 
             if (Bills.Count != 0)
             {
-                BillcomboBox.Items.Clear();
                 BillcomboBox.Enabled = true;
                 CreditButton.Enabled = true;
                 PeriodComboBox.Enabled = true;
                 numericUpDownMoney.Enabled = true;
+                BillcomboBox.Items.Clear();
                 BillcomboBox.Items.AddRange(Bills.ToArray());
                 BillcomboBox.SelectedIndex = 0;
+
+                transferGroupBox.Enabled = true;
+                accumulateGroupBox.Enabled = true;
+                abilityGroupBox.Enabled = true;
+                dealComboBox.Items.Clear();
+                dealComboBox.Items.AddRange(Bills.ToArray());
+                dealComboBox.SelectedIndex = 0;
             }
             else
             {
@@ -185,20 +162,40 @@ namespace BankSystem
                 CreditButton.Enabled = false;
                 PeriodComboBox.Enabled = false;
                 numericUpDownMoney.Enabled = false;
+
+                transferGroupBox.Enabled = false;
+                accumulateGroupBox.Enabled = false;
+                abilityGroupBox.Enabled = false;
             }
         }
 
         private void InizializeMenu()
         {
+            using AppContext db = new AppContext();
             Client client = MainUser as Client;
             nameLabel.Text = client.User.Name;
             lastNameLabel.Text = client.User.LastName;
             moneyLabel.Text = client.Bills.Sum(b => b.Money).ToString();
             tableLayoutPanelBill.Controls.Clear();
+            tableLayoutPanelCredit.Controls.Clear();
+            db.Clients.Update(client);
+            db.SaveChanges();
             foreach (Bill bill in client.Bills)
             {
                 BillField billField = new BillField(bill, tableLayoutPanelBill);
                 tableLayoutPanelBill.Controls.Add(billField.FieldPanel);
+
+                foreach (Credit credit in bill.Credits)
+                {
+                    CreditField creditField = new CreditField(credit, bill, tableLayoutPanelCredit);
+                    tableLayoutPanelCredit.Controls.Add(creditField.FieldPanel);
+                }
+
+                foreach (Installement installement in bill.Installements)
+                {
+                    CreditField creditField = new CreditField(installement, bill, tableLayoutPanelCredit);
+                    tableLayoutPanelCredit.Controls.Add(creditField.FieldPanel);
+                }
             }
 
             if (client.Bills.Count != 0)
@@ -234,6 +231,8 @@ namespace BankSystem
                 Blocked = false,
                 Freezed = false,
                 BillNumber = BillNumberLabel.Text,
+                Credits = new List<Credit>(),
+                Installements = new List<Installement>(),
             };
 
             client.OpenBill(bill);
@@ -275,6 +274,8 @@ namespace BankSystem
 
                 bill.InstallmentRequest(installement);
             }
+
+            InizializeMenu();
         }
 
         private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -345,6 +346,24 @@ namespace BankSystem
             CreditPercentLabel.Text = "";
             OverPaymentLabel.Text = "";
             OperationLabel.Text = "Installement";
+        }
+
+        private void transferButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void destBillMaskedTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (destBillMaskedTextBox.MaskFull)
+            {
+                transfetToLabel.Text += destBillMaskedTextBox.Text;
+                transferMoneyLabel.Text = SumNumericUpDown.Value.ToString();
+            }
+            else
+            {
+                transferButton.Enabled = false;
+            }
         }
     }
 }

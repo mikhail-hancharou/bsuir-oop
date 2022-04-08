@@ -68,7 +68,6 @@ namespace BankSystem.MenuEntities
         {
             TablePanel.Controls.Remove(FieldPanel);
             AppContext db = new AppContext();
-
             db.Users.Remove(Client.User);
             db.Clients.Remove(Client);
             db.SaveChanges();

@@ -21,8 +21,6 @@ namespace BankSystem.MenuEntities
             Bill = bill;
             TablePanel = tablePanel;
             FieldPanel = new Panel();
-            FieldPanel.Margin = new Padding(10, 7, 20, 7);
-            //FieldPanel.Size = new Size(400, 90);
             FieldPanel.Dock = DockStyle.Top;
             FieldPanel.BorderStyle = BorderStyle.Fixed3D;
             FieldPanel.Margin = new Padding(3, 3, 3, 0);
