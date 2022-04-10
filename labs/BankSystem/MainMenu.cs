@@ -29,6 +29,7 @@ namespace BankSystem
                 MainUser = MainUser as Client;
                 mainTab.Controls.Remove(requestTab); //TODO: move
                 InizializeMenu();
+                InitializeDeals();
                 Opportunity();
             }
             else if (MainUser is Outsider)
@@ -129,12 +130,16 @@ namespace BankSystem
             BankComboBox.Items.Clear();
             BankComboBox.Items.AddRange(Banks.ToArray());
             BankComboBox.SelectedIndex = 0;
+
+            accumComboBox.Items.Clear();
+            accumComboBox.Items.AddRange(Banks.ToArray());
+            accumComboBox.SelectedIndex = 0;
         }
 
         private void BillInit(Client client)
         {
             List<string> Bills = new List<string>();
-            foreach (Bill bill in client.Bills)
+            foreach (Bill bill in client.Bills.Where(b => !b.Blocked && !b.Freezed))
             {
                 Bills.Add(bill.BillNumber);
             }
@@ -173,6 +178,14 @@ namespace BankSystem
         {
             using AppContext db = new AppContext();
             Client client = MainUser as Client;
+            client = db.Clients
+                .Include(c => c.Bills)
+                .ThenInclude(b => b.Credits)
+                .Include(c => c.Bills)
+                .ThenInclude(b => b.Installements)
+                .Include(c => c.User)
+                .Include(c => c.Bills)
+                .FirstOrDefault(c => c.Id == client.Id);
             nameLabel.Text = client.User.Name;
             lastNameLabel.Text = client.User.LastName;
             moneyLabel.Text = client.Bills.Sum(b => b.Money).ToString();
@@ -224,15 +237,17 @@ namespace BankSystem
                 db.SaveChanges();
             }
 
+            Random rnd = new Random();
             Bill bill = new Bill()
             {
                 BID = BankAndBID[1],
-                Money = 0,
+                Money = rnd.Next(1000, 15000),
                 Blocked = false,
                 Freezed = false,
                 BillNumber = BillNumberLabel.Text,
                 Credits = new List<Credit>(),
                 Installements = new List<Installement>(),
+                Transactions = new List<Transaction>(),
             };
 
             client.OpenBill(bill);
@@ -246,10 +261,12 @@ namespace BankSystem
         {
             using AppContext db = new AppContext();
             string BillNumber = BillcomboBox.Text;
-            Bill bill = db.Bills
-                .Include(b => b.Installements)
-                .Include(b => b.Credits)
-                .FirstOrDefault(b => b.BillNumber == BillNumber);
+            Client client = MainUser as Client;
+            Bill bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+            //Bill bill = db.Bills
+            //    .Include(b => b.Installements)
+            //    .Include(b => b.Credits)
+            //    .FirstOrDefault(b => b.BillNumber == BillNumber);
 
             if (radioButton1.Checked)
             {         
@@ -348,9 +365,39 @@ namespace BankSystem
             OperationLabel.Text = "Installement";
         }
 
+        private void InitializeDeals()
+        {
+            transferMoneyLabel.Text = sumNumericUpDown.Value.ToString();
+            label31.Text = numericUpDown2.Value.ToString();
+        }
+
         private void transferButton_Click(object sender, EventArgs e)
         {
+            using AppContext db = new AppContext();
+            if (db.Bills.Any(b => b.BillNumber == destBillMaskedTextBox.Text))
+            {
+                Bill SourceBill = db.Bills
+                    .Include(b => b.Transactions)
+                    .FirstOrDefault(b => b.BillNumber == dealComboBox.Text);
+                if (SourceBill.Money >= (double)sumNumericUpDown.Value)
+                {
+                    SourceBill.Money -= (double)sumNumericUpDown.Value;
+                    Bill DestBill = db.Bills.Include(b => b.Transactions).FirstOrDefault(b => b.BillNumber == destBillMaskedTextBox.Text);
+                    DestBill.Money += (double)sumNumericUpDown.Value;
+                    Transaction tr = new Transaction()
+                    {
+                        DestBill = DestBill,
+                        Amount = (double)sumNumericUpDown.Value,
+                    };
 
+                    SourceBill.Transactions.Add(tr);
+                    db.Transactions.Add(tr);
+                    db.Bills.Update(SourceBill);
+                    db.Bills.Update(DestBill);
+                    db.SaveChanges();
+                    InizializeMenu();
+                }
+            }
         }
 
         private void destBillMaskedTextBox_TextChanged(object sender, EventArgs e)
@@ -358,11 +405,62 @@ namespace BankSystem
             if (destBillMaskedTextBox.MaskFull)
             {
                 transfetToLabel.Text += destBillMaskedTextBox.Text;
-                transferMoneyLabel.Text = SumNumericUpDown.Value.ToString();
+                transferButton.Enabled = true;
             }
             else
             {
                 transferButton.Enabled = false;
+            }
+        }
+
+        private void sumNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            transferMoneyLabel.Text = sumNumericUpDown.Value.ToString();
+        }
+
+        private void dealComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accumComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
+            double percent = db.Banks.FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]).AccumPercent;
+
+            label30.Text = "Bank/id: " + BankAndBID[0] + '/' + BankAndBID[1];
+            label32.Text = "Percent: " + percent.ToString();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            label31.Text = numericUpDown2.Value.ToString();
+        }
+
+        private void accumButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Client client = MainUser as Client;
+            Bill SourceBill = db.Bills.FirstOrDefault(b => b.BillNumber == dealComboBox.Text);
+            if (SourceBill.Money >= (double)numericUpDown2.Value)
+            {
+                string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
+                Bank bank = db.Banks.Include(b => b.ClientAccum).FirstOrDefault(b => b.BID == BankAndBID[1]);
+                SourceBill.Money -= (double)numericUpDown2.Value;
+                Accumulate accum = new Accumulate
+                {
+                    ClientId = client.User.Login,
+                    Amount = (double)numericUpDown2.Value,
+                    Percent =  bank.AccumPercent,
+                    Time = DateTime.UtcNow,
+                };
+                
+                bank.ClientAccum.Add(accum);
+                db.Banks.Update(bank);
+                db.Accumulates.Add(accum);
+                db.SaveChanges();
+                InizializeMenu();
             }
         }
     }

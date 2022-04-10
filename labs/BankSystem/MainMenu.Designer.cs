@@ -81,6 +81,7 @@
             this.RequestTabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelRequest3 = new System.Windows.Forms.TableLayoutPanel();
             this.dealtab = new System.Windows.Forms.TabPage();
+            this.dealComboBox = new System.Windows.Forms.ComboBox();
             this.abilityGroupBox = new System.Windows.Forms.GroupBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
@@ -89,24 +90,26 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.accumulateGroupBox = new System.Windows.Forms.GroupBox();
+            this.accumComboBox = new System.Windows.Forms.ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.accumButton = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.transferGroupBox = new System.Windows.Forms.GroupBox();
+            this.sumNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel11 = new System.Windows.Forms.Panel();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.transferMoneyLabel = new System.Windows.Forms.Label();
             this.transfetToLabel = new System.Windows.Forms.Label();
             this.destBillMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.transferButton = new System.Windows.Forms.Button();
-            this.SumNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.DealsLabel = new System.Windows.Forms.Label();
-            this.dealComboBox = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -209,11 +212,12 @@
             this.abilityGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.accumulateGroupBox.SuspendLayout();
+            this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.transferGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SumNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -831,16 +835,27 @@
             // dealtab
             // 
             this.dealtab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dealtab.Controls.Add(this.dealComboBox);
             this.dealtab.Controls.Add(this.abilityGroupBox);
             this.dealtab.Controls.Add(this.accumulateGroupBox);
             this.dealtab.Controls.Add(this.transferGroupBox);
             this.dealtab.Controls.Add(this.DealsLabel);
-            this.dealtab.Controls.Add(this.dealComboBox);
             this.dealtab.Location = new System.Drawing.Point(4, 29);
             this.dealtab.Name = "dealtab";
             this.dealtab.Size = new System.Drawing.Size(1274, 620);
             this.dealtab.TabIndex = 3;
             this.dealtab.Text = "Deals";
+            // 
+            // dealComboBox
+            // 
+            this.dealComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dealComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dealComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dealComboBox.Location = new System.Drawing.Point(503, 55);
+            this.dealComboBox.Name = "dealComboBox";
+            this.dealComboBox.Size = new System.Drawing.Size(244, 30);
+            this.dealComboBox.TabIndex = 18;
+            this.dealComboBox.SelectedIndexChanged += new System.EventHandler(this.dealComboBox_SelectedIndexChanged);
             // 
             // abilityGroupBox
             // 
@@ -936,9 +951,9 @@
             // 
             // accumulateGroupBox
             // 
+            this.accumulateGroupBox.Controls.Add(this.accumComboBox);
             this.accumulateGroupBox.Controls.Add(this.panel10);
-            this.accumulateGroupBox.Controls.Add(this.maskedTextBox1);
-            this.accumulateGroupBox.Controls.Add(this.button4);
+            this.accumulateGroupBox.Controls.Add(this.accumButton);
             this.accumulateGroupBox.Controls.Add(this.numericUpDown2);
             this.accumulateGroupBox.Controls.Add(this.label24);
             this.accumulateGroupBox.Controls.Add(this.label25);
@@ -949,32 +964,65 @@
             this.accumulateGroupBox.TabStop = false;
             this.accumulateGroupBox.Text = "Accumulate";
             // 
+            // accumComboBox
+            // 
+            this.accumComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.accumComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accumComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.accumComboBox.Location = new System.Drawing.Point(38, 100);
+            this.accumComboBox.Name = "accumComboBox";
+            this.accumComboBox.Size = new System.Drawing.Size(244, 30);
+            this.accumComboBox.TabIndex = 17;
+            this.accumComboBox.SelectedIndexChanged += new System.EventHandler(this.accumComboBox_SelectedIndexChanged);
+            // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel10.Controls.Add(this.label32);
+            this.panel10.Controls.Add(this.label31);
+            this.panel10.Controls.Add(this.label30);
             this.panel10.Location = new System.Drawing.Point(38, 228);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(332, 97);
             this.panel10.TabIndex = 9;
             // 
-            // maskedTextBox1
+            // label32
             // 
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.maskedTextBox1.Location = new System.Drawing.Point(38, 101);
-            this.maskedTextBox1.Mask = "000000000000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(277, 29);
-            this.maskedTextBox1.TabIndex = 16;
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(187, 50);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(92, 22);
+            this.label32.TabIndex = 2;
+            this.label32.Text = "percent: ";
             // 
-            // button4
+            // label31
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button4.Location = new System.Drawing.Point(83, 341);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(232, 29);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Create Bill";
-            this.button4.UseVisualStyleBackColor = false;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(8, 50);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(83, 22);
+            this.label31.TabIndex = 1;
+            this.label31.Text = "money: ";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(8, 12);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(146, 22);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Bank name/id:";
+            // 
+            // accumButton
+            // 
+            this.accumButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.accumButton.Location = new System.Drawing.Point(83, 341);
+            this.accumButton.Name = "accumButton";
+            this.accumButton.Size = new System.Drawing.Size(232, 29);
+            this.accumButton.TabIndex = 10;
+            this.accumButton.Text = "Accumulate";
+            this.accumButton.UseVisualStyleBackColor = false;
+            this.accumButton.Click += new System.EventHandler(this.accumButton_Click);
             // 
             // numericUpDown2
             // 
@@ -1003,6 +1051,7 @@
             0,
             0,
             0});
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // label24
             // 
@@ -1010,9 +1059,9 @@
             this.label24.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label24.Location = new System.Drawing.Point(38, 61);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(254, 30);
+            this.label24.Size = new System.Drawing.Size(163, 30);
             this.label24.TabIndex = 8;
-            this.label24.Text = "Enter destination bill\r\n";
+            this.label24.Text = "Choose bank";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label25
@@ -1021,17 +1070,17 @@
             this.label25.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label25.Location = new System.Drawing.Point(38, 150);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(189, 60);
+            this.label25.Size = new System.Drawing.Size(81, 60);
             this.label25.TabIndex = 8;
-            this.label25.Text = "Sum of money\r\n\r\n";
+            this.label25.Text = "Money\r\n\r\n";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // transferGroupBox
             // 
+            this.transferGroupBox.Controls.Add(this.sumNumericUpDown);
             this.transferGroupBox.Controls.Add(this.panel11);
             this.transferGroupBox.Controls.Add(this.destBillMaskedTextBox);
             this.transferGroupBox.Controls.Add(this.transferButton);
-            this.transferGroupBox.Controls.Add(this.SumNumericUpDown);
             this.transferGroupBox.Controls.Add(this.label48);
             this.transferGroupBox.Controls.Add(this.label49);
             this.transferGroupBox.Location = new System.Drawing.Point(6, 106);
@@ -1040,6 +1089,25 @@
             this.transferGroupBox.TabIndex = 17;
             this.transferGroupBox.TabStop = false;
             this.transferGroupBox.Text = "Transfer";
+            // 
+            // sumNumericUpDown
+            // 
+            this.sumNumericUpDown.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.sumNumericUpDown.Location = new System.Drawing.Point(38, 181);
+            this.sumNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.sumNumericUpDown.Name = "sumNumericUpDown";
+            this.sumNumericUpDown.Size = new System.Drawing.Size(213, 29);
+            this.sumNumericUpDown.TabIndex = 17;
+            this.sumNumericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.sumNumericUpDown.ValueChanged += new System.EventHandler(this.sumNumericUpDown_ValueChanged);
             // 
             // panel11
             // 
@@ -1068,7 +1136,7 @@
             this.transferMoneyLabel.Name = "transferMoneyLabel";
             this.transferMoneyLabel.Size = new System.Drawing.Size(146, 22);
             this.transferMoneyLabel.TabIndex = 1;
-            this.transferMoneyLabel.Text = "money";
+            this.transferMoneyLabel.Text = "money: ";
             this.transferMoneyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // transfetToLabel
@@ -1102,35 +1170,6 @@
             this.transferButton.UseVisualStyleBackColor = false;
             this.transferButton.Click += new System.EventHandler(this.transferButton_Click);
             // 
-            // SumNumericUpDown
-            // 
-            this.SumNumericUpDown.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.SumNumericUpDown.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SumNumericUpDown.Location = new System.Drawing.Point(38, 190);
-            this.SumNumericUpDown.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.SumNumericUpDown.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SumNumericUpDown.Name = "SumNumericUpDown";
-            this.SumNumericUpDown.Size = new System.Drawing.Size(213, 29);
-            this.SumNumericUpDown.TabIndex = 15;
-            this.SumNumericUpDown.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SumNumericUpDown.ValueChanged += new System.EventHandler(this.numericUpDownMoney_ValueChanged);
-            // 
             // label48
             // 
             this.label48.AutoSize = true;
@@ -1148,9 +1187,9 @@
             this.label49.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label49.Location = new System.Drawing.Point(38, 150);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(189, 60);
+            this.label49.Size = new System.Drawing.Size(81, 60);
             this.label49.TabIndex = 8;
-            this.label49.Text = "Sum of money\r\n\r\n";
+            this.label49.Text = "Money\r\n\r\n";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DealsLabel
@@ -1163,18 +1202,6 @@
             this.DealsLabel.TabIndex = 8;
             this.DealsLabel.Text = "Choose bill for operation\r\n";
             this.DealsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dealComboBox
-            // 
-            this.dealComboBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dealComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dealComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.dealComboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dealComboBox.Location = new System.Drawing.Point(507, 60);
-            this.dealComboBox.Name = "dealComboBox";
-            this.dealComboBox.Size = new System.Drawing.Size(244, 30);
-            this.dealComboBox.TabIndex = 7;
-            this.dealComboBox.SelectedIndexChanged += new System.EventHandler(this.BankComboBox_SelectedIndexChanged);
             // 
             // pictureBox2
             // 
@@ -1981,12 +2008,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.accumulateGroupBox.ResumeLayout(false);
             this.accumulateGroupBox.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.transferGroupBox.ResumeLayout(false);
             this.transferGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).EndInit();
             this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SumNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -2104,7 +2133,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.MaskedTextBox destBillMaskedTextBox;
-        private System.Windows.Forms.NumericUpDown SumNumericUpDown;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Panel panel11;
@@ -2113,7 +2141,6 @@
         private System.Windows.Forms.Label transfetToLabel;
         private System.Windows.Forms.Button transferButton;
         private System.Windows.Forms.Label DealsLabel;
-        private System.Windows.Forms.ComboBox dealComboBox;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton8;
@@ -2151,8 +2178,7 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.GroupBox accumulateGroupBox;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button accumButton;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -2163,5 +2189,11 @@
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown sumNumericUpDown;
+        private System.Windows.Forms.ComboBox dealComboBox;
+        private System.Windows.Forms.ComboBox accumComboBox;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
     }
 }

@@ -10,6 +10,8 @@ namespace BankSystem.Entities
         public string BID { get; set; }
         public string Name { get; set; }
         public double OverPaymentPercent { get; set; } = 0;
+        public double AccumPercent { get; set; } = 0;
+        public List<Accumulate> ClientAccum { get; set; }
         public List<Client> Clients { get; set; }
         public double TotalMoney { get; set; } = 0;
 

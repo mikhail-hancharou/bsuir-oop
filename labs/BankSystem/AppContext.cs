@@ -19,6 +19,7 @@ namespace BankSystem
         public DbSet<Transaction> Transactions => Set<Transaction>();
         public DbSet<Credit> Credits => Set<Credit>();
         public DbSet<Installement> Installements => Set<Installement>();
+        public DbSet<Accumulate> Accumulates => Set<Accumulate>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,8 +31,28 @@ namespace BankSystem
             modelBuilder.Entity<Bank>().HasData(
                 new Bank[]
                 {
-                    new Bank { Id = 1, BID = "11111", Name = "Bebra Bank", OverPaymentPercent = 9.1, TotalMoney = 0, Clients = new List<Client>() },
-                    new Bank { Id = 2, BID = "22222", Name = "Amogus Bank", OverPaymentPercent = 12.7, TotalMoney = 0, Clients = new List<Client>() }
+                    new Bank
+                    {
+                        Id = 1,
+                        BID = "11111",
+                        Name = "Bebra Bank",
+                        OverPaymentPercent = 9.1,
+                        AccumPercent = 2.3,
+                        TotalMoney = 0,
+                        Clients = new List<Client>(),
+                        ClientAccum = new List<Accumulate>(),
+                    },
+                    new Bank
+                    { 
+                        Id = 2,
+                        BID = "22222",
+                        Name = "Amogus Bank",
+                        OverPaymentPercent = 12.7,
+                        AccumPercent = 3.1,
+                        TotalMoney = 0,
+                        Clients = new List<Client>(),
+                        ClientAccum = new List<Accumulate>(),
+                    }
                 });
 
             
