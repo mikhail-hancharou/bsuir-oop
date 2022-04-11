@@ -13,6 +13,7 @@ namespace BankSystem.Entities
         public double AccumPercent { get; set; } = 0;
         public List<Accumulate> ClientAccum { get; set; }
         public List<Client> Clients { get; set; }
+        //public List<Company> SalaryProjects { get; set; }
         public double TotalMoney { get; set; } = 0;
 
         public Bank() { }

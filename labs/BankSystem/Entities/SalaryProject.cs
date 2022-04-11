@@ -4,10 +4,10 @@ using System.Text;
 
 namespace BankSystem.Entities
 {
-    public class Manager
+    public class SalaryProject
     {
         public int Id { get; set; }
-        public User User { get; set; }
         public string BID { get; set; }
+        
     }
 }

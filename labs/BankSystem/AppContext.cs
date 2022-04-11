@@ -20,6 +20,8 @@ namespace BankSystem
         public DbSet<Credit> Credits => Set<Credit>();
         public DbSet<Installement> Installements => Set<Installement>();
         public DbSet<Accumulate> Accumulates => Set<Accumulate>();
+        public DbSet<BillsNSalary> BillsNSalaries => Set<BillsNSalary>();
+        public DbSet<Company> Companies => Set<Company>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

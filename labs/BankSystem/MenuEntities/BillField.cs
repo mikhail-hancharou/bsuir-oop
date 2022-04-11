@@ -31,6 +31,8 @@ namespace BankSystem.MenuEntities
             BankName.Dock = DockStyle.Top;
             BankName.TextAlign = ContentAlignment.MiddleLeft;
             BankName.Text = "Bank: " + Bill.BID;
+            BankName.Text += bill.Blocked ? "  Blocked" : "";
+            BankName.Text += bill.Freezed ? "  Freezed" : "";
 
             BillNumber = new Label();
             BillNumber.Size = new Size(400, 30);

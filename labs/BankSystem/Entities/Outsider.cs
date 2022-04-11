@@ -8,14 +8,15 @@ namespace BankSystem.Entities
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public Transaction Transaction { get; set; }
+        public string UNP { get; set; }
+        public List<Transaction> Transaction { get; set; }
 
-        public void TransactionRequest()
+        public void SalaryProjectRequest()
         {
             //TODO
         }
 
-        public void SalaryProjectRequest()
+        public void TransactionRequest()
         {
             //TODO
         }

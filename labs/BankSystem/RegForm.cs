@@ -130,10 +130,10 @@ namespace BankSystem
                         });
                         break;
                     case 1:
-                        db.Outsiders.Add(new Outsider { User = User });                     
+                        db.Outsiders.Add(new Outsider { User = User, Transaction = new List<Transaction>() });                     
                         break;
                     case 2:
-                        db.Managers.Add(new Manager { User = User, myWork = bank });
+                        db.Managers.Add(new Manager { User = User, BID = bank });
                         break;
                     case 3:
                         db.Operators.Add(new Operator { User = User, myWork = bank });

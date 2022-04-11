@@ -28,13 +28,13 @@ namespace BankSystem
             {
                 MainUser = MainUser as Client;
                 mainTab.Controls.Remove(requestTab); //TODO: move
-                InizializeMenu();
+                InitializeMenu();
                 InitializeDeals();
                 Opportunity();
             }
             else if (MainUser is Outsider)
             {
-                //TODO
+                InitializeSP();
             }
             else if (MainUser is Operator)
             {
@@ -42,8 +42,8 @@ namespace BankSystem
             }
             else if (MainUser is Manager)
             {
-                MainUser = MainUser as Manager;
-                Aprovement();
+                Manager manager = MainUser as Manager;
+                Aprovement(manager.BID);
             }
             else if (MainUser is Admin)
             {
@@ -51,7 +51,7 @@ namespace BankSystem
             }
         }
 
-        private void Aprovement()
+        private void Aprovement(string BID)
         {
             using AppContext db = new AppContext();
             foreach (Client client in db.Clients
@@ -62,18 +62,19 @@ namespace BankSystem
                 tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
             }
 
-            InitializeCreditRequest();
-            InitializeInstallementRequest();
+            InitializeCreditRequest(BID);
+            InitializeInstallementRequest(BID);
+            InitializeSPRequest(BID);
         }
 
-        private void InitializeCreditRequest()
+        private void InitializeCreditRequest(string BID)
         {
             using AppContext db = new AppContext();
             foreach (Client client in db.Clients
                 .Include(c => c.User)
-                .Include(c => c.Bills)
+                .Include(c => c.Bills.Where(b => b.BID == BID))
                 .ThenInclude(b => b.Credits)
-                .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0)) //.User.Confirmed))
+                .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0))
             {
                 var credits = client.Bills
                 .SelectMany(c => c.Credits)
@@ -87,12 +88,12 @@ namespace BankSystem
             }
         }
 
-        private void InitializeInstallementRequest()
+        private void InitializeInstallementRequest(string BID)
         {
             using AppContext db = new AppContext();
             foreach (Client client in db.Clients
                 .Include(c => c.User)
-                .Include(c => c.Bills)
+                .Include(c => c.Bills.Where(b => b.BID == BID))
                 .ThenInclude(b => b.Installements)
                 .Where(c => c.Bills.Sum(b => b.Installements.Count) != 0))
             {
@@ -105,6 +106,27 @@ namespace BankSystem
                     CreditRequest installementRequest = new CreditRequest(client, installement, tableLayoutPanelRequest3);
                     tableLayoutPanelRequest3.Controls.Add(installementRequest.FieldPanel);
                 }
+            }
+        }
+
+        private void InitializeSPRequest(string BID)
+        {
+            using AppContext db = new AppContext();
+            foreach (Outsider outsider in db.Outsiders//find in outsiders companies where salary project requested
+                .Where(o => o..BID == BID && !c.Confirmed && c.Requested)
+                .Include(c => c.Address)
+                .Include(c => c.Name)
+                .Include(c => c.UNP))
+
+                foreach (Company company in db.Companies
+                .Where(c => c.BID == BID && !c.Confirmed && c.Requested)
+                .Include(c => c.Address)
+                .Include(c => c.Name)
+                .Include(c => c.UNP))
+            {
+                SalaryPRequest salaryPRequest = new SalaryPRequest(company, tableLayoutPanel4);
+                tableLayoutPanel4.Controls.Add(salaryPRequest.FieldPanel);
+
             }
         }
 
@@ -174,7 +196,7 @@ namespace BankSystem
             }
         }
 
-        private void InizializeMenu()
+        private void InitializeMenu()
         {
             using AppContext db = new AppContext();
             Client client = MainUser as Client;
@@ -253,7 +275,7 @@ namespace BankSystem
             client.OpenBill(bill);
 
             BankComboBox_SelectedIndexChanged(sender, e);
-            InizializeMenu();
+            InitializeMenu();
             BillInit(client);
         }
 
@@ -269,7 +291,7 @@ namespace BankSystem
             //    .FirstOrDefault(b => b.BillNumber == BillNumber);
 
             if (radioButton1.Checked)
-            {         
+            {
                 Credit credit = new Credit
                 {
                     Confirmed = false,
@@ -292,7 +314,7 @@ namespace BankSystem
                 bill.InstallmentRequest(installement);
             }
 
-            InizializeMenu();
+            InitializeMenu();
         }
 
         private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -302,10 +324,10 @@ namespace BankSystem
             string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
             bank = db.Banks.FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
 
-            Bill bill = new Bill() { 
+            Bill bill = new Bill() {
                 BID = BankAndBID[1],
                 Money = 0,
-                Blocked = false, 
+                Blocked = false,
                 Freezed = false,
             };
             bill.BillInizializer(bank);
@@ -321,7 +343,7 @@ namespace BankSystem
             Bill bill;
             string BillNumber = BillcomboBox.Text;
 
-            bill =  client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+            bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
             BankNameLabel1.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).Name;
             CreditBillLabel.Text = BillNumber;
             MoneyNPaymentUpdate(bill);
@@ -331,7 +353,7 @@ namespace BankSystem
         {
             using AppContext db = new AppContext();
             AmountLabel.Text = numericUpDownMoney.Value.ToString() + "R";
-            
+
             if (radioButton1.Checked)
             {
                 OperationLabel.Text = "Credit";
@@ -369,6 +391,32 @@ namespace BankSystem
         {
             transferMoneyLabel.Text = sumNumericUpDown.Value.ToString();
             label31.Text = numericUpDown2.Value.ToString();
+
+            using AppContext db = new AppContext();
+            List<string> Bills = new List<string>();
+            Client client = MainUser as Client;
+            client = db.Clients.Include(c => c.Bills).FirstOrDefault(c => c.User.Login == client.User.Login);
+            foreach (Bill bill in client.Bills)
+            {
+                Bills.Add(bill.BillNumber);
+            }
+
+            if (Bills.Count != 0)
+            {
+                comboBox6.Enabled = true;
+                freezeButton.Enabled = true;
+                blockButton.Enabled = true;
+                comboBox6.Items.Clear();
+                comboBox6.Items.AddRange(Bills.ToArray());
+                comboBox6.SelectedIndex = 0;
+
+            }
+            else
+            {
+                comboBox6.Enabled = false;
+                freezeButton.Enabled = false;
+                blockButton.Enabled = false;
+            }
         }
 
         private void transferButton_Click(object sender, EventArgs e)
@@ -395,7 +443,7 @@ namespace BankSystem
                     db.Bills.Update(SourceBill);
                     db.Bills.Update(DestBill);
                     db.SaveChanges();
-                    InizializeMenu();
+                    InitializeMenu();
                 }
             }
         }
@@ -416,11 +464,6 @@ namespace BankSystem
         private void sumNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             transferMoneyLabel.Text = sumNumericUpDown.Value.ToString();
-        }
-
-        private void dealComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void accumComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -452,16 +495,195 @@ namespace BankSystem
                 {
                     ClientId = client.User.Login,
                     Amount = (double)numericUpDown2.Value,
-                    Percent =  bank.AccumPercent,
+                    Percent = bank.AccumPercent,
                     Time = DateTime.UtcNow,
                 };
-                
+
                 bank.ClientAccum.Add(accum);
                 db.Banks.Update(bank);
                 db.Accumulates.Add(accum);
                 db.SaveChanges();
-                InizializeMenu();
+                InitializeMenu();
             }
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Bill bill;
+            string BillNumber = comboBox6.Text;
+            bill = db.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+
+            if (bill.Blocked)
+            {
+                label29.Text = "Already blocked";
+                freezeButton.Visible = false;
+                blockButton.Visible = false;
+            }
+            else if (bill.Freezed)
+            {
+                label29.Text = "Already freezed";
+                freezeButton.Visible = true;
+                freezeButton.Text = "Unfreeze";
+                blockButton.Visible = false;
+            }
+            else
+            {
+                label29.Text = "Freeze you can cancel\nBlocking you cann't";
+                freezeButton.Visible = true;
+                freezeButton.Text = "Freeze";
+                blockButton.Visible = true;
+            }
+        }
+
+        private void freezeButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Bill bill;
+            string BillNumber = comboBox6.Text;
+            bill = db.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+
+            if (freezeButton.Text == "Freeze")
+            {
+                bill.Freezed = true;
+            }
+            else
+            {
+                bill.Freezed = false;
+            }
+
+            db.Bills.Update(bill);
+            db.SaveChanges();
+            comboBox6_SelectedIndexChanged(sender, e);
+            BillInit(MainUser as Client);
+            InitializeMenu();
+        }
+
+        private void blockButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Bill bill;
+            string BillNumber = comboBox6.Text;
+            bill = db.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+            bill.Blocked = true;
+
+            db.Bills.Update(bill);
+            db.SaveChanges();
+            comboBox6_SelectedIndexChanged(sender, e);
+            BillInit(MainUser as Client);
+            InitializeMenu();
+        }
+
+        private void InitializeSP()
+        {
+            using AppContext db = new AppContext();
+            List<string> Banks = new List<string>();
+            foreach (Bank b in db.Banks.ToList())
+            {
+                Banks.Add(b.BID);
+            }
+
+            comboBox7.SelectedIndex = 0;
+            comboBox8.Items.AddRange(Banks.ToArray());
+            comboBox8.SelectedIndex = 0;
+
+            Outsider outsider = MainUser as Outsider;
+            if (outsider.Company != null)
+            {
+                regCompanyButton.Enabled = false;
+                maskedTextBox2.Enabled = true;
+            }
+            else
+            {
+                maskedTextBox2.Enabled = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            if (textBox1.Text.Trim().Length == 0)
+            {
+                textBox1.Text = "Cann't be empty";
+            }
+            else if (textBox2.Text.Trim().Length == 0)
+            {
+                textBox2.Text = "Cann't be empty";
+            }
+            else if (textBox3.Text.Trim().Length == 0)
+            {
+                textBox3.Text = "Cann't be empty";
+            }
+            else if (!db.Companies.Any(c => c.UNP == textBox1.Text.Trim()))
+            {
+                Outsider outsider = MainUser as Outsider;
+                Company company = new Company
+                {
+                    UNP = textBox1.Text.Trim(),
+                    BID = comboBox8.Text,
+                    Name = textBox2.Text,
+                    Address = textBox3.Text,
+                    Confirmed = false,
+                    Requested = false,
+                };
+
+                outsider.UNP = company.UNP;
+
+                db.Outsiders.Update(outsider);
+                db.Companies.Add(company);
+                db.SaveChanges();
+
+                InitializeSP();
+            }
+        }
+
+        private void addSalaryBillButton_Click(object sender, EventArgs e) //TODO
+        {
+            using AppContext db = new AppContext();
+            if (db.Bills.Any(b => b.BillNumber == maskedTextBox2.Text))
+            {
+                Outsider outsider = MainUser as Outsider;
+                Company Company = db.Companies.FirstOrDefault(c => c.UNP == outsider.UNP); //TODO
+                if (Company.BillsNSalaries.Any(b => b.BillNumber == maskedTextBox2.Text))
+                {
+                    BillsNSalary billsNSalary = Company.BillsNSalaries.FirstOrDefault(b => b.BillNumber == maskedTextBox2.Text);
+                    billsNSalary.Salary = (int)numericUpDown4.Value;
+                }
+                else
+                {
+                    Company.AddWorker(maskedTextBox2.Text, (int)numericUpDown4.Value);
+                    label53.Text = "Succesfull";
+                }
+
+                db.Outsiders.Update(outsider);
+                db.SaveChanges();
+            }
+            else
+            {
+                label53.Text = "No such bill";
+            }
+        }
+
+        private void maskedTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (maskedTextBox2.MaskFull)
+            {
+                addSalaryBillButton.Enabled = true;
+            }
+            else
+            {
+                addSalaryBillButton.Enabled = false;
+            }
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            Outsider outsider = MainUser as Outsider;
+            Company Company = db.Companies.FirstOrDefault(c => c.UNP == outsider.UNP);
+            Company.Requested = true;
+            db.Outsiders.Update(outsider);
+            db.SaveChanges();
         }
     }
 }

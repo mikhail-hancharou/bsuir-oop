@@ -48,6 +48,12 @@ namespace BankSystem
                 }
                 else if (db.Outsiders
                     .Include(c => c.User)
+                    .Include(c => c.Company)
+                    .ThenInclude(c => c.BillsNSalaries)
+                    //.ThenInclude(b => b.Salary)
+                    //.Include(c => c.Company)
+                    //.ThenInclude(c => c.BillsNSalaries)
+                    //.ThenInclude(b => b.BillNumber)
                     .AsEnumerable()
                     .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
