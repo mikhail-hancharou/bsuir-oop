@@ -118,37 +118,48 @@ namespace BankSystem
                 };
 
                 db.Users.Add(User);
-
+                //MainMenu menu = new MainMenu(User);
+                Hide();
                 switch (roleBox.SelectedIndex)
                 {
                     case 0:
-                        db.Clients.Add(new Client
+                        Client client = new Client
                         {
                             User = User,
                             ExpiryDate = date,
                             Bills = new HashSet<Bill>(new BillComparer()),
-                        });
+                        };
+                        db.Clients.Add(client);
+                        //menu = new MainMenu(client);                       
                         break;
                     case 1:
-                        db.Outsiders.Add(new Outsider { User = User, Transaction = new List<Transaction>() });                     
+                        Outsider outsider = new Outsider{ User = User };
+                        db.Outsiders.Add(outsider);
+                        //menu = new MainMenu(outsider);
                         break;
                     case 2:
-                        db.Managers.Add(new Manager { User = User, BID = bank });
+                        Operator @operator = new Operator { User = User, myWork = bank };
+                        db.Operators.Add(@operator);
+                        //menu = new MainMenu(@operator);                       
                         break;
                     case 3:
-                        db.Operators.Add(new Operator { User = User, myWork = bank });
+                        Manager manager = new Manager { User = User, BID = bank.BID };
+                        db.Managers.Add(manager);
+                        //menu = new MainMenu(manager);
                         break;
                     case 4:
-                        db.Admins.Add(new Admin { User = User, myWork = bank });
+                        Admin admin = new Admin { User = User, myWork = bank };
+                        db.Admins.Add(admin);
+                        //menu = new MainMenu(admin);
                         break;
                     default:
                         break;
                 }
 
-                //db.Users.Add(User);//
-
                 db.SaveChanges();
-                this.Hide();
+                RequestedForm requestedForm = new RequestedForm();
+                requestedForm.Show();
+                //menu.Show();
             }
         }
 

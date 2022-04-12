@@ -9,16 +9,5 @@ namespace BankSystem.Entities
         public int Id { get; set; }
         public User User { get; set; }
         public string UNP { get; set; }
-        public List<Transaction> Transaction { get; set; }
-
-        public void SalaryProjectRequest()
-        {
-            //TODO
-        }
-
-        public void TransactionRequest()
-        {
-            //TODO
-        }
     }
 }

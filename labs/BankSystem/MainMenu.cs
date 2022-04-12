@@ -27,23 +27,53 @@ namespace BankSystem
             if (MainUser is Client)
             {
                 MainUser = MainUser as Client;
-                mainTab.Controls.Remove(requestTab); //TODO: move
+                mainTab.Controls.Remove(requestTab);
+                mainTab.Controls.Remove(salaryProjectTab);
+                mainTab.Controls.Remove(transferTab);
                 InitializeMenu();
                 InitializeDeals();
                 Opportunity();
             }
             else if (MainUser is Outsider)
             {
+                mainTab.Controls.Remove(opportunityTab);
+                mainTab.Controls.Remove(dealTab);
+                mainTab.Controls.Remove(cabinetTab);
+                salaryTabControl.Controls.Remove(RequestTabPage1);
+                salaryTabControl.Controls.Remove(RequestTabPage2);
+                salaryTabControl.Controls.Remove(RequestTabPage3);
+                salaryTabControl.Controls.Remove(RequestTabPage4);
+                salaryTabControl.Controls.Remove(RequestTabPage6);
+                salaryTabControl.Controls.Remove(RequestTabPage7);
                 InitializeSP();
+                InitializeTransferRequest();
             }
             else if (MainUser is Operator)
             {
-                //TODO
+                Operator @operator = MainUser as Operator;
+                salaryTabControl.Controls.Remove(RequestTabPage1);
+                salaryTabControl.Controls.Remove(RequestTabPage2);
+                salaryTabControl.Controls.Remove(RequestTabPage3);
+                salaryTabControl.Controls.Remove(RequestTabPage5);
+                mainTab.Controls.Remove(opportunityTab);
+                mainTab.Controls.Remove(dealTab);
+                mainTab.Controls.Remove(cabinetTab);
+                mainTab.Controls.Remove(salaryProjectTab);
+                mainTab.Controls.Remove(transferTab);
+                InitializeSPRequest(@operator.myWork.BID);
+                InitializeTranzactions(@operator.myWork.BID);
             }
             else if (MainUser is Manager)
             {
+                salaryTabControl.Controls.Remove(RequestTabPage5);
+                mainTab.Controls.Remove(opportunityTab);
+                mainTab.Controls.Remove(dealTab);
+                mainTab.Controls.Remove(cabinetTab);
+                mainTab.Controls.Remove(salaryProjectTab);
+                mainTab.Controls.Remove(transferTab);
                 Manager manager = MainUser as Manager;
                 Aprovement(manager.BID);
+                InitializeUndoOutsiders(manager.BID);
             }
             else if (MainUser is Admin)
             {
@@ -65,6 +95,28 @@ namespace BankSystem
             InitializeCreditRequest(BID);
             InitializeInstallementRequest(BID);
             InitializeSPRequest(BID);
+        }
+
+        private void InitializeTransferRequest()
+        {
+            using AppContext db = new AppContext();
+            Outsider outsider = MainUser as Outsider;
+            Company company = db.Companies
+                .Include(c => c.BillsNSalaries)
+                .Include(c => c.CompanyTransfer)
+                .FirstOrDefault(c => c.UNP == outsider.UNP);
+
+            //foreach (Company company in db.Companies
+            //    .Include(c => c.BillsNSalaries)
+            //    .Include(c => c.CompanyTransfer)
+            //    .Where(c => c.Confirmed))
+            //{
+            foreach (BillsNSalary billsNSalary in company.BillsNSalaries.Where(b => b.IsRequest))
+            {
+                TransferRequest transferRequest = new TransferRequest(billsNSalary, company, tableLayoutPanel5);
+                tableLayoutPanel5.Controls.Add(transferRequest.FieldPanel);
+            }
+            //}
         }
 
         private void InitializeCreditRequest(string BID)
@@ -112,21 +164,50 @@ namespace BankSystem
         private void InitializeSPRequest(string BID)
         {
             using AppContext db = new AppContext();
-            foreach (Outsider outsider in db.Outsiders//find in outsiders companies where salary project requested
-                .Where(o => o..BID == BID && !c.Confirmed && c.Requested)
-                .Include(c => c.Address)
-                .Include(c => c.Name)
-                .Include(c => c.UNP))
-
-                foreach (Company company in db.Companies
-                .Where(c => c.BID == BID && !c.Confirmed && c.Requested)
-                .Include(c => c.Address)
-                .Include(c => c.Name)
-                .Include(c => c.UNP))
+            foreach (Outsider outsider in db.Outsiders)
             {
-                SalaryPRequest salaryPRequest = new SalaryPRequest(company, tableLayoutPanel4);
-                tableLayoutPanel4.Controls.Add(salaryPRequest.FieldPanel);
+                if (db.Companies.Any(c => c.UNP == outsider.UNP && c.Requested && c.BID == BID))
+                {
+                    Company company = db.Companies
+                        .FirstOrDefault(c => c.UNP == outsider.UNP && c.Requested);
+                    SalaryPRequest salaryPRequest = new SalaryPRequest(company, outsider, tableLayoutPanel4);
+                    tableLayoutPanel4.Controls.Add(salaryPRequest.FieldPanel);
+                }
+            }
+        }
 
+        private void InitializeTranzactions(string BID)
+        {
+            using AppContext db = new AppContext();
+            foreach (Client client in db.Clients
+                .Include(c => c.User)
+                .Include(c => c.Bills)
+                .ThenInclude(b => b.Transactions)
+                .Where(c => c.User.Confirmed))
+            {
+                foreach (Bill bill in client.Bills.Where(b => b.BID == BID))
+                {
+                    foreach (Transaction transaction in bill.Transactions)
+                    {
+                        Transactions transactions = new Transactions(transaction, bill, tableLayoutPanel6);
+                        tableLayoutPanel6.Controls.Add(transactions.FieldPanel);
+                    }
+                }
+            }
+        }
+
+        private void InitializeUndoOutsiders(string BID)
+        {
+            using AppContext db = new AppContext();
+            foreach (Company company in db.Companies
+                .Include(c => c.CompanyTransfer)
+                .Where(c => c.BID == BID && c.Confirmed))
+            {
+                foreach (CompanyTransfer companyTransfer in company.CompanyTransfer)
+                {
+                    UndoOutsiders undoOutsiders = new UndoOutsiders(companyTransfer, company, tableLayoutPanel7);
+                    tableLayoutPanel7.Controls.Add(undoOutsiders.FieldPanel);
+                }
             }
         }
 
@@ -273,9 +354,12 @@ namespace BankSystem
             };
 
             client.OpenBill(bill);
+            //db.Clients.Update(client);
+            db.SaveChanges();
 
             BankComboBox_SelectedIndexChanged(sender, e);
             InitializeMenu();
+            InitializeDeals();
             BillInit(client);
         }
 
@@ -395,7 +479,6 @@ namespace BankSystem
             using AppContext db = new AppContext();
             List<string> Bills = new List<string>();
             Client client = MainUser as Client;
-            client = db.Clients.Include(c => c.Bills).FirstOrDefault(c => c.User.Login == client.User.Login);
             foreach (Bill bill in client.Bills)
             {
                 Bills.Add(bill.BillNumber);
@@ -409,7 +492,6 @@ namespace BankSystem
                 comboBox6.Items.Clear();
                 comboBox6.Items.AddRange(Bills.ToArray());
                 comboBox6.SelectedIndex = 0;
-
             }
             else
             {
@@ -434,7 +516,7 @@ namespace BankSystem
                     DestBill.Money += (double)sumNumericUpDown.Value;
                     Transaction tr = new Transaction()
                     {
-                        DestBill = DestBill,
+                        DestBill = DestBill.BillNumber,
                         Amount = (double)sumNumericUpDown.Value,
                     };
 
@@ -588,10 +670,20 @@ namespace BankSystem
             comboBox8.SelectedIndex = 0;
 
             Outsider outsider = MainUser as Outsider;
-            if (outsider.Company != null)
+            if (outsider.UNP != null)
             {
                 regCompanyButton.Enabled = false;
                 maskedTextBox2.Enabled = true;
+                label54.Text = db.Companies.FirstOrDefault(c => c.UNP == outsider.UNP).Name;
+
+                Company Company = db.Companies
+                    //.Include(c => c.Requested)
+                    //.Include(c => c.Confirmed)
+                    .FirstOrDefault(c => c.UNP == outsider.UNP);
+                if (Company.Confirmed || Company.Requested)
+                {
+                    submitButton.Enabled = false;
+                }
             }
             else
             {
@@ -617,6 +709,7 @@ namespace BankSystem
             else if (!db.Companies.Any(c => c.UNP == textBox1.Text.Trim()))
             {
                 Outsider outsider = MainUser as Outsider;
+                Random rd = new Random();
                 Company company = new Company
                 {
                     UNP = textBox1.Text.Trim(),
@@ -625,6 +718,7 @@ namespace BankSystem
                     Address = textBox3.Text,
                     Confirmed = false,
                     Requested = false,
+                    Money = rd.Next(25000, 70000),
                 };
 
                 outsider.UNP = company.UNP;
@@ -643,11 +737,14 @@ namespace BankSystem
             if (db.Bills.Any(b => b.BillNumber == maskedTextBox2.Text))
             {
                 Outsider outsider = MainUser as Outsider;
-                Company Company = db.Companies.FirstOrDefault(c => c.UNP == outsider.UNP); //TODO
+                Company Company = db.Companies
+                    .Include(c => c.BillsNSalaries)
+                    .FirstOrDefault(c => c.UNP == outsider.UNP); //TODO
                 if (Company.BillsNSalaries.Any(b => b.BillNumber == maskedTextBox2.Text))
                 {
                     BillsNSalary billsNSalary = Company.BillsNSalaries.FirstOrDefault(b => b.BillNumber == maskedTextBox2.Text);
                     billsNSalary.Salary = (int)numericUpDown4.Value;
+                    label53.Text = $"Changed salary for\n{maskedTextBox2.Text}";
                 }
                 else
                 {
@@ -656,6 +753,7 @@ namespace BankSystem
                 }
 
                 db.Outsiders.Update(outsider);
+                db.Companies.Update(Company);
                 db.SaveChanges();
             }
             else
@@ -680,10 +778,69 @@ namespace BankSystem
         {
             using AppContext db = new AppContext();
             Outsider outsider = MainUser as Outsider;
-            Company Company = db.Companies.FirstOrDefault(c => c.UNP == outsider.UNP);
+            Company Company = db.Companies
+                .FirstOrDefault(c => c.UNP == outsider.UNP);
             Company.Requested = true;
             db.Outsiders.Update(outsider);
             db.SaveChanges();
+            submitButton.Enabled = false;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            using AppContext db = new AppContext();
+            if (textBox10.Text.Trim().Length == 0)
+            {
+                label78.Text = "UNP is empty";
+            }
+            else
+            {
+                if (db.Companies.Any(c => c.Confirmed && c.UNP == textBox10.Text.Trim()))
+                {
+                    Outsider outsider = MainUser as Outsider;
+                    Company Company = db.Companies
+                        .Include(c => c.BillsNSalaries)
+                        .FirstOrDefault(c => c.UNP == textBox10.Text.Trim());
+                    if (maskedTextBox4.MaskFull && Company.BillsNSalaries
+                        .Any(b => b.BillNumber == maskedTextBox4.Text))
+                    {
+                        BillsNSalary billsNSalary = new BillsNSalary
+                        {
+                            IsRequest = true,
+                            BillNumber = maskedTextBox4.Text,
+                            Salary = (int)numericUpDown7.Value,
+                            FromBill = outsider.UNP,
+                        };
+                        Company.BillsNSalaries.Add(billsNSalary);
+                        db.BillsNSalaries.Add(billsNSalary);
+                        label78.Text = "Succesful";
+                    }
+                    else if (maskedTextBox4.Text.Length == 0)
+                    {
+                        BillsNSalary billsNSalary = new BillsNSalary
+                        {
+                            IsRequest = true,
+                            BillNumber = textBox10.Text.Trim(),
+                            Salary = (int)numericUpDown7.Value,
+                            FromBill = outsider.UNP,
+                        };
+                        Company.BillsNSalaries.Add(billsNSalary);
+                        db.BillsNSalaries.Add(billsNSalary);
+                        label78.Text = "Succesful";
+                    }
+                    else
+                    {
+                        label78.Text = "No such bill";
+                    }
+
+                    db.Companies.Update(Company);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    label78.Text = "No such company";
+                }
+            }
         }
     }
 }

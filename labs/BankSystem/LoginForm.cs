@@ -28,6 +28,8 @@ namespace BankSystem
             }
             else
             {
+                Hide();
+                MainMenu menu = new MainMenu(new User { });
                 if (db.Clients
                     .Include(c => c.User)
                     .AsEnumerable()
@@ -41,28 +43,18 @@ namespace BankSystem
                         .Include(c => c.Bills)
                         .ThenInclude(b => b.Transactions)
                         .ToList()
-                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    Hide();
-                    MainMenu menu = new MainMenu(newUser);
-                    menu.Show();
+                        .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());                  
+                    menu = new MainMenu(newUser);
                 }
                 else if (db.Outsiders
                     .Include(c => c.User)
-                    .Include(c => c.Company)
-                    .ThenInclude(c => c.BillsNSalaries)
-                    //.ThenInclude(b => b.Salary)
-                    //.Include(c => c.Company)
-                    //.ThenInclude(c => c.BillsNSalaries)
-                    //.ThenInclude(b => b.BillNumber)
                     .AsEnumerable()
                     .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
                     Outsider newUser = db.Outsiders
                         .ToList()
                         .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    Hide();
-                    MainMenu menu = new MainMenu(newUser);
-                    menu.Show();
+                    menu = new MainMenu(newUser);
                 }
                 else if (db.Operators
                     .Include(c => c.User)
@@ -70,11 +62,10 @@ namespace BankSystem
                     .Any(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim()))
                 {
                     Operator newUser = db.Operators
+                        .Include(o => o.myWork)
                         .ToList()
                         .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    Hide();
-                    MainMenu menu = new MainMenu(newUser);
-                    menu.Show();
+                    menu = new MainMenu(newUser);
                 }
                 else if (db.Managers
                     .Include(c => c.User)
@@ -84,9 +75,7 @@ namespace BankSystem
                     Manager newUser = db.Managers
                         .ToList()
                         .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    Hide();
-                    MainMenu menu = new MainMenu(newUser);
-                    menu.Show();
+                    menu = new MainMenu(newUser);
                 }
                 else if (db.Admins
                     .Include(c => c.User)
@@ -96,9 +85,7 @@ namespace BankSystem
                     Admin newUser = db.Admins
                         .ToList()
                         .Find(u => u.User.Login == logBox.Text.Trim() && u.User.PassportNumber == pasBox.Text.Trim());
-                    Hide();
-                    MainMenu menu = new MainMenu(newUser);
-                    menu.Show();
+                    menu = new MainMenu(newUser);
                 }
                 else
                 {
@@ -106,13 +93,32 @@ namespace BankSystem
                     pasBox.Text = string.Empty;
                 }
 
-                //if (db.Users.AsEnumerable().Any(u => u.ID == logBox.Text.Trim() && u.PassportNumber == pasBox.Text.Trim()))
-                //{
-                //    Client newUser = db.Users.ToList().Find(u => u.ID == logBox.Text.Trim() && u.PassportNumber == pasBox.Text.Trim());
-                //    this.Hide();
-                //    MainMenu menu = new MainMenu(newUser);
-                //    menu.Show();
-                //}
+                if (menu.MainUser is Client && (menu.MainUser as Client).User.Confirmed)
+                {
+                    menu.Show();
+                }
+                else if (menu.MainUser is Outsider && (menu.MainUser as Outsider).User.Confirmed)
+                {
+                    menu.Show();
+                }
+                else if (menu.MainUser is Operator && (menu.MainUser as Operator).User.Confirmed)
+                {
+                    menu.Show();
+                }
+                else if (menu.MainUser is Manager && (menu.MainUser as Manager).User.Confirmed)
+                {
+                    menu.Show();
+                }
+                else if (menu.MainUser is Admin && (menu.MainUser as Admin).User.Confirmed)
+                {
+                    menu.Show();
+                }
+                else
+                {
+                    RequestedForm requestedForm = new RequestedForm();
+                    requestedForm.Show();
+
+                }
             }
         }
 

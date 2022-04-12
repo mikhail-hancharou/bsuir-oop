@@ -21,6 +21,7 @@ namespace BankSystem
         public DbSet<Installement> Installements => Set<Installement>();
         public DbSet<Accumulate> Accumulates => Set<Accumulate>();
         public DbSet<BillsNSalary> BillsNSalaries => Set<BillsNSalary>();
+        public DbSet<CompanyTransfer> CompanyTransfer => Set<CompanyTransfer>();
         public DbSet<Company> Companies => Set<Company>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

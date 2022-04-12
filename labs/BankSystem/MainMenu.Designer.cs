@@ -82,7 +82,11 @@
             this.tableLayoutPanelRequest3 = new System.Windows.Forms.TableLayoutPanel();
             this.RequestTabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.dealtab = new System.Windows.Forms.TabPage();
+            this.RequestTabPage5 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.RequestTabPage6 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.dealTab = new System.Windows.Forms.TabPage();
             this.dealComboBox = new System.Windows.Forms.ComboBox();
             this.abilityGroupBox = new System.Windows.Forms.GroupBox();
             this.blockButton = new System.Windows.Forms.Button();
@@ -112,7 +116,7 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.DealsLabel = new System.Windows.Forms.Label();
-            this.salaryProjectTabPage = new System.Windows.Forms.TabPage();
+            this.salaryProjectTab = new System.Windows.Forms.TabPage();
             this.submitButton = new System.Windows.Forms.Button();
             this.label56 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -132,6 +136,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.transferTab = new System.Windows.Forms.TabPage();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -209,6 +222,48 @@
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.label59 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label60 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.label68 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label69 = new System.Windows.Forms.Label();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.RequestTabPage7 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -231,7 +286,9 @@
             this.RequestTabPage2.SuspendLayout();
             this.RequestTabPage3.SuspendLayout();
             this.RequestTabPage4.SuspendLayout();
-            this.dealtab.SuspendLayout();
+            this.RequestTabPage5.SuspendLayout();
+            this.RequestTabPage6.SuspendLayout();
+            this.dealTab.SuspendLayout();
             this.abilityGroupBox.SuspendLayout();
             this.panel12.SuspendLayout();
             this.accumulateGroupBox.SuspendLayout();
@@ -241,8 +298,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            this.salaryProjectTabPage.SuspendLayout();
+            this.salaryProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.transferTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -257,6 +316,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.RequestTabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
@@ -264,8 +328,9 @@
             this.mainTab.Controls.Add(this.cabinetTab);
             this.mainTab.Controls.Add(this.opportunityTab);
             this.mainTab.Controls.Add(this.requestTab);
-            this.mainTab.Controls.Add(this.dealtab);
-            this.mainTab.Controls.Add(this.salaryProjectTabPage);
+            this.mainTab.Controls.Add(this.dealTab);
+            this.mainTab.Controls.Add(this.salaryProjectTab);
+            this.mainTab.Controls.Add(this.transferTab);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mainTab.ItemSize = new System.Drawing.Size(65, 25);
@@ -775,6 +840,9 @@
             this.salaryTabControl.Controls.Add(this.RequestTabPage2);
             this.salaryTabControl.Controls.Add(this.RequestTabPage3);
             this.salaryTabControl.Controls.Add(this.RequestTabPage4);
+            this.salaryTabControl.Controls.Add(this.RequestTabPage5);
+            this.salaryTabControl.Controls.Add(this.RequestTabPage6);
+            this.salaryTabControl.Controls.Add(this.RequestTabPage7);
             this.salaryTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.salaryTabControl.Location = new System.Drawing.Point(0, 0);
             this.salaryTabControl.Name = "salaryTabControl";
@@ -884,19 +952,70 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1266, 585);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // dealtab
+            // RequestTabPage5
             // 
-            this.dealtab.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dealtab.Controls.Add(this.dealComboBox);
-            this.dealtab.Controls.Add(this.abilityGroupBox);
-            this.dealtab.Controls.Add(this.accumulateGroupBox);
-            this.dealtab.Controls.Add(this.transferGroupBox);
-            this.dealtab.Controls.Add(this.DealsLabel);
-            this.dealtab.Location = new System.Drawing.Point(4, 29);
-            this.dealtab.Name = "dealtab";
-            this.dealtab.Size = new System.Drawing.Size(1274, 620);
-            this.dealtab.TabIndex = 3;
-            this.dealtab.Text = "Deals";
+            this.RequestTabPage5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RequestTabPage5.Controls.Add(this.tableLayoutPanel5);
+            this.RequestTabPage5.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage5.Name = "RequestTabPage5";
+            this.RequestTabPage5.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage5.TabIndex = 4;
+            this.RequestTabPage5.Text = "Transfer";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.AutoScroll = true;
+            this.tableLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // RequestTabPage6
+            // 
+            this.RequestTabPage6.Controls.Add(this.tableLayoutPanel6);
+            this.RequestTabPage6.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage6.Name = "RequestTabPage6";
+            this.RequestTabPage6.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage6.TabIndex = 5;
+            this.RequestTabPage6.Text = "Transactions";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.AutoScroll = true;
+            this.tableLayoutPanel6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // dealTab
+            // 
+            this.dealTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dealTab.Controls.Add(this.dealComboBox);
+            this.dealTab.Controls.Add(this.abilityGroupBox);
+            this.dealTab.Controls.Add(this.accumulateGroupBox);
+            this.dealTab.Controls.Add(this.transferGroupBox);
+            this.dealTab.Controls.Add(this.DealsLabel);
+            this.dealTab.Location = new System.Drawing.Point(4, 29);
+            this.dealTab.Name = "dealTab";
+            this.dealTab.Size = new System.Drawing.Size(1274, 620);
+            this.dealTab.TabIndex = 3;
+            this.dealTab.Text = "Deals";
             // 
             // dealComboBox
             // 
@@ -1241,33 +1360,33 @@
             this.DealsLabel.Text = "Choose bill for operation\r\n";
             this.DealsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // salaryProjectTabPage
+            // salaryProjectTab
             // 
-            this.salaryProjectTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.salaryProjectTabPage.Controls.Add(this.submitButton);
-            this.salaryProjectTabPage.Controls.Add(this.label56);
-            this.salaryProjectTabPage.Controls.Add(this.label55);
-            this.salaryProjectTabPage.Controls.Add(this.numericUpDown4);
-            this.salaryProjectTabPage.Controls.Add(this.label54);
-            this.salaryProjectTabPage.Controls.Add(this.addSalaryBillButton);
-            this.salaryProjectTabPage.Controls.Add(this.label53);
-            this.salaryProjectTabPage.Controls.Add(this.maskedTextBox2);
-            this.salaryProjectTabPage.Controls.Add(this.label52);
-            this.salaryProjectTabPage.Controls.Add(this.label51);
-            this.salaryProjectTabPage.Controls.Add(this.regCompanyButton);
-            this.salaryProjectTabPage.Controls.Add(this.label50);
-            this.salaryProjectTabPage.Controls.Add(this.label34);
-            this.salaryProjectTabPage.Controls.Add(this.label33);
-            this.salaryProjectTabPage.Controls.Add(this.textBox3);
-            this.salaryProjectTabPage.Controls.Add(this.textBox2);
-            this.salaryProjectTabPage.Controls.Add(this.textBox1);
-            this.salaryProjectTabPage.Controls.Add(this.comboBox8);
-            this.salaryProjectTabPage.Controls.Add(this.comboBox7);
-            this.salaryProjectTabPage.Location = new System.Drawing.Point(4, 29);
-            this.salaryProjectTabPage.Name = "salaryProjectTabPage";
-            this.salaryProjectTabPage.Size = new System.Drawing.Size(1274, 620);
-            this.salaryProjectTabPage.TabIndex = 4;
-            this.salaryProjectTabPage.Text = "Salary Project";
+            this.salaryProjectTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.salaryProjectTab.Controls.Add(this.submitButton);
+            this.salaryProjectTab.Controls.Add(this.label56);
+            this.salaryProjectTab.Controls.Add(this.label55);
+            this.salaryProjectTab.Controls.Add(this.numericUpDown4);
+            this.salaryProjectTab.Controls.Add(this.label54);
+            this.salaryProjectTab.Controls.Add(this.addSalaryBillButton);
+            this.salaryProjectTab.Controls.Add(this.label53);
+            this.salaryProjectTab.Controls.Add(this.maskedTextBox2);
+            this.salaryProjectTab.Controls.Add(this.label52);
+            this.salaryProjectTab.Controls.Add(this.label51);
+            this.salaryProjectTab.Controls.Add(this.regCompanyButton);
+            this.salaryProjectTab.Controls.Add(this.label50);
+            this.salaryProjectTab.Controls.Add(this.label34);
+            this.salaryProjectTab.Controls.Add(this.label33);
+            this.salaryProjectTab.Controls.Add(this.textBox3);
+            this.salaryProjectTab.Controls.Add(this.textBox2);
+            this.salaryProjectTab.Controls.Add(this.textBox1);
+            this.salaryProjectTab.Controls.Add(this.comboBox8);
+            this.salaryProjectTab.Controls.Add(this.comboBox7);
+            this.salaryProjectTab.Location = new System.Drawing.Point(4, 29);
+            this.salaryProjectTab.Name = "salaryProjectTab";
+            this.salaryProjectTab.Size = new System.Drawing.Size(1274, 620);
+            this.salaryProjectTab.TabIndex = 4;
+            this.salaryProjectTab.Text = "Salary Project";
             // 
             // submitButton
             // 
@@ -1347,7 +1466,7 @@
             // 
             this.label53.Location = new System.Drawing.Point(397, 402);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(231, 29);
+            this.label53.Size = new System.Drawing.Size(227, 64);
             this.label53.TabIndex = 18;
             this.label53.Text = "added salary bill status";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1440,6 +1559,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.textBox1.Location = new System.Drawing.Point(104, 246);
+            this.textBox1.MaxLength = 10;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 29);
             this.textBox1.TabIndex = 2;
@@ -1469,6 +1589,112 @@
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(200, 30);
             this.comboBox7.TabIndex = 0;
+            // 
+            // transferTab
+            // 
+            this.transferTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.transferTab.Controls.Add(this.label78);
+            this.transferTab.Controls.Add(this.label77);
+            this.transferTab.Controls.Add(this.label76);
+            this.transferTab.Controls.Add(this.label75);
+            this.transferTab.Controls.Add(this.button12);
+            this.transferTab.Controls.Add(this.numericUpDown7);
+            this.transferTab.Controls.Add(this.maskedTextBox4);
+            this.transferTab.Controls.Add(this.textBox10);
+            this.transferTab.Location = new System.Drawing.Point(4, 29);
+            this.transferTab.Name = "transferTab";
+            this.transferTab.Size = new System.Drawing.Size(1274, 620);
+            this.transferTab.TabIndex = 5;
+            this.transferTab.Text = "Transfer Request";
+            // 
+            // label78
+            // 
+            this.label78.Location = new System.Drawing.Point(124, 408);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(270, 48);
+            this.label78.TabIndex = 5;
+            this.label78.Text = "request info";
+            this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(69, 234);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(101, 22);
+            this.label77.TabIndex = 6;
+            this.label77.Text = "Salary bill";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(124, 172);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(45, 22);
+            this.label76.TabIndex = 5;
+            this.label76.Text = "UNP";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label75.Location = new System.Drawing.Point(24, 90);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(705, 40);
+            this.label75.TabIndex = 4;
+            this.label75.Text = "Request transfer to company or salary bill";
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button12.Location = new System.Drawing.Point(176, 357);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(169, 32);
+            this.button12.TabIndex = 3;
+            this.button12.Text = "Request Transfer";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numericUpDown7.Location = new System.Drawing.Point(208, 297);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(104, 29);
+            this.numericUpDown7.TabIndex = 2;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // maskedTextBox4
+            // 
+            this.maskedTextBox4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.maskedTextBox4.Location = new System.Drawing.Point(176, 231);
+            this.maskedTextBox4.Mask = "000000000000";
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(169, 29);
+            this.maskedTextBox4.TabIndex = 1;
+            this.maskedTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox10.Location = new System.Drawing.Point(176, 169);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(169, 29);
+            this.textBox10.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -2234,6 +2460,475 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Transfer to ";
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button4.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button4.Location = new System.Drawing.Point(801, 119);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(217, 47);
+            this.button4.TabIndex = 22;
+            this.button4.Text = "Request ";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // label57
+            // 
+            this.label57.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label57.Location = new System.Drawing.Point(397, 23);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(252, 60);
+            this.label57.TabIndex = 7;
+            this.label57.Text = "Add salary bill";
+            // 
+            // label58
+            // 
+            this.label58.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label58.Location = new System.Drawing.Point(67, 23);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(280, 60);
+            this.label58.TabIndex = 7;
+            this.label58.Text = "Registr company";
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numericUpDown5.Location = new System.Drawing.Point(464, 302);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(95, 27);
+            this.numericUpDown5.TabIndex = 21;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label59.Location = new System.Drawing.Point(428, 144);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(181, 30);
+            this.label59.TabIndex = 20;
+            this.label59.Text = "CompanyName";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button5.Location = new System.Drawing.Point(464, 351);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(95, 29);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "Add";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // label60
+            // 
+            this.label60.Location = new System.Drawing.Point(397, 402);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(227, 64);
+            this.label60.TabIndex = 18;
+            this.label60.Text = "added salary bill status";
+            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.maskedTextBox1.HidePromptOnLeave = true;
+            this.maskedTextBox1.Location = new System.Drawing.Point(428, 250);
+            this.maskedTextBox1.Mask = "000000000000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(174, 27);
+            this.maskedTextBox1.TabIndex = 17;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label61.Location = new System.Drawing.Point(428, 194);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(183, 30);
+            this.label61.TabIndex = 8;
+            this.label61.Text = "Add salary bill";
+            // 
+            // label62
+            // 
+            this.label62.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label62.Location = new System.Drawing.Point(719, 23);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(383, 60);
+            this.label62.TabIndex = 7;
+            this.label62.Text = "Request salary project";
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button8.Location = new System.Drawing.Point(117, 402);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(171, 32);
+            this.button8.TabIndex = 6;
+            this.button8.Text = "Registr Company";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(20, 358);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(62, 20);
+            this.label63.TabIndex = 5;
+            this.label63.Text = "Address";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(20, 302);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(49, 20);
+            this.label64.TabIndex = 4;
+            this.label64.Text = "Name";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(20, 249);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(38, 20);
+            this.label65.TabIndex = 3;
+            this.label65.Text = "UNP";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox4.Location = new System.Drawing.Point(104, 355);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(200, 27);
+            this.textBox4.TabIndex = 2;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox5.Location = new System.Drawing.Point(104, 299);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(200, 27);
+            this.textBox5.TabIndex = 2;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox6.Location = new System.Drawing.Point(104, 246);
+            this.textBox6.MaxLength = 10;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(200, 27);
+            this.textBox6.TabIndex = 2;
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Location = new System.Drawing.Point(104, 185);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(200, 28);
+            this.comboBox13.TabIndex = 1;
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Location = new System.Drawing.Point(104, 132);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(200, 28);
+            this.comboBox14.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.label57);
+            this.tabPage2.Controls.Add(this.label58);
+            this.tabPage2.Controls.Add(this.numericUpDown5);
+            this.tabPage2.Controls.Add(this.label59);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.label60);
+            this.tabPage2.Controls.Add(this.maskedTextBox1);
+            this.tabPage2.Controls.Add(this.label61);
+            this.tabPage2.Controls.Add(this.label62);
+            this.tabPage2.Controls.Add(this.button8);
+            this.tabPage2.Controls.Add(this.label63);
+            this.tabPage2.Controls.Add(this.label64);
+            this.tabPage2.Controls.Add(this.label65);
+            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.textBox5);
+            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Controls.Add(this.comboBox13);
+            this.tabPage2.Controls.Add(this.comboBox14);
+            this.tabPage2.Location = new System.Drawing.Point(8, 8);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1274, 620);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Salary Project";
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button9.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button9.Location = new System.Drawing.Point(801, 119);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(217, 47);
+            this.button9.TabIndex = 22;
+            this.button9.Text = "Request ";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // label66
+            // 
+            this.label66.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label66.Location = new System.Drawing.Point(397, 23);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(252, 60);
+            this.label66.TabIndex = 7;
+            this.label66.Text = "Add salary bill";
+            // 
+            // label67
+            // 
+            this.label67.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label67.Location = new System.Drawing.Point(67, 23);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(280, 60);
+            this.label67.TabIndex = 7;
+            this.label67.Text = "Registr company";
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numericUpDown6.Location = new System.Drawing.Point(464, 302);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(95, 27);
+            this.numericUpDown6.TabIndex = 21;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label68.Location = new System.Drawing.Point(428, 144);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(181, 30);
+            this.label68.TabIndex = 20;
+            this.label68.Text = "CompanyName";
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button10.Location = new System.Drawing.Point(464, 351);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(95, 29);
+            this.button10.TabIndex = 19;
+            this.button10.Text = "Add";
+            this.button10.UseVisualStyleBackColor = false;
+            // 
+            // label69
+            // 
+            this.label69.Location = new System.Drawing.Point(397, 402);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(227, 64);
+            this.label69.TabIndex = 18;
+            this.label69.Text = "added salary bill status";
+            this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.maskedTextBox3.HidePromptOnLeave = true;
+            this.maskedTextBox3.Location = new System.Drawing.Point(428, 250);
+            this.maskedTextBox3.Mask = "000000000000";
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(174, 27);
+            this.maskedTextBox3.TabIndex = 17;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("RomanD", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label70.Location = new System.Drawing.Point(428, 194);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(183, 30);
+            this.label70.TabIndex = 8;
+            this.label70.Text = "Add salary bill";
+            // 
+            // label71
+            // 
+            this.label71.Font = new System.Drawing.Font("RomanD", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label71.Location = new System.Drawing.Point(719, 23);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(383, 60);
+            this.label71.TabIndex = 7;
+            this.label71.Text = "Request salary project";
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button11.Location = new System.Drawing.Point(117, 402);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(171, 32);
+            this.button11.TabIndex = 6;
+            this.button11.Text = "Registr Company";
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(20, 358);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(62, 20);
+            this.label72.TabIndex = 5;
+            this.label72.Text = "Address";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(20, 302);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(49, 20);
+            this.label73.TabIndex = 4;
+            this.label73.Text = "Name";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(20, 249);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(38, 20);
+            this.label74.TabIndex = 3;
+            this.label74.Text = "UNP";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox7.Location = new System.Drawing.Point(104, 355);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(200, 27);
+            this.textBox7.TabIndex = 2;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox8.Location = new System.Drawing.Point(104, 299);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(200, 27);
+            this.textBox8.TabIndex = 2;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.textBox9.Location = new System.Drawing.Point(104, 246);
+            this.textBox9.MaxLength = 10;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(200, 27);
+            this.textBox9.TabIndex = 2;
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.comboBox15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Location = new System.Drawing.Point(104, 185);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(200, 28);
+            this.comboBox15.TabIndex = 1;
+            // 
+            // comboBox16
+            // 
+            this.comboBox16.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.comboBox16.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox16.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Location = new System.Drawing.Point(104, 132);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(200, 28);
+            this.comboBox16.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tabPage3.Controls.Add(this.button9);
+            this.tabPage3.Controls.Add(this.label66);
+            this.tabPage3.Controls.Add(this.label67);
+            this.tabPage3.Controls.Add(this.numericUpDown6);
+            this.tabPage3.Controls.Add(this.label68);
+            this.tabPage3.Controls.Add(this.button10);
+            this.tabPage3.Controls.Add(this.label69);
+            this.tabPage3.Controls.Add(this.maskedTextBox3);
+            this.tabPage3.Controls.Add(this.label70);
+            this.tabPage3.Controls.Add(this.label71);
+            this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Controls.Add(this.label72);
+            this.tabPage3.Controls.Add(this.label73);
+            this.tabPage3.Controls.Add(this.label74);
+            this.tabPage3.Controls.Add(this.textBox7);
+            this.tabPage3.Controls.Add(this.textBox8);
+            this.tabPage3.Controls.Add(this.textBox9);
+            this.tabPage3.Controls.Add(this.comboBox15);
+            this.tabPage3.Controls.Add(this.comboBox16);
+            this.tabPage3.Location = new System.Drawing.Point(8, 8);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1274, 620);
+            this.tabPage3.TabIndex = 4;
+            this.tabPage3.Text = "Salary Project";
+            // 
+            // RequestTabPage7
+            // 
+            this.RequestTabPage7.Controls.Add(this.tableLayoutPanel7);
+            this.RequestTabPage7.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage7.Name = "RequestTabPage7";
+            this.RequestTabPage7.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage7.TabIndex = 6;
+            this.RequestTabPage7.Text = "Undo Outsiders op.";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoScroll = true;
+            this.tableLayoutPanel7.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2269,8 +2964,10 @@
             this.RequestTabPage2.ResumeLayout(false);
             this.RequestTabPage3.ResumeLayout(false);
             this.RequestTabPage4.ResumeLayout(false);
-            this.dealtab.ResumeLayout(false);
-            this.dealtab.PerformLayout();
+            this.RequestTabPage5.ResumeLayout(false);
+            this.RequestTabPage6.ResumeLayout(false);
+            this.dealTab.ResumeLayout(false);
+            this.dealTab.PerformLayout();
             this.abilityGroupBox.ResumeLayout(false);
             this.abilityGroupBox.PerformLayout();
             this.panel12.ResumeLayout(false);
@@ -2285,9 +2982,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).EndInit();
             this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            this.salaryProjectTabPage.ResumeLayout(false);
-            this.salaryProjectTabPage.PerformLayout();
+            this.salaryProjectTab.ResumeLayout(false);
+            this.salaryProjectTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            this.transferTab.ResumeLayout(false);
+            this.transferTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -2303,6 +3003,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.RequestTabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2375,7 +3082,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest2;
         private System.Windows.Forms.TabPage RequestTabPage3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRequest3;
-        private System.Windows.Forms.TabPage dealtab;
+        private System.Windows.Forms.TabPage dealTab;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Panel panel7;
@@ -2467,7 +3174,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Button blockButton;
-        private System.Windows.Forms.TabPage salaryProjectTabPage;
+        private System.Windows.Forms.TabPage salaryProjectTab;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
@@ -2489,5 +3196,60 @@
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.TabPage RequestTabPage4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TabPage transferTab;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox comboBox13;
+        private System.Windows.Forms.ComboBox comboBox14;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.ComboBox comboBox15;
+        private System.Windows.Forms.ComboBox comboBox16;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox4;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.TabPage RequestTabPage5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TabPage RequestTabPage6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TabPage RequestTabPage7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
     }
 }

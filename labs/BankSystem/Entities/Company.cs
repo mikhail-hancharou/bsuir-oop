@@ -15,11 +15,12 @@ namespace BankSystem.Entities
         public  bool Confirmed { get; set; }
         public bool Requested { get; set; }
         public List<BillsNSalary> BillsNSalaries { get; set; }
-        
+        public List<CompanyTransfer> CompanyTransfer { get; set; }
+
         public void AddWorker(string billNumber, int salary)
         {
             using AppContext db = new AppContext();
-            BillsNSalary billsNSalary = new BillsNSalary { BillNumber = billNumber, Salary = salary };
+            BillsNSalary billsNSalary = new BillsNSalary { BillNumber = billNumber, Salary = salary, IsRequest = false };
             BillsNSalaries.Add(billsNSalary);
             db.Companies.Update(this);
             db.BillsNSalaries.Add(billsNSalary);
