@@ -1,13 +1,11 @@
 ﻿using BankSystem.Entities;
+using BankSystem.Menu;
 using BankSystem.MenuEntities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -15,11 +13,14 @@ namespace BankSystem
 {
     public partial class MainMenu : Form
     {
-        public object MainUser { get; set; } //Client mainUser { get; set; }
+        public object MainUser { get; set; }
+        private MenuPresenter Presenter;
         public MainMenu(object mainUser)
-        {
-            this.MainUser = mainUser;
+        {     
             InitializeComponent();
+            this.MainUser = mainUser;
+
+            Presenter = new MenuPresenter(this, new MenuModel());
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
@@ -65,32 +66,35 @@ namespace BankSystem
             }
             else if (MainUser is Manager)
             {
+                Manager manager = MainUser as Manager;
                 salaryTabControl.Controls.Remove(RequestTabPage5);
                 mainTab.Controls.Remove(opportunityTab);
                 mainTab.Controls.Remove(dealTab);
                 mainTab.Controls.Remove(cabinetTab);
                 mainTab.Controls.Remove(salaryProjectTab);
-                mainTab.Controls.Remove(transferTab);
-                Manager manager = MainUser as Manager;
+                mainTab.Controls.Remove(transferTab);              
                 Aprovement(manager.BID);
                 InitializeUndoOutsiders(manager.BID);
             }
             else if (MainUser is Admin)
             {
-                //TODO
+                Admin admin = MainUser as Admin;
+                mainTab.Controls.Remove(opportunityTab);
+                mainTab.Controls.Remove(dealTab);
+                mainTab.Controls.Remove(cabinetTab);
+                mainTab.Controls.Remove(salaryProjectTab);
+                mainTab.Controls.Remove(transferTab);
+                InitializeSPRequest(admin.myWork.BID);
+                InitializeTranzactions(admin.myWork.BID);
+                Aprovement(admin.myWork.BID);
+                InitializeUndoOutsiders(admin.myWork.BID);
             }
         }
 
         private void Aprovement(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Client client in db.Clients
-                .Include(c => c.User)
-                .Where(c => !c.User.Confirmed))
-            {
-                RequestField requestField = new RequestField(client, tableLayoutPanelRequest1);
-                tableLayoutPanelRequest1.Controls.Add(requestField.FieldPanel);
-            }
+            var reqF = Presenter.Aprovement(BID, tableLayoutPanelRequest1);
+            tableLayoutPanelRequest1.Controls.AddRange(reqF.ToArray());
 
             InitializeCreditRequest(BID);
             InitializeInstallementRequest(BID);
@@ -99,116 +103,38 @@ namespace BankSystem
 
         private void InitializeTransferRequest()
         {
-            using AppContext db = new AppContext();
-            Outsider outsider = MainUser as Outsider;
-            Company company = db.Companies
-                .Include(c => c.BillsNSalaries)
-                .Include(c => c.CompanyTransfer)
-                .FirstOrDefault(c => c.UNP == outsider.UNP);
-
-            //foreach (Company company in db.Companies
-            //    .Include(c => c.BillsNSalaries)
-            //    .Include(c => c.CompanyTransfer)
-            //    .Where(c => c.Confirmed))
-            //{
-            foreach (BillsNSalary billsNSalary in company.BillsNSalaries.Where(b => b.IsRequest))
-            {
-                TransferRequest transferRequest = new TransferRequest(billsNSalary, company, tableLayoutPanel5);
-                tableLayoutPanel5.Controls.Add(transferRequest.FieldPanel);
-            }
-            //}
+            var reqT = Presenter.InitializeTransferRequest(MainUser as Outsider, tableLayoutPanel5);
+            tableLayoutPanel5.Controls.AddRange(reqT.ToArray());
         }
 
         private void InitializeCreditRequest(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Client client in db.Clients
-                .Include(c => c.User)
-                .Include(c => c.Bills.Where(b => b.BID == BID))
-                .ThenInclude(b => b.Credits)
-                .Where(c => c.Bills.Sum(b => b.Credits.Count) != 0))
-            {
-                var credits = client.Bills
-                .SelectMany(c => c.Credits)
-                .Where(c => !c.Confirmed);
-
-                foreach (Credit credit in credits)
-                {
-                    CreditRequest creditRequest = new CreditRequest(client, credit, tableLayoutPanelRequest2);
-                    tableLayoutPanelRequest2.Controls.Add(creditRequest.FieldPanel);
-                }
-            }
+            var reqCr = Presenter.InitializeCreditRequest(BID, tableLayoutPanelRequest2);
+            tableLayoutPanelRequest2.Controls.AddRange(reqCr.ToArray());       
         }
 
         private void InitializeInstallementRequest(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Client client in db.Clients
-                .Include(c => c.User)
-                .Include(c => c.Bills.Where(b => b.BID == BID))
-                .ThenInclude(b => b.Installements)
-                .Where(c => c.Bills.Sum(b => b.Installements.Count) != 0))
-            {
-                var installements = client.Bills
-                .SelectMany(c => c.Installements)
-                .Where(c => !c.Confirmed);
-
-                foreach (Installement installement in installements)
-                {
-                    CreditRequest installementRequest = new CreditRequest(client, installement, tableLayoutPanelRequest3);
-                    tableLayoutPanelRequest3.Controls.Add(installementRequest.FieldPanel);
-                }
-            }
+            var reqIn = Presenter.InitializeInstallementRequest(BID, tableLayoutPanelRequest3);
+            tableLayoutPanelRequest3.Controls.AddRange(reqIn.ToArray());
         }
 
         private void InitializeSPRequest(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Outsider outsider in db.Outsiders)
-            {
-                if (db.Companies.Any(c => c.UNP == outsider.UNP && c.Requested && c.BID == BID))
-                {
-                    Company company = db.Companies
-                        .FirstOrDefault(c => c.UNP == outsider.UNP && c.Requested);
-                    SalaryPRequest salaryPRequest = new SalaryPRequest(company, outsider, tableLayoutPanel4);
-                    tableLayoutPanel4.Controls.Add(salaryPRequest.FieldPanel);
-                }
-            }
+            var reqIn = Presenter.InitializeSPRequest(BID, tableLayoutPanel4);
+            tableLayoutPanel4.Controls.AddRange(reqIn.ToArray());
         }
 
         private void InitializeTranzactions(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Client client in db.Clients
-                .Include(c => c.User)
-                .Include(c => c.Bills)
-                .ThenInclude(b => b.Transactions)
-                .Where(c => c.User.Confirmed))
-            {
-                foreach (Bill bill in client.Bills.Where(b => b.BID == BID))
-                {
-                    foreach (Transaction transaction in bill.Transactions)
-                    {
-                        Transactions transactions = new Transactions(transaction, bill, tableLayoutPanel6);
-                        tableLayoutPanel6.Controls.Add(transactions.FieldPanel);
-                    }
-                }
-            }
+            var reqIn = Presenter.InitializeSPRequest(BID, tableLayoutPanel6);
+            tableLayoutPanel6.Controls.AddRange(reqIn.ToArray());
         }
 
         private void InitializeUndoOutsiders(string BID)
         {
-            using AppContext db = new AppContext();
-            foreach (Company company in db.Companies
-                .Include(c => c.CompanyTransfer)
-                .Where(c => c.BID == BID && c.Confirmed))
-            {
-                foreach (CompanyTransfer companyTransfer in company.CompanyTransfer)
-                {
-                    UndoOutsiders undoOutsiders = new UndoOutsiders(companyTransfer, company, tableLayoutPanel7);
-                    tableLayoutPanel7.Controls.Add(undoOutsiders.FieldPanel);
-                }
-            }
+            var reqIn = Presenter.InitializeUndoOutsiders(BID, tableLayoutPanel7);
+            tableLayoutPanel7.Controls.AddRange(reqIn.ToArray());
         }
 
         private void Opportunity()
@@ -223,12 +149,7 @@ namespace BankSystem
 
         private void BankInit()
         {
-            using AppContext db = new AppContext();
-            List<string> Banks = new List<string>();
-            foreach (Bank b in db.Banks.ToList())
-            {
-                Banks.Add(b.Name + "//" + b.BID);
-            }
+            List<string> Banks = Presenter.BankInit();
 
             BankComboBox.Items.Clear();
             BankComboBox.Items.AddRange(Banks.ToArray());
@@ -241,11 +162,7 @@ namespace BankSystem
 
         private void BillInit(Client client)
         {
-            List<string> Bills = new List<string>();
-            foreach (Bill bill in client.Bills.Where(b => !b.Blocked && !b.Freezed))
-            {
-                Bills.Add(bill.BillNumber);
-            }
+            List<string> Bills = Presenter.BillInit(client);
 
             if (Bills.Count != 0)
             {
@@ -279,23 +196,14 @@ namespace BankSystem
 
         private void InitializeMenu()
         {
-            using AppContext db = new AppContext();
             Client client = MainUser as Client;
-            client = db.Clients
-                .Include(c => c.Bills)
-                .ThenInclude(b => b.Credits)
-                .Include(c => c.Bills)
-                .ThenInclude(b => b.Installements)
-                .Include(c => c.User)
-                .Include(c => c.Bills)
-                .FirstOrDefault(c => c.Id == client.Id);
+            client = Presenter.ClientUpdate(client);
             nameLabel.Text = client.User.Name;
             lastNameLabel.Text = client.User.LastName;
             moneyLabel.Text = client.Bills.Sum(b => b.Money).ToString();
             tableLayoutPanelBill.Controls.Clear();
             tableLayoutPanelCredit.Controls.Clear();
-            db.Clients.Update(client);
-            db.SaveChanges();
+
             foreach (Bill bill in client.Bills)
             {
                 BillField billField = new BillField(bill, tableLayoutPanelBill);
@@ -326,36 +234,8 @@ namespace BankSystem
 
         private void CreateBillButton_Click(object sender, EventArgs e)
         {
-            using AppContext db = new AppContext();
-            Client client = MainUser as Client;
-            string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
-            Bank bank = db.Banks
-                .Include(b => b.Clients)
-                .FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
-
-            if (!bank.Clients.Any(c => c.Id == client.Id))
-            {
-                bank.Clients.Add(client);
-                db.Banks.Update(bank);
-                db.SaveChanges();
-            }
-
-            Random rnd = new Random();
-            Bill bill = new Bill()
-            {
-                BID = BankAndBID[1],
-                Money = rnd.Next(1000, 15000),
-                Blocked = false,
-                Freezed = false,
-                BillNumber = BillNumberLabel.Text,
-                Credits = new List<Credit>(),
-                Installements = new List<Installement>(),
-                Transactions = new List<Transaction>(),
-            };
-
-            client.OpenBill(bill);
-            //db.Clients.Update(client);
-            db.SaveChanges();
+            Client client = MainUser as Client;      
+            Presenter.CreateBill(client, BankComboBox.Text.Trim(), BillNumberLabel.Text);
 
             BankComboBox_SelectedIndexChanged(sender, e);
             InitializeMenu();
@@ -369,10 +249,6 @@ namespace BankSystem
             string BillNumber = BillcomboBox.Text;
             Client client = MainUser as Client;
             Bill bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
-            //Bill bill = db.Bills
-            //    .Include(b => b.Installements)
-            //    .Include(b => b.Credits)
-            //    .FirstOrDefault(b => b.BillNumber == BillNumber);
 
             if (radioButton1.Checked)
             {
@@ -403,46 +279,32 @@ namespace BankSystem
 
         private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using AppContext db = new AppContext();
-            Bank bank;
             string[] BankAndBID = Regex.Split(BankComboBox.Text.Trim(), "//");
-            bank = db.Banks.FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
-
-            Bill bill = new Bill() {
-                BID = BankAndBID[1],
-                Money = 0,
-                Blocked = false,
-                Freezed = false,
-            };
-            bill.BillInizializer(bank);
+            string bn = Presenter.BankIndex(BankComboBox.Text.Trim());
 
             BankNameLabel.Text = BankAndBID[0];
-            BillNumberLabel.Text = bill.BillNumber;
+            BillNumberLabel.Text = bn;
         }
 
         private void BillcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using AppContext db = new AppContext();
-            Client client = MainUser as Client;
-            Bill bill;
+            string bn = Presenter.BillIndex(MainUser as Client, BillcomboBox.Text);
             string BillNumber = BillcomboBox.Text;
 
-            bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
-            BankNameLabel1.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).Name;
+            BankNameLabel1.Text = bn;
             CreditBillLabel.Text = BillNumber;
-            MoneyNPaymentUpdate(bill);
         }
 
-        private void MoneyNPaymentUpdate(Bill bill)
+        public void MoneyNPaymentUpdate(Bill bill)
         {
-            using AppContext db = new AppContext();
             AmountLabel.Text = numericUpDownMoney.Value.ToString() + "R";
 
             if (radioButton1.Checked)
             {
+                double overp = Presenter.MoneyNPayment(bill);
                 OperationLabel.Text = "Credit";
-                CreditPercentLabel.Text = db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent.ToString() + "%";
-                OverPaymentLabel.Text = ((uint)(db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent / 100 * (double)numericUpDownMoney.Value)).ToString();
+                CreditPercentLabel.Text = overp + "%";
+                OverPaymentLabel.Text = ((uint)(overp / 100 * (double)numericUpDownMoney.Value)).ToString();
             }
         }
 

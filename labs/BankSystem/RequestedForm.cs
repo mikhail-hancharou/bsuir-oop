@@ -20,5 +20,10 @@ namespace BankSystem
             Close();
             Application.Exit();
         }
+
+        public void ChangeInfo()
+        {
+            label1.Text = "No such users";
+        }
     }
 }

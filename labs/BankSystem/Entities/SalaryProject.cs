@@ -8,6 +8,5 @@ namespace BankSystem.Entities
     {
         public int Id { get; set; }
         public string BID { get; set; }
-        
     }
 }

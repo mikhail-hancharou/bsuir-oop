@@ -9,28 +9,32 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BankSystem.Comparer;
 using BankSystem.Entities;
+using BankSystem.Reg;
 
 namespace BankSystem
 {
     public partial class RegForm : Form
     {
+        private RegPresenter Presenter;
+        public bool mistake = false;
+
         public RegForm()
         {
             InitializeComponent();
-
             roleBox.SelectedIndex = 0;
             dateBox.Text = "dd.mm.yy";
+
+            Presenter = new RegPresenter(this, new RegModel());
         }
 
         private void RegButton_Click(object sender, EventArgs e)
         {
-            bool mistake = false;
             using AppContext db = new AppContext();
             if (nameBox.Text.Trim() == string.Empty)
             {
                 nameBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
-            }         
+            }
 
             if (lNameBox.Text.Trim() == string.Empty)
             {
@@ -43,11 +47,9 @@ namespace BankSystem
                 loginBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
-            else if (db.Users.AsEnumerable().Any(u => u.Login == loginBox.Text.Trim()))
+            else
             {
-                loginBox.ForeColor = System.Drawing.Color.Red;
-                loginBox.Text = "already registered";
-                mistake = true;
+                Presenter.LoginCheck(loginBox.Text.Trim());
             }
 
             if (passpNumbBox.Text.Trim() == string.Empty)
@@ -55,11 +57,9 @@ namespace BankSystem
                 passpNumbBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
-            else if (db.Users.AsEnumerable().Any(u => u.PassportNumber == passpNumbBox.Text.Trim()))
+            else
             {
-                passpNumbBox.ForeColor = System.Drawing.Color.Red;
-                passpNumbBox.Text = "already registered";
-                mistake = true;
+                Presenter.PasswNumberCheck(passpNumbBox.Text.Trim());
             }
 
             if (numberBox.Text.Trim() == string.Empty)
@@ -67,29 +67,8 @@ namespace BankSystem
                 nameBox.BackColor = System.Drawing.Color.Red;
                 mistake = true;
             }
-
-            DateTime date = new DateTime();
-            if (Regex.IsMatch(dateBox.Text.Trim(), @"\d{2}.\d{2}.\d{2}"))
-            {
-                int day = Convert.ToInt32(Regex.Match(dateBox.Text.Trim(), @"^\d{2}\.").Value[..^1]);
-                int month = Convert.ToInt32(Regex.Match(dateBox.Text.Trim(), @"\.\d{2}\.").Value[1..^1]);
-                int year = Convert.ToInt32(Regex.Match(dateBox.Text.Trim(), @"\.\d{2}$").Value[1..]);
-
-                if (day > 31 || month > 12 || year < 22 || (day < DateTime.Now.Day && month < DateTime.Now.Month))
-                {
-                    dateBox.ForeColor = System.Drawing.Color.Red;
-                    mistake = true;
-                }
-                else
-                {
-                    date = new DateTime(2000 + year, month, day);
-                }
-            }
-            else
-            {
-                dateBox.BackColor = System.Drawing.Color.Red;
-                mistake = true;
-            }
+    
+            DateTime date = Presenter.DateTimeCheck(dateBox.Text.Trim());
 
             if (passwBox.Text.Trim() == string.Empty)
             {
@@ -100,12 +79,12 @@ namespace BankSystem
             Bank bank = new Bank();
             if (roleBox.SelectedIndex > 1)
             {
-                string[] BankAndBID = Regex.Split(roleBankBox.Text.Trim(), "//");
-                bank = db.Banks.AsEnumerable().ToList().Find(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
+                bank = Presenter.FindBank(roleBankBox.Text.Trim());          
             }
 
             if (!mistake)
             {
+                Hide();
                 User User = new User
                 {
                     Login = loginBox.Text,
@@ -117,50 +96,38 @@ namespace BankSystem
                     Confirmed = false,
                 };
 
-                db.Users.Add(User);
-                //MainMenu menu = new MainMenu(User);
-                Hide();
-                switch (roleBox.SelectedIndex)
-                {
-                    case 0:
-                        Client client = new Client
-                        {
-                            User = User,
-                            ExpiryDate = date,
-                            Bills = new HashSet<Bill>(new BillComparer()),
-                        };
-                        db.Clients.Add(client);
-                        //menu = new MainMenu(client);                       
-                        break;
-                    case 1:
-                        Outsider outsider = new Outsider{ User = User };
-                        db.Outsiders.Add(outsider);
-                        //menu = new MainMenu(outsider);
-                        break;
-                    case 2:
-                        Operator @operator = new Operator { User = User, myWork = bank };
-                        db.Operators.Add(@operator);
-                        //menu = new MainMenu(@operator);                       
-                        break;
-                    case 3:
-                        Manager manager = new Manager { User = User, BID = bank.BID };
-                        db.Managers.Add(manager);
-                        //menu = new MainMenu(manager);
-                        break;
-                    case 4:
-                        Admin admin = new Admin { User = User, myWork = bank };
-                        db.Admins.Add(admin);
-                        //menu = new MainMenu(admin);
-                        break;
-                    default:
-                        break;
-                }
-
-                db.SaveChanges();
-                RequestedForm requestedForm = new RequestedForm();
-                requestedForm.Show();
-                //menu.Show();
+                Presenter.AddUser(User, roleBox.SelectedIndex, date, bank);
             }
+            else
+            {
+                mistake = false;
+            }
+        }
+
+        public void LoginCheckFailed()
+        {
+            loginBox.ForeColor = System.Drawing.Color.Red;
+            loginBox.Text = "already registered";
+            mistake = true;
+        }
+
+        public void PasswNumberCheckFailed()
+        {
+            passpNumbBox.ForeColor = System.Drawing.Color.Red;
+            passpNumbBox.Text = "already registered";
+            mistake = true;
+        }
+
+        public void DateTimeCheckFailed()
+        {
+            dateBox.ForeColor = System.Drawing.Color.Red;
+            mistake = true;
+        }
+
+        public void RequestedForm()
+        {
+            RequestedForm requestedForm = new RequestedForm();
+            requestedForm.Show();
         }
 
         private void nameBox_Click(object sender, EventArgs e)
