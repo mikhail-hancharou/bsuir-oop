@@ -45,6 +45,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.backBut = new System.Windows.Forms.Button();
+            this.retBut = new System.Windows.Forms.Button();
+            this.comboBox = new System.Windows.Forms.ComboBox();
+            this.XBox = new System.Windows.Forms.NumericUpDown();
+            this.YBox = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GBox)).BeginInit();
@@ -54,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GbBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BbBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.XBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -307,11 +316,111 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Fill";
             // 
+            // backBut
+            // 
+            this.backBut.Enabled = false;
+            this.backBut.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.backBut.Location = new System.Drawing.Point(842, 411);
+            this.backBut.Name = "backBut";
+            this.backBut.Size = new System.Drawing.Size(90, 29);
+            this.backBut.TabIndex = 6;
+            this.backBut.Text = "<--";
+            this.backBut.UseVisualStyleBackColor = true;
+            this.backBut.Click += new System.EventHandler(this.backBut_Click);
+            // 
+            // retBut
+            // 
+            this.retBut.Enabled = false;
+            this.retBut.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.retBut.Location = new System.Drawing.Point(936, 411);
+            this.retBut.Name = "retBut";
+            this.retBut.Size = new System.Drawing.Size(90, 29);
+            this.retBut.TabIndex = 7;
+            this.retBut.Text = "-->";
+            this.retBut.UseVisualStyleBackColor = true;
+            this.retBut.Click += new System.EventHandler(this.retBut_Click);
+            // 
+            // comboBox
+            // 
+            this.comboBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(841, 471);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(184, 30);
+            this.comboBox.TabIndex = 8;
+            // 
+            // XBox
+            // 
+            this.XBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.XBox.Location = new System.Drawing.Point(842, 537);
+            this.XBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.XBox.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.XBox.Name = "XBox";
+            this.XBox.Size = new System.Drawing.Size(90, 29);
+            this.XBox.TabIndex = 9;
+            this.XBox.ValueChanged += new System.EventHandler(this.XBox_ValueChanged);
+            // 
+            // YBox
+            // 
+            this.YBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.YBox.Location = new System.Drawing.Point(936, 537);
+            this.YBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.YBox.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.YBox.Name = "YBox";
+            this.YBox.Size = new System.Drawing.Size(90, 29);
+            this.YBox.TabIndex = 10;
+            this.YBox.ValueChanged += new System.EventHandler(this.YBox_ValueChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(884, 570);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Draw";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBox
+            // 
+            this.checkBox.AutoSize = true;
+            this.checkBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBox.Location = new System.Drawing.Point(842, 507);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(77, 26);
+            this.checkBox.TabIndex = 12;
+            this.checkBox.Text = "Show";
+            this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 618);
+            this.Controls.Add(this.checkBox);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.YBox);
+            this.Controls.Add(this.XBox);
+            this.Controls.Add(this.comboBox);
+            this.Controls.Add(this.retBut);
+            this.Controls.Add(this.backBut);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -336,6 +445,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GbBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BbBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.XBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,6 +471,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button backBut;
+        private System.Windows.Forms.Button retBut;
+        private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.NumericUpDown XBox;
+        private System.Windows.Forms.NumericUpDown YBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox;
     }
 }
 
