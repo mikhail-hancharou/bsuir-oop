@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankSystem
@@ -51,16 +52,12 @@ namespace BankSystem
             BillNumber = number.ToString();
             bool flag = false;
 
-            if (bank.Clients == null)
-            {
-                return;
-            }
-
+            using AppContext db = new AppContext();
             while (true)
             {
-                foreach (Client u in bank.Clients)
+                foreach (Bill bill in db.Bills.Where(b => b.BID == bank.BID))
                 {
-                    if (u.Bills.Contains(this))
+                    if (bill.BillNumber == BillNumber)
                     {
                         flag = true;
                         break;

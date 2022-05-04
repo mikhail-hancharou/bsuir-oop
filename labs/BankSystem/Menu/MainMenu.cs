@@ -31,6 +31,7 @@ namespace BankSystem
                 mainTab.Controls.Remove(requestTab);
                 mainTab.Controls.Remove(salaryProjectTab);
                 mainTab.Controls.Remove(transferTab);
+                mainTab.Controls.Remove(logTab);
                 InitializeMenu();
                 InitializeDeals();
                 Opportunity();
@@ -40,6 +41,8 @@ namespace BankSystem
                 mainTab.Controls.Remove(opportunityTab);
                 mainTab.Controls.Remove(dealTab);
                 mainTab.Controls.Remove(cabinetTab);
+                mainTab.Controls.Remove(logTab);
+                //mainTab.Controls.Remove(salaryProjectTab);
                 salaryTabControl.Controls.Remove(RequestTabPage1);
                 salaryTabControl.Controls.Remove(RequestTabPage2);
                 salaryTabControl.Controls.Remove(RequestTabPage3);
@@ -61,6 +64,7 @@ namespace BankSystem
                 mainTab.Controls.Remove(cabinetTab);
                 mainTab.Controls.Remove(salaryProjectTab);
                 mainTab.Controls.Remove(transferTab);
+                mainTab.Controls.Remove(logTab);
                 InitializeSPRequest(@operator.myWork.BID);
                 InitializeTranzactions(@operator.myWork.BID);
             }
@@ -72,7 +76,8 @@ namespace BankSystem
                 mainTab.Controls.Remove(dealTab);
                 mainTab.Controls.Remove(cabinetTab);
                 mainTab.Controls.Remove(salaryProjectTab);
-                mainTab.Controls.Remove(transferTab);              
+                mainTab.Controls.Remove(transferTab);
+                mainTab.Controls.Remove(logTab);
                 Aprovement(manager.BID);
                 InitializeUndoOutsiders(manager.BID);
             }
@@ -88,6 +93,7 @@ namespace BankSystem
                 InitializeTranzactions(admin.myWork.BID);
                 Aprovement(admin.myWork.BID);
                 InitializeUndoOutsiders(admin.myWork.BID);
+                InitializeLogs(admin.myWork.BID);
             }
         }
 
@@ -99,6 +105,11 @@ namespace BankSystem
             InitializeCreditRequest(BID);
             InitializeInstallementRequest(BID);
             InitializeSPRequest(BID);
+        }
+
+        private void InitializeLogs(string BID)
+        {
+            Presenter.InitializeLogs(BID, label79);
         }
 
         private void InitializeTransferRequest()
@@ -245,33 +256,15 @@ namespace BankSystem
 
         private void CreditButton_Click(object sender, EventArgs e)
         {
-            using AppContext db = new AppContext();
-            string BillNumber = BillcomboBox.Text;
             Client client = MainUser as Client;
-            Bill bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
 
             if (radioButton1.Checked)
             {
-                Credit credit = new Credit
-                {
-                    Confirmed = false,
-                    Months = Convert.ToInt32(PeriodComboBox.Text),
-                    Money = (double)numericUpDownMoney.Value,
-                    Percent = db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent,
-                };
-
-                bill.CreditRequest(credit);
+                Presenter.CreditRequest(BillcomboBox.Text, client, PeriodComboBox.Text, (double)numericUpDownMoney.Value);
             }
             else
             {
-                Installement installement = new Installement
-                {
-                    Confirmed = false,
-                    Months = Convert.ToInt32(PeriodComboBox.Text),
-                    Money = (double)numericUpDownMoney.Value,
-                };
-
-                bill.InstallmentRequest(installement);
+                Presenter.InstallementRequest(BillcomboBox.Text, client, PeriodComboBox.Text, (double)numericUpDownMoney.Value);
             }
 
             InitializeMenu();

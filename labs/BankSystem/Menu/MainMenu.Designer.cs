@@ -86,6 +86,8 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.RequestTabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.RequestTabPage7 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dealTab = new System.Windows.Forms.TabPage();
             this.dealComboBox = new System.Windows.Forms.ComboBox();
             this.abilityGroupBox = new System.Windows.Forms.GroupBox();
@@ -145,6 +147,8 @@
             this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.logTab = new System.Windows.Forms.TabPage();
+            this.label79 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -262,8 +266,6 @@
             this.comboBox15 = new System.Windows.Forms.ComboBox();
             this.comboBox16 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.RequestTabPage7 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.mainTab.SuspendLayout();
             this.cabinetTab.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -288,6 +290,7 @@
             this.RequestTabPage4.SuspendLayout();
             this.RequestTabPage5.SuspendLayout();
             this.RequestTabPage6.SuspendLayout();
+            this.RequestTabPage7.SuspendLayout();
             this.dealTab.SuspendLayout();
             this.abilityGroupBox.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -302,6 +305,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.transferTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            this.logTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -320,7 +324,6 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.RequestTabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
@@ -331,6 +334,7 @@
             this.mainTab.Controls.Add(this.dealTab);
             this.mainTab.Controls.Add(this.salaryProjectTab);
             this.mainTab.Controls.Add(this.transferTab);
+            this.mainTab.Controls.Add(this.logTab);
             this.mainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTab.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mainTab.ItemSize = new System.Drawing.Size(65, 25);
@@ -1002,6 +1006,31 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1266, 585);
             this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // RequestTabPage7
+            // 
+            this.RequestTabPage7.Controls.Add(this.tableLayoutPanel7);
+            this.RequestTabPage7.Location = new System.Drawing.Point(4, 31);
+            this.RequestTabPage7.Name = "RequestTabPage7";
+            this.RequestTabPage7.Size = new System.Drawing.Size(1266, 585);
+            this.RequestTabPage7.TabIndex = 6;
+            this.RequestTabPage7.Text = "Undo Outsiders op.";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoScroll = true;
+            this.tableLayoutPanel7.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1266, 585);
+            this.tableLayoutPanel7.TabIndex = 0;
             // 
             // dealTab
             // 
@@ -1695,6 +1724,25 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(169, 29);
             this.textBox10.TabIndex = 0;
+            // 
+            // logTab
+            // 
+            this.logTab.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.logTab.Controls.Add(this.label79);
+            this.logTab.Location = new System.Drawing.Point(4, 29);
+            this.logTab.Name = "logTab";
+            this.logTab.Size = new System.Drawing.Size(1274, 620);
+            this.logTab.TabIndex = 6;
+            this.logTab.Text = "Logs";
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label79.Location = new System.Drawing.Point(0, 0);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(0, 22);
+            this.label79.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -2904,31 +2952,6 @@
             this.tabPage3.TabIndex = 4;
             this.tabPage3.Text = "Salary Project";
             // 
-            // RequestTabPage7
-            // 
-            this.RequestTabPage7.Controls.Add(this.tableLayoutPanel7);
-            this.RequestTabPage7.Location = new System.Drawing.Point(4, 31);
-            this.RequestTabPage7.Name = "RequestTabPage7";
-            this.RequestTabPage7.Size = new System.Drawing.Size(1266, 585);
-            this.RequestTabPage7.TabIndex = 6;
-            this.RequestTabPage7.Text = "Undo Outsiders op.";
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.AutoScroll = true;
-            this.tableLayoutPanel7.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23858F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76142F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1075F));
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1266, 585);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2966,6 +2989,7 @@
             this.RequestTabPage4.ResumeLayout(false);
             this.RequestTabPage5.ResumeLayout(false);
             this.RequestTabPage6.ResumeLayout(false);
+            this.RequestTabPage7.ResumeLayout(false);
             this.dealTab.ResumeLayout(false);
             this.dealTab.PerformLayout();
             this.abilityGroupBox.ResumeLayout(false);
@@ -2988,6 +3012,8 @@
             this.transferTab.ResumeLayout(false);
             this.transferTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            this.logTab.ResumeLayout(false);
+            this.logTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -3009,7 +3035,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.RequestTabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3251,5 +3276,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TabPage RequestTabPage7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.TabPage logTab;
+        private System.Windows.Forms.Label label79;
     }
 }

@@ -57,6 +57,7 @@ namespace BankSystem.Reg
 
         public void AddUser(User User, int role, DateTime date, Bank bank)
         {
+            bool IsClient = false;
             db.Users.Add(User);
             switch (role)
             {
@@ -68,6 +69,7 @@ namespace BankSystem.Reg
                         Bills = new HashSet<Bill>(new BillComparer()),
                     };
                     db.Clients.Add(client);
+                    IsClient = true;
                     break;
                 case 1:
                     Outsider outsider = new Outsider { User = User };
@@ -89,6 +91,7 @@ namespace BankSystem.Reg
                     break;
             }
 
+            db.Logs.Add(new Log("", $"{DateTime.UtcNow.ToString()} Registration - {User.Login}"));
             db.SaveChanges();
         }
     }

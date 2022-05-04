@@ -39,6 +39,10 @@ namespace BankSystem.Menu
                 .Include(c => c.BillsNSalaries)
                 .Include(c => c.CompanyTransfer)
                 .FirstOrDefault(c => c.UNP == outsider.UNP);
+            if (company == null)
+            {
+                return rf;
+            }
 
             foreach (BillsNSalary billsNSalary in company.BillsNSalaries.Where(b => b.IsRequest))
             {
@@ -193,15 +197,7 @@ namespace BankSystem.Menu
         {
             string[] BankAndBID = Regex.Split(bankNBID, "//");
             Bank bank = db.Banks
-                .Include(b => b.Clients)
                 .FirstOrDefault(b => b.Name == BankAndBID[0] && b.BID == BankAndBID[1]);
-
-            if (!bank.Clients.Any(c => c.Id == client.Id))
-            {
-                bank.Clients.Add(client);
-                db.Banks.Update(bank);
-                db.SaveChanges();
-            }
 
             Random rnd = new Random();
             Bill bill = new Bill()
@@ -216,6 +212,7 @@ namespace BankSystem.Menu
                 Transactions = new List<Transaction>(),
             };
 
+            db.Logs.Add(new Log($"{BankAndBID[1]}", $"{DateTime.UtcNow.ToString()} Created bill {bankNBID[1]} - {bill.BillNumber}"));
             client.OpenBill(bill);
             db.SaveChanges();
         }
@@ -250,6 +247,45 @@ namespace BankSystem.Menu
         public double MoneyNPayment(Bill bill)
         {
             return db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent;
+        }
+
+        public void CreditRequest(string BillNumber, Client client, string PeriodText, double value)
+        {
+            Bill bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+
+            Credit credit = new Credit
+            {
+                Confirmed = false,
+                Months = Convert.ToInt32(PeriodText),
+                Money = value,
+                Percent = db.Banks.FirstOrDefault(b => b.BID == bill.BID).OverPaymentPercent,
+            };
+
+            db.Logs.Add(new Log($"{bill.BID}", $"{DateTime.UtcNow.ToString()} Credit request - {bill.BillNumber}"));
+            bill.CreditRequest(credit);
+        }
+
+        public void InstallementRequest(string BillNumber, Client client, string periodText, double value)
+        {
+            Bill bill = client.Bills.FirstOrDefault(b => b.BillNumber == BillNumber);
+
+            Installement installement = new Installement
+            {
+                Confirmed = false,
+                Months = Convert.ToInt32(periodText),
+                Money = value,
+            };
+
+            db.Logs.Add(new Log($"{bill.BID}", $"{DateTime.UtcNow.ToString()} Installement request - {bill.BillNumber}"));
+            bill.InstallmentRequest(installement);
+        }
+
+        public void InitializeLogs(string BID, Label label79)
+        {
+            foreach(Log log in db.Logs)//.Where(l => l.Bid == "" || l.Bid == BID)
+            {
+                label79.Text += log.Loginfo + "\n";
+            }
         }
     }
 }

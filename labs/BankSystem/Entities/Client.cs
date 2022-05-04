@@ -14,20 +14,14 @@ namespace BankSystem.Entities
         public int Id { get; set; }
         public User User { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public HashSet<Bill> Bills { get; set; }// = new HashSet<Bill>();
+        public HashSet<Bill> Bills { get; set; }
 
         public void OpenBill(Bill bill)
         {
-            //TODO
             AppContext db = new AppContext();
             Bills.Add(bill);
             db.Clients.Update(this);
             db.SaveChanges();
-        }
-
-        public void CloseBill()
-        {
-            //TODO
         }
     }
 }

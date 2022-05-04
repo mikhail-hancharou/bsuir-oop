@@ -95,6 +95,8 @@ namespace BankSystem.MenuEntities
                 db.CompanyTransfer.Add(companyTransfer);
                 db.Bills.Update(bill);
             }
+
+            db.Logs.Add(new Log($"{Company.BID}", $" {DateTime.UtcNow.ToString()} Aprove transfer request to - {BillsNSalary.BillNumber}"));
             db.SaveChanges();
         }
 
@@ -105,6 +107,7 @@ namespace BankSystem.MenuEntities
             Company.BillsNSalaries.Remove(BillsNSalary);
             db.BillsNSalaries.Remove(BillsNSalary);
             db.Companies.Update(Company);
+            db.Logs.Add(new Log($"{Company.BID} ", $"{DateTime.UtcNow.ToString()} Denied transfer request to - {BillsNSalary.BillNumber}"));
             db.SaveChanges();
         }
     }

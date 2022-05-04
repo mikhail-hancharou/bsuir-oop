@@ -16,9 +16,9 @@ namespace BankSystem.Login
             View = view;
         }
 
-        public void IsValid(string login, string passw)
+        public void IsValid(string login, string passw, Form Form)
         {
-            Form form = Model.IsValid(login, passw);
+            Form form = Model.IsValid(login, passw, Form);
             View.Continue(form);
         }
     }

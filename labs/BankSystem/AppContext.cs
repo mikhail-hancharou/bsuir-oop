@@ -23,6 +23,7 @@ namespace BankSystem
         public DbSet<BillsNSalary> BillsNSalaries => Set<BillsNSalary>();
         public DbSet<CompanyTransfer> CompanyTransfer => Set<CompanyTransfer>();
         public DbSet<Company> Companies => Set<Company>();
+        public DbSet<Log> Logs => Set<Log>();
         public AppContext() => Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,7 +43,6 @@ namespace BankSystem
                         OverPaymentPercent = 9.1,
                         AccumPercent = 2.3,
                         TotalMoney = 0,
-                        Clients = new List<Client>(),
                         ClientAccum = new List<Accumulate>(),
                     },
                     new Bank
@@ -53,7 +53,6 @@ namespace BankSystem
                         OverPaymentPercent = 12.7,
                         AccumPercent = 3.1,
                         TotalMoney = 0,
-                        Clients = new List<Client>(),
                         ClientAccum = new List<Accumulate>(),
                     }
                 });

@@ -126,7 +126,7 @@ namespace BankSystem
 
         public void RequestedForm()
         {
-            RequestedForm requestedForm = new RequestedForm();
+            RequestedForm requestedForm = new RequestedForm(this);
             requestedForm.Show();
         }
 

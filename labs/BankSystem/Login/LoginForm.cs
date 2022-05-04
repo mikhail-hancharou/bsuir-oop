@@ -38,7 +38,7 @@ namespace BankSystem
             else
             {
                 Hide();
-                Presenter.IsValid(logBox.Text.Trim(), pasBox.Text.Trim());
+                Presenter.IsValid(logBox.Text.Trim(), pasBox.Text.Trim(), this);
             }
         }
 

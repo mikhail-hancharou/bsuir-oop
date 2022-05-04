@@ -66,6 +66,7 @@ namespace BankSystem.MenuEntities
             db.CompanyTransfer.Remove(CompanyTransfer);
             Company.CompanyTransfer.Remove(CompanyTransfer);     
             db.Companies.Update(company);
+            db.Logs.Add(new Log($"{company.BID}", $"{DateTime.UtcNow.ToString()} Undo company transfer to - {CompanyTransfer.DestBill}"));
             db.SaveChanges();
         }
     }

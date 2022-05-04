@@ -88,5 +88,20 @@ namespace BankSystem.Menu
         {
             return Model.MoneyNPayment(bill);
         }
+
+        public void CreditRequest(string billNumber, Client client, string periodText, double value)
+        {
+            Model.CreditRequest(billNumber, client, periodText, value);
+        }
+
+        public void InstallementRequest(string billNumber, Client client, string periodText, double value)
+        {
+            Model.InstallementRequest(billNumber, client, periodText, value);
+        }
+
+        public void InitializeLogs(string BID, Label label79)
+        {
+            Model.InitializeLogs(BID, label79);
+        }
     }
 }

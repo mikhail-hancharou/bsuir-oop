@@ -62,6 +62,7 @@ namespace BankSystem.MenuEntities
             Company.Confirmed = true;
             Company.Requested = false;
             db.Companies.Update(Company);
+            db.Logs.Add(new Log($"{Company.BID}", $"{DateTime.UtcNow.ToString()} Aprove salary project request - {Company.UNP}"));
             db.SaveChanges();
         }
 
@@ -72,7 +73,7 @@ namespace BankSystem.MenuEntities
             db.Companies.Remove(Company);
             Outsider.UNP = null;
             db.Outsiders.Update(Outsider);
-            //db.Clients.Remove(Client); //TODO
+            db.Logs.Add(new Log($"{Company.BID}", $"{DateTime.UtcNow.ToString()} Denied salary project request - {Company.UNP}"));
             db.SaveChanges();
         }
     }

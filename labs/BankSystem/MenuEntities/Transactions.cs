@@ -57,6 +57,7 @@ namespace BankSystem.MenuEntities
             db.Bills.Update(bill);
             db.Bills.Update(Bill);
             db.Transactions.Remove(Transaction);
+            db.Logs.Add(new Log("", $"{DateTime.UtcNow.ToString()} Undo transaction to - {Transaction.DestBill}"));
 
             db.SaveChanges();
         }

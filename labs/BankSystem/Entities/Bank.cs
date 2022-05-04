@@ -12,21 +12,8 @@ namespace BankSystem.Entities
         public double OverPaymentPercent { get; set; } = 0;
         public double AccumPercent { get; set; } = 0;
         public List<Accumulate> ClientAccum { get; set; }
-        public List<Client> Clients { get; set; }
         public double TotalMoney { get; set; } = 0;
 
         public Bank() { }
-
-        //public Bank(string BID, List<Client> clients = null, double totalMoney = 0)
-        //{
-        //    this.BID = BID;
-        //    this.Clients = clients;
-        //    this.TotalMoney = totalMoney;
-        //}
-
-        protected void AddUser(Client user)
-        {
-            Clients.Add(user);
-        }
     }
 }

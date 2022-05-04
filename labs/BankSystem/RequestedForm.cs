@@ -10,15 +10,18 @@ namespace BankSystem
 {
     public partial class RequestedForm : Form
     {
-        public RequestedForm()
+        private readonly Form Parent;
+        public RequestedForm(Form parent)
         {
             InitializeComponent();
+            Parent = parent;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Close();
-            Application.Exit();
+            Hide();
+            Parent.Show();
+            //Application.Exit();
         }
 
         public void ChangeInfo()
