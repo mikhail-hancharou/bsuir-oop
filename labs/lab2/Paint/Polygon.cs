@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
+using PlugIn;
 
 namespace Paint
 {
     public class Polygon : Figure
     {
-        public Polygon()
-        {
-            Id = 4;
-        }
+        public Polygon(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
+            : base(idx, R, G, B, Rb, Gb, Bb, Width) { }
 
         public override void Draw(Graphics graphics)
         {

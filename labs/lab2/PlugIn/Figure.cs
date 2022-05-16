@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace Paint
+namespace PlugIn
 {
-    public class Figuree : ICloneable
+    public class Figure : ICloneable
     {
         public int Id;
         public virtual object Clone() { return new object(); } //abstract
@@ -19,9 +19,9 @@ namespace Paint
         public int Rb;
         public int Gb;
         public int Bb;
-        public Figuree() { }
+        public Figure() { }
 
-        public Figuree(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
+        public Figure(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
         {
             Color = Color.FromArgb(R, G, B);
             Brush = Color.FromArgb(Rb, Gb, Bb);

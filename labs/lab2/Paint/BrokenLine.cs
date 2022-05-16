@@ -1,16 +1,13 @@
-﻿using System;
+﻿using PlugIn;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace Paint
 {
     class BrokenLine : Figure
     {
-        public BrokenLine()
-        {
-            Id = 3;
-        }
+        public BrokenLine(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
+            : base(idx, R, G, B, Rb, Gb, Bb, Width) { }
 
         public override void Draw(Graphics graphics)
         {

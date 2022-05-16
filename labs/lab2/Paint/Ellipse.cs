@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
+using PlugIn;
 
 namespace Paint
 {
     class Ellipse : Figure
     {
-        public Ellipse()
-        {
-            Id = 2;
-        }
+        public Ellipse(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
+            : base(idx, R, G, B, Rb, Gb, Bb, Width) { }
 
         public override object Clone()
         {

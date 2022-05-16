@@ -1,16 +1,14 @@
-﻿using System;
+﻿using PlugIn;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace Paint
 {
     class Rect : Figure
     {
-        public Rect()
-        {
-            Id = 1;
-        }
+        public Rect(int idx, int R, int G, int B, int Rb, int Gb, int Bb, int Width)
+            : base(idx, R, G, B, Rb, Gb, Bb, Width) { }
 
         public override object Clone()
         {

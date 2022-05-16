@@ -1,33 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
+using PlugIn;
 
 namespace Paint
 {
     public partial class Form1 : Form
     {
+        List<string> BuiltIn = new List<string>() { "Line", "Rect", "BrokenLine", "Ellipse", "Polygon" }; 
         bool Painting = false;
         Graphics Graphics;
-        List<Figure> Figures;
-        List<Figure> SavedFig;
-        Figure Figure;
+        List<object> Figures; //Figure
+        List<object> SavedFig;
+        Figure Figure; //Figure
         bool ComplexFigure = false;
         Bitmap bmp;
         Figure Repeate;
+        Fabric Fabric = new Fabric() { };
+        string path = "Figures.json";
+        Ser Ser;
+        private List<IPlugin> Plugins;
 
         public Form1()
         {
             InitializeComponent();
-            LineBut.Checked = true;
-            Figures = new List<Figure>() { };
-            SavedFig = new List<Figure>() { };
+            FigureBox.Items.AddRange(new List<string>() { "Line", "Rect", "Ellipse", "BrokenLine", "Polygon"}.ToArray());
+            FigureBox.SelectedIndex = 0;
+            Figures = new List<object>() { };  // new List<Figure>() { };
+            SavedFig = new List<object>() { };
+            Ser = new Ser() { };
 
             Rectangle rec = Screen.PrimaryScreen.Bounds;
             bmp = new Bitmap(rec.Width, rec.Height);
@@ -103,38 +109,43 @@ namespace Paint
             RBox_ValueChanged(sender, e);
         }
 
-        private void LineBut_CheckedChanged(object sender, EventArgs e)
+        /*private void LineBut_CheckedChanged(object sender, EventArgs e)
         {
-            Figure = new Line() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
-                Width = (int)WidthBox.Value };
+            Figure = Fabric.ReturnFigure(0, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = new Line() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
+             //   Width = (int)WidthBox.Value };
         }
 
         private void RectBut_CheckedChanged(object sender, EventArgs e)
         {
-            Figure = new Rect() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
-                Width = (int)WidthBox.Value };
+            Figure = Fabric.ReturnFigure(1, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = new Rect() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
+            //    Width = (int)WidthBox.Value };
         }
 
         private void EllipseBut_CheckedChanged(object sender, EventArgs e)
         {
-            Figure = new Ellipse() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
-            Width = (int)WidthBox.Value };
+            Figure = Fabric.ReturnFigure(2, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = new Ellipse() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
+            //Width = (int)WidthBox.Value };
         }
 
         private void BrokenBut_CheckedChanged(object sender, EventArgs e)
         {
-            Figure = new BrokenLine() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
-                Width = (int)WidthBox.Value };
+            Figure = Fabric.ReturnFigure(3, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = new BrokenLine() { Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
+            //    Width = (int)WidthBox.Value };
         }
 
         private void PolyBut_CheckedChanged(object sender, EventArgs e)
         {
-            Figure = new Polygon()
-            {
-                Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
-                Width = (int)WidthBox.Value
-            };
-        }
+            Figure = Fabric.ReturnFigure(4, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value,  (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = new Polygon()
+            //{
+            //    Color = Color.FromArgb((int)RBox.Value, (int)GBox.Value, (int)BBox.Value),
+            //    Width = (int)WidthBox.Value
+            //};
+        }*/
 
         private void WidthBox_ValueChanged(object sender, EventArgs e)
         {
@@ -218,7 +229,8 @@ namespace Paint
         {
             UpdateScreen();
             int id = comboBox.SelectedIndex;
-            Figure temp = (Figure)Figures.ElementAt(id).Clone();
+            //Figure temp = (object)Figures.ElementAt(id).Clone();
+            Figure temp = (Figure)((Figure)Figures.ElementAt(id)).Clone();
             List<Point> points = new List<Point>(){ };
             if (checkBox.Checked)
             {
@@ -240,6 +252,90 @@ namespace Paint
             Figures.Add(Repeate);
             UpdateScreen();
             pictureBox.Refresh();
+        }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            XBox.Value = 0;
+            YBox.Value = 0;
+            RepeateDraw();
+        }
+
+        private void FigureBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Figure = Fabric.ReturnFigure(FigureBox.SelectedIndex, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+
+            //Figure = Fabric.ReturnFigure(0, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = Fabric.ReturnFigure(1, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = Fabric.ReturnFigure(2, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = Fabric.ReturnFigure(2, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = Fabric.ReturnFigure(3, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+            //Figure = Fabric.ReturnFigure(4, (int)RBox.Value, (int)GBox.Value, (int)BBox.Value, (int)RbBox.Value, (int)GbBox.Value, (int)BbBox.Value, (int)WidthBox.Value);
+        }
+
+        private void serBut_Click(object sender, EventArgs e)
+        {
+            Ser.SerFigures(path, Figures);
+        }
+
+        private void DesBut_Click(object sender, EventArgs e)
+        {
+            List<object> figs = Ser.DesFigures(path);
+            Figures.AddRange(figs);
+            UpdateScreen();
+            RepeatCombo();
+            pictureBox.Refresh();
+        }
+
+        private List<Figure> LoadPlugins(string path)
+        {
+            string[] pluginFiles = Directory.GetFiles(path, "*.dll");
+            Plugins = new List<IPlugin>();
+            List<Figure> figures = new List<Figure>() { };
+
+            foreach (string pluginPath in pluginFiles)
+            {
+                Assembly assembly = Assembly.LoadFrom(pluginPath);
+                Type[] types = assembly.GetTypes();
+                foreach (Type type in types)
+                {
+                    if (type.IsSubclassOf(typeof(Figure)) && !BuiltIn.Contains(type.Name))
+                    {
+                        var NewType = assembly.CreateInstance(type.FullName);
+                        if (NewType != null)
+                        {
+                            Plugins.Add((IPlugin)NewType);
+                            figures.Add((Figure)NewType);
+                        }
+                    }
+                } 
+            }
+
+            return figures;
+        }
+
+        private void AddPluginsItems()
+        {
+            foreach (IPlugin plugin in this.Plugins)
+            {
+                if (plugin == null)
+                {
+                    continue;
+                }
+                FigureBox.Items.Add(plugin.PluginName);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var temp = LoadPlugins(Application.StartupPath);
+            Fabric.SetExtensions(temp);    
+        }
+
+        private void PlugBut_Click(object sender, EventArgs e)
+        {
+            AddPluginsItems();
+            PlugBut.Enabled = false;
         }
     }
 }

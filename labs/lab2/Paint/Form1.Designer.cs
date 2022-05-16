@@ -32,12 +32,6 @@
             this.RBox = new System.Windows.Forms.NumericUpDown();
             this.GBox = new System.Windows.Forms.NumericUpDown();
             this.BBox = new System.Windows.Forms.NumericUpDown();
-            this.groupBox = new System.Windows.Forms.GroupBox();
-            this.PolyBut = new System.Windows.Forms.RadioButton();
-            this.BrokenBut = new System.Windows.Forms.RadioButton();
-            this.EllipseBut = new System.Windows.Forms.RadioButton();
-            this.RectBut = new System.Windows.Forms.RadioButton();
-            this.LineBut = new System.Windows.Forms.RadioButton();
             this.RbBox = new System.Windows.Forms.NumericUpDown();
             this.GbBox = new System.Windows.Forms.NumericUpDown();
             this.BbBox = new System.Windows.Forms.NumericUpDown();
@@ -52,11 +46,14 @@
             this.YBox = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox = new System.Windows.Forms.CheckBox();
+            this.FigureBox = new System.Windows.Forms.ComboBox();
+            this.serBut = new System.Windows.Forms.Button();
+            this.DesBut = new System.Windows.Forms.Button();
+            this.PlugBut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BBox)).BeginInit();
-            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RbBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GbBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BbBox)).BeginInit();
@@ -135,81 +132,6 @@
             0,
             0});
             this.BBox.ValueChanged += new System.EventHandler(this.BBox_ValueChanged);
-            // 
-            // groupBox
-            // 
-            this.groupBox.Controls.Add(this.PolyBut);
-            this.groupBox.Controls.Add(this.BrokenBut);
-            this.groupBox.Controls.Add(this.EllipseBut);
-            this.groupBox.Controls.Add(this.RectBut);
-            this.groupBox.Controls.Add(this.LineBut);
-            this.groupBox.Font = new System.Drawing.Font("RomanD", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox.Location = new System.Drawing.Point(836, 145);
-            this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(190, 185);
-            this.groupBox.TabIndex = 2;
-            this.groupBox.TabStop = false;
-            this.groupBox.Text = "Figures";
-            // 
-            // PolyBut
-            // 
-            this.PolyBut.AutoSize = true;
-            this.PolyBut.Location = new System.Drawing.Point(6, 146);
-            this.PolyBut.Name = "PolyBut";
-            this.PolyBut.Size = new System.Drawing.Size(98, 26);
-            this.PolyBut.TabIndex = 0;
-            this.PolyBut.TabStop = true;
-            this.PolyBut.Text = "Polygon";
-            this.PolyBut.UseVisualStyleBackColor = true;
-            this.PolyBut.CheckedChanged += new System.EventHandler(this.PolyBut_CheckedChanged);
-            // 
-            // BrokenBut
-            // 
-            this.BrokenBut.AutoSize = true;
-            this.BrokenBut.Location = new System.Drawing.Point(6, 116);
-            this.BrokenBut.Name = "BrokenBut";
-            this.BrokenBut.Size = new System.Drawing.Size(136, 26);
-            this.BrokenBut.TabIndex = 0;
-            this.BrokenBut.TabStop = true;
-            this.BrokenBut.Text = "Broken Line";
-            this.BrokenBut.UseVisualStyleBackColor = true;
-            this.BrokenBut.CheckedChanged += new System.EventHandler(this.BrokenBut_CheckedChanged);
-            // 
-            // EllipseBut
-            // 
-            this.EllipseBut.AutoSize = true;
-            this.EllipseBut.Location = new System.Drawing.Point(6, 86);
-            this.EllipseBut.Name = "EllipseBut";
-            this.EllipseBut.Size = new System.Drawing.Size(86, 26);
-            this.EllipseBut.TabIndex = 0;
-            this.EllipseBut.TabStop = true;
-            this.EllipseBut.Text = "Ellipse";
-            this.EllipseBut.UseVisualStyleBackColor = true;
-            this.EllipseBut.CheckedChanged += new System.EventHandler(this.EllipseBut_CheckedChanged);
-            // 
-            // RectBut
-            // 
-            this.RectBut.AutoSize = true;
-            this.RectBut.Location = new System.Drawing.Point(6, 56);
-            this.RectBut.Name = "RectBut";
-            this.RectBut.Size = new System.Drawing.Size(116, 26);
-            this.RectBut.TabIndex = 0;
-            this.RectBut.TabStop = true;
-            this.RectBut.Text = "Rectangel";
-            this.RectBut.UseVisualStyleBackColor = true;
-            this.RectBut.CheckedChanged += new System.EventHandler(this.RectBut_CheckedChanged);
-            // 
-            // LineBut
-            // 
-            this.LineBut.AutoSize = true;
-            this.LineBut.Location = new System.Drawing.Point(6, 26);
-            this.LineBut.Name = "LineBut";
-            this.LineBut.Size = new System.Drawing.Size(66, 26);
-            this.LineBut.TabIndex = 0;
-            this.LineBut.TabStop = true;
-            this.LineBut.Text = "Line";
-            this.LineBut.UseVisualStyleBackColor = true;
-            this.LineBut.CheckedChanged += new System.EventHandler(this.LineBut_CheckedChanged);
             // 
             // RbBox
             // 
@@ -348,6 +270,7 @@
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(184, 30);
             this.comboBox.TabIndex = 8;
+            this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // XBox
             // 
@@ -409,11 +332,54 @@
             this.checkBox.UseVisualStyleBackColor = true;
             this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
+            // FigureBox
+            // 
+            this.FigureBox.FormattingEnabled = true;
+            this.FigureBox.Location = new System.Drawing.Point(841, 161);
+            this.FigureBox.Name = "FigureBox";
+            this.FigureBox.Size = new System.Drawing.Size(180, 28);
+            this.FigureBox.TabIndex = 13;
+            this.FigureBox.SelectedIndexChanged += new System.EventHandler(this.FigureBox_SelectedIndexChanged);
+            // 
+            // serBut
+            // 
+            this.serBut.Location = new System.Drawing.Point(884, 217);
+            this.serBut.Name = "serBut";
+            this.serBut.Size = new System.Drawing.Size(94, 29);
+            this.serBut.TabIndex = 14;
+            this.serBut.Text = "Ser";
+            this.serBut.UseVisualStyleBackColor = true;
+            this.serBut.Click += new System.EventHandler(this.serBut_Click);
+            // 
+            // DesBut
+            // 
+            this.DesBut.Location = new System.Drawing.Point(884, 262);
+            this.DesBut.Name = "DesBut";
+            this.DesBut.Size = new System.Drawing.Size(94, 29);
+            this.DesBut.TabIndex = 15;
+            this.DesBut.Text = "Des";
+            this.DesBut.UseVisualStyleBackColor = true;
+            this.DesBut.Click += new System.EventHandler(this.DesBut_Click);
+            // 
+            // PlugBut
+            // 
+            this.PlugBut.Location = new System.Drawing.Point(884, 314);
+            this.PlugBut.Name = "PlugBut";
+            this.PlugBut.Size = new System.Drawing.Size(94, 29);
+            this.PlugBut.TabIndex = 16;
+            this.PlugBut.Text = "Plugins";
+            this.PlugBut.UseVisualStyleBackColor = true;
+            this.PlugBut.Click += new System.EventHandler(this.PlugBut_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 618);
+            this.Controls.Add(this.PlugBut);
+            this.Controls.Add(this.DesBut);
+            this.Controls.Add(this.serBut);
+            this.Controls.Add(this.FigureBox);
             this.Controls.Add(this.checkBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.YBox);
@@ -428,19 +394,17 @@
             this.Controls.Add(this.BbBox);
             this.Controls.Add(this.GbBox);
             this.Controls.Add(this.RbBox);
-            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.BBox);
             this.Controls.Add(this.GBox);
             this.Controls.Add(this.RBox);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BBox)).EndInit();
-            this.groupBox.ResumeLayout(false);
-            this.groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RbBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GbBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BbBox)).EndInit();
@@ -458,12 +422,6 @@
         private System.Windows.Forms.NumericUpDown RBox;
         private System.Windows.Forms.NumericUpDown GBox;
         private System.Windows.Forms.NumericUpDown BBox;
-        private System.Windows.Forms.GroupBox groupBox;
-        private System.Windows.Forms.RadioButton PolyBut;
-        private System.Windows.Forms.RadioButton BrokenBut;
-        private System.Windows.Forms.RadioButton EllipseBut;
-        private System.Windows.Forms.RadioButton RectBut;
-        private System.Windows.Forms.RadioButton LineBut;
         private System.Windows.Forms.NumericUpDown RbBox;
         private System.Windows.Forms.NumericUpDown GbBox;
         private System.Windows.Forms.NumericUpDown BbBox;
@@ -478,6 +436,10 @@
         private System.Windows.Forms.NumericUpDown YBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox;
+        private System.Windows.Forms.ComboBox FigureBox;
+        private System.Windows.Forms.Button serBut;
+        private System.Windows.Forms.Button DesBut;
+        private System.Windows.Forms.Button PlugBut;
     }
 }
 
