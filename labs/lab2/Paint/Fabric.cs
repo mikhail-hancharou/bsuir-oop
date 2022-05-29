@@ -54,7 +54,7 @@ namespace Paint
                 }
             }
 
-            return new Line(idx, R, G, B, Rb, Gb, Bb, Width);
+            return new Figure(0, 0, 0, 0, 0, 0, 0, 0);
         }
     }
 }

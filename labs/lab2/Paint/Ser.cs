@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using PlugIn;
 
@@ -11,7 +12,7 @@ namespace Paint
     {
         public Ser() { }
 
-        public void SerFigures(string fileName, List<object> Figures)
+        public void SerFigures(string fileName, List<Figure> Figures, TextBox tb)
         {
             try
             {
@@ -24,21 +25,29 @@ namespace Paint
             }
             catch (Exception e)
             {
+                tb.Text = "No such file";
                 Console.WriteLine(e.Message);
             }
         }
 
-        public List<object> DesFigures(string fileName)
+        public List<Figure> DesFigures(string fileName, TextBox tb)
         {
-            //List<Figure> Figures = new List<Figure>() { };
-            List<Object> objects = new List<object>() { };
+            List<Figure> Figures = new List<Figure>() { };
 
-            string[] json = File.ReadAllLines(fileName);
-            foreach (string line in json)
+            try
             {
-                objects.Add(JsonConvert.DeserializeObject(line, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
+                string[] json = File.ReadAllLines(fileName);
+                foreach (string line in json)
+                {
+                    Figures.Add((Figure)JsonConvert.DeserializeObject(line, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
+                }
             }
-            return objects;
+            catch
+            {
+                tb.Text = "No such file";
+            }
+            
+            return Figures;
         }
     }
 }

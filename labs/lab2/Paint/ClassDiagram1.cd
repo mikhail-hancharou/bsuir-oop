@@ -1,72 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Paint.BrokenLine" Collapsed="true">
-    <Position X="7.75" Y="1.75" Width="1.5" />
+    <Position X="20" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>BrokenLine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Paint.Ellipse" Collapsed="true">
-    <Position X="10" Y="1.75" Width="1.5" />
+    <Position X="24.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Ellipse.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Paint.Figure" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+  <Class Name="Paint.Fabric" Collapsed="true">
+    <Position X="22.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAggIAIAQABEQAAAAAAAAAAAAAiAEAARA=</HashCode>
-      <FileName>Figure.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Fabric.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <ShowAsCollectionAssociation>
+      <Field Name="Extensions" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Paint.Form1" Collapsed="true">
-    <Position X="21" Y="0.5" Width="1.5" />
+    <Position X="22.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IsQCQRBJgqAAIBJwEAWAAQkGaSAKkIABBXgBAhGIQCE=</HashCode>
+      <HashCode>MsSCQRFJAiAIJBJwEAyCQQgGaSgI0AABB1wBApEIACE=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="Fabric" />
-      <Field Name="Figure" />
-    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Figures" />
+      <Field Name="Plugins" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Paint.Line" Collapsed="true">
-    <Position X="12.25" Y="1.75" Width="1.5" />
+    <Position X="17.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Line.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Paint.Polygon" Collapsed="true">
-    <Position X="16.75" Y="1.75" Width="1.5" />
+    <Position X="26.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Polygon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Paint.Program" Collapsed="true">
-    <Position X="19.25" Y="1.5" Width="1.5" />
+    <Position X="25.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Paint.Rect" Collapsed="true">
-    <Position X="14.5" Y="1.75" Width="1.5" />
+    <Position X="22.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Rect.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Paint.Fabric" Collapsed="true">
-    <Position X="19.25" Y="0.5" Width="1.5" />
+  <Class Name="Paint.Ser" Collapsed="true">
+    <Position X="27.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Fabric.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ser.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="PlugIn.Figure" Collapsed="true">
+    <Position X="22.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="PlugIn.IPlugin" Collapsed="true">
+    <Position X="22.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

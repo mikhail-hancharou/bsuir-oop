@@ -17,9 +17,13 @@ namespace Paint
 
         public override void Draw(Graphics graphics)
         {
-            Points = new List<Point>() { Points.ToArray()[0], Points.ToArray()[^1] };
-            //graphics.DrawLine(new Pen(Color, Width), startX, startY, initX, initY);
-            graphics.DrawLine(new Pen(Color, Width), Points.ToArray()[0], Points.ToArray()[^1]);
+            if (Points.Count >= 2)
+            {
+
+                Points = new List<Point>() { Points.ToArray()[0], Points.ToArray()[^1] };
+                //graphics.DrawLine(new Pen(Color, Width), startX, startY, initX, initY);
+                graphics.DrawLine(new Pen(Color, Width), Points.ToArray()[0], Points.ToArray()[^1]);
+            }
         }
     }
 }

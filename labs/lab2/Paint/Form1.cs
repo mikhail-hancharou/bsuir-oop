@@ -15,8 +15,8 @@ namespace Paint
         List<string> BuiltIn = new List<string>() { "Line", "Rect", "BrokenLine", "Ellipse", "Polygon" }; 
         bool Painting = false;
         Graphics Graphics;
-        List<object> Figures; //Figure
-        List<object> SavedFig;
+        List<Figure> Figures; //Figure
+        List<Figure> SavedFig;
         Figure Figure; //Figure
         bool ComplexFigure = false;
         Bitmap bmp;
@@ -31,8 +31,8 @@ namespace Paint
             InitializeComponent();
             FigureBox.Items.AddRange(new List<string>() { "Line", "Rect", "Ellipse", "BrokenLine", "Polygon"}.ToArray());
             FigureBox.SelectedIndex = 0;
-            Figures = new List<object>() { };  // new List<Figure>() { };
-            SavedFig = new List<object>() { };
+            Figures = new List<Figure>() { };  // new List<Figure>() { };
+            SavedFig = new List<Figure>() { };
             Ser = new Ser() { };
 
             Rectangle rec = Screen.PrimaryScreen.Bounds;
@@ -206,7 +206,15 @@ namespace Paint
         {
             comboBox.Items.Clear();
             comboBox.Items.AddRange(Figures.ToArray()[..]);
-            comboBox.SelectedIndex = 0;
+            if (comboBox.Items.Count != 0)
+            {
+                comboBox.Enabled = true;
+                comboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBox.Enabled = false;
+            }
             checkBox.Checked = false;
         }
 
@@ -275,12 +283,18 @@ namespace Paint
 
         private void serBut_Click(object sender, EventArgs e)
         {
-            Ser.SerFigures(path, Figures);
+            path = fileTextBox.Text;
+            Ser.SerFigures(path, Figures, fileTextBox);
         }
 
         private void DesBut_Click(object sender, EventArgs e)
         {
-            List<object> figs = Ser.DesFigures(path);
+            path = fileTextBox.Text;
+            List<Figure> figs = Ser.DesFigures(path, fileTextBox);
+            //if (PlugBut.Enabled && figs.Where(f => f.Id > 4)
+            //{
+
+            //}
             Figures.AddRange(figs);
             UpdateScreen();
             RepeatCombo();
@@ -329,13 +343,24 @@ namespace Paint
         private void Form1_Load(object sender, EventArgs e)
         {
             var temp = LoadPlugins(Application.StartupPath);
-            Fabric.SetExtensions(temp);    
+            Fabric.SetExtensions(temp);
+            var dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            foreach (FileInfo f in dir.GetFiles("*.txt"))
+            {
+                fileComboBox.Items.Add(f.Name);
+            }
         }
 
         private void PlugBut_Click(object sender, EventArgs e)
         {
             AddPluginsItems();
             PlugBut.Enabled = false;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            path = fileComboBox.Text;
+            fileTextBox.Text = path;
         }
     }
 }

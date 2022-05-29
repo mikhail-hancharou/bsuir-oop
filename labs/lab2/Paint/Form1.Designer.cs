@@ -50,6 +50,8 @@
             this.serBut = new System.Windows.Forms.Button();
             this.DesBut = new System.Windows.Forms.Button();
             this.PlugBut = new System.Windows.Forms.Button();
+            this.fileTextBox = new System.Windows.Forms.TextBox();
+            this.fileComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GBox)).BeginInit();
@@ -343,7 +345,7 @@
             // 
             // serBut
             // 
-            this.serBut.Location = new System.Drawing.Point(884, 217);
+            this.serBut.Location = new System.Drawing.Point(884, 195);
             this.serBut.Name = "serBut";
             this.serBut.Size = new System.Drawing.Size(94, 29);
             this.serBut.TabIndex = 14;
@@ -353,7 +355,7 @@
             // 
             // DesBut
             // 
-            this.DesBut.Location = new System.Drawing.Point(884, 262);
+            this.DesBut.Location = new System.Drawing.Point(884, 240);
             this.DesBut.Name = "DesBut";
             this.DesBut.Size = new System.Drawing.Size(94, 29);
             this.DesBut.TabIndex = 15;
@@ -363,19 +365,37 @@
             // 
             // PlugBut
             // 
-            this.PlugBut.Location = new System.Drawing.Point(884, 314);
+            this.PlugBut.Location = new System.Drawing.Point(936, 367);
             this.PlugBut.Name = "PlugBut";
-            this.PlugBut.Size = new System.Drawing.Size(94, 29);
+            this.PlugBut.Size = new System.Drawing.Size(90, 29);
             this.PlugBut.TabIndex = 16;
             this.PlugBut.Text = "Plugins";
             this.PlugBut.UseVisualStyleBackColor = true;
             this.PlugBut.Click += new System.EventHandler(this.PlugBut_Click);
+            // 
+            // fileTextBox
+            // 
+            this.fileTextBox.Location = new System.Drawing.Point(842, 316);
+            this.fileTextBox.Name = "fileTextBox";
+            this.fileTextBox.Size = new System.Drawing.Size(183, 27);
+            this.fileTextBox.TabIndex = 17;
+            // 
+            // fileComboBox
+            // 
+            this.fileComboBox.FormattingEnabled = true;
+            this.fileComboBox.Location = new System.Drawing.Point(842, 282);
+            this.fileComboBox.Name = "fileComboBox";
+            this.fileComboBox.Size = new System.Drawing.Size(183, 28);
+            this.fileComboBox.TabIndex = 18;
+            this.fileComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 618);
+            this.Controls.Add(this.fileComboBox);
+            this.Controls.Add(this.fileTextBox);
             this.Controls.Add(this.PlugBut);
             this.Controls.Add(this.DesBut);
             this.Controls.Add(this.serBut);
@@ -440,6 +460,8 @@
         private System.Windows.Forms.Button serBut;
         private System.Windows.Forms.Button DesBut;
         private System.Windows.Forms.Button PlugBut;
+        private System.Windows.Forms.TextBox fileTextBox;
+        private System.Windows.Forms.ComboBox fileComboBox;
     }
 }
 
